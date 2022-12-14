@@ -1,5 +1,5 @@
 CREATE TABLE if not exists resume (
-  id VARCHAR(20) NOT NULL,
+  cid VARCHAR(20) NOT NULL,
    name VARCHAR(80) NOT NULL,
    birth_date date NOT NULL,
    gender INTEGER NOT NULL,
@@ -12,5 +12,5 @@ CREATE TABLE if not exists resume (
    job_option_two VARCHAR(50),
    job_option_three VARCHAR(50),
    schooling VARCHAR(40) NOT NULL,
-   CONSTRAINT pk_resume PRIMARY KEY (id)
+   CONSTRAINT pk_resume PRIMARY KEY (cid)
 );

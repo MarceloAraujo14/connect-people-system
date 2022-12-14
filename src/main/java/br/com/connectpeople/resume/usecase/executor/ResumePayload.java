@@ -1,4 +1,4 @@
-package br.com.connectpeople.resume.usecase.input;
+package br.com.connectpeople.resume.usecase.executor;
 
 import br.com.connectpeople.resume.domain.JobExperience;
 import br.com.connectpeople.resume.domain.enums.Gender;
@@ -13,7 +13,7 @@ import java.util.Objects;
 
 @Builder
 @Data
-public class RegisterResumeInput {
+public class ResumePayload {
 
     private String name;
     private String birthDate;

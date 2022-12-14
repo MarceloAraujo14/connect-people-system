@@ -1,7 +1,8 @@
-package br.com.connectpeople.resume.usecase.chain;
+package br.com.connectpeople.resume.usecase.resume.chain;
 
 import br.com.connectpeople.resume.domain.exception.InvalidInputException;
-import br.com.connectpeople.resume.usecase.input.RegisterResumeInput;
+import br.com.connectpeople.resume.usecase.executor.ExecutorChain;
+import br.com.connectpeople.resume.usecase.executor.ResumePayload;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
@@ -14,12 +15,12 @@ import static br.com.connectpeople.resume.domain.constants.Constants.StateProces
 
 @Log4j2
 @Component
-public class ValidatePostalCode implements ExecutorChain<RegisterResumeInput> {
+public class ValidatePostalCode implements ExecutorChain<ResumePayload> {
 
     public static final String POSTAL_CODE = "postalCode";
 
     @Override
-    public RegisterResumeInput execute(RegisterResumeInput payload) {
+    public ResumePayload execute(ResumePayload payload) {
         try {
             inputValidate(payload.getPostalCode());
         }catch (InvalidInputException ex){

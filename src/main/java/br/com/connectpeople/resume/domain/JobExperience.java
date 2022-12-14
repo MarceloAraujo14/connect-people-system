@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 @Builder
 public class JobExperience {
-    private String cid;
     private String title;
     private int startMonth;
     private int startYear;

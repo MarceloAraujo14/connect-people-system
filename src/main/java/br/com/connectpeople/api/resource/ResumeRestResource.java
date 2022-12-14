@@ -2,7 +2,7 @@ package br.com.connectpeople.api.resource;
 
 import br.com.connectpeople.api.request.ResumeRequest;
 import br.com.connectpeople.resume.domain.Resume;
-import br.com.connectpeople.resume.usecase.RegisterResumeUseCase;
+import br.com.connectpeople.resume.usecase.resume.RegisterResumeUseCase;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

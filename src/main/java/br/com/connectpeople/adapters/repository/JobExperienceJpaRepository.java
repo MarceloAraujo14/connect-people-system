@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface JobExperienceJpaRepository extends JpaRepository<JobExperienceEntity, Long> {
 
-    List<JobExperienceEntity> findByResumeId(Long resumeId);
+    List<JobExperienceEntity> findByCid(Long cid);
 
 }

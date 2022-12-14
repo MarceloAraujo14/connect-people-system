@@ -1,7 +1,8 @@
-package br.com.connectpeople.resume.usecase.chain;
+package br.com.connectpeople.resume.usecase.resume.chain;
 
 import br.com.connectpeople.resume.domain.exception.InvalidInputException;
-import br.com.connectpeople.resume.usecase.input.RegisterResumeInput;
+import br.com.connectpeople.resume.usecase.executor.ExecutorChain;
+import br.com.connectpeople.resume.usecase.executor.ResumePayload;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +20,7 @@ import static br.com.connectpeople.resume.domain.constants.Constants.StateProces
 
 @Log4j2
 @Component
-public class ValidateBirthDate implements ExecutorChain<RegisterResumeInput>{
+public class ValidateBirthDate implements ExecutorChain<ResumePayload> {
 
     private static final int MIN_AGE = 16;
     private static final int MAX_AGE = 100;
@@ -27,8 +28,7 @@ public class ValidateBirthDate implements ExecutorChain<RegisterResumeInput>{
     public static final String DD_MM_YYYY = "dd-MM-yyyy";
 
     @Override
-    public RegisterResumeInput execute(RegisterResumeInput payload) {
-        log.info("M execute, payload={}, state={}", payload, PROCESSING);
+    public ResumePayload execute(ResumePayload payload) {
         try {
             inputValidate(payload.getBirthDate());
         } catch (InvalidInputException ex){

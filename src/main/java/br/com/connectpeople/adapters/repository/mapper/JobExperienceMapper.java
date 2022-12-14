@@ -1,4 +1,4 @@
-package br.com.connectpeople.mapper;
+package br.com.connectpeople.adapters.repository.mapper;
 
 import br.com.connectpeople.adapters.repository.entity.JobExperienceEntity;
 import br.com.connectpeople.resume.domain.JobExperience;
@@ -11,7 +11,6 @@ public class JobExperienceMapper {
 
     public static JobExperienceEntity toJobExperienceEntity(JobExperience jobExperience){
         return JobExperienceEntity.builder()
-                .cid(jobExperience.getCid())
                 .description(jobExperience.getDescription())
                 .title(jobExperience.getTitle())
                 .startMonth(jobExperience.getStartMonth())

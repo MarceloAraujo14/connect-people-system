@@ -1,16 +1,17 @@
-package br.com.connectpeople.resume.usecase.chain;
+package br.com.connectpeople.resume.usecase.resume.chain;
 
 import br.com.connectpeople.resume.domain.exception.InvalidInputException;
-import br.com.connectpeople.resume.usecase.input.RegisterResumeInput;
+import br.com.connectpeople.resume.usecase.executor.ExecutorChain;
+import br.com.connectpeople.resume.usecase.executor.ResumePayload;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
 @Component
-public class ErrorHandler implements ExecutorChain<RegisterResumeInput> {
+public class ErrorHandler implements ExecutorChain<ResumePayload> {
 
     @Override
-    public RegisterResumeInput execute(RegisterResumeInput payload) {
+    public ResumePayload execute(ResumePayload payload) {
         if (Objects.nonNull(payload.getErrors())) {
             throw  new InvalidInputException(payload.getErrors());
         }

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ResumeJpaRepository extends JpaRepository<ResumeEntity, Long> {
 
-    boolean existsById(String id);
+    boolean existsByCid(String cid);
 
 }
