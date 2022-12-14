@@ -1,4 +1,4 @@
 package br.com.connectpeople.resume.usecase;
 
-public class SearchResumeByAge {
+public class SearchResumeByNameUseCase {
 }

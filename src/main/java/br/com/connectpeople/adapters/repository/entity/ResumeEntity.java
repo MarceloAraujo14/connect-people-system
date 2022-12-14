@@ -5,8 +5,8 @@ import br.com.connectpeople.resume.domain.enums.Gender;
 import br.com.connectpeople.resume.domain.enums.Schooling;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -30,42 +30,48 @@ import java.util.Objects;
 @Table(name = "resume")
 public class ResumeEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @Column(name = "cid", nullable = false)
+    private String cid;
+    @Column(name = "name", nullable = false)
     private String name;
+    @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
+    @Column(name = "gender", nullable = false)
     private Gender gender;
+    @Column(name = "phone")
     private String phone;
+    @Column(name = "cell_phone", nullable = false)
     private String cellPhone;
+    @Column(name = "email", nullable = false)
     private String email;
-    private String cep;
+    @Column(name = "postal_code", nullable = false)
+    private String postalCode;
+    @Column(name = "district", nullable = false)
     private String district;
-    private String jobOptionOne;
-    private String jobOptionTwo;
-    private String jobOptionThree;
-    private String jobExpOne;
-    private String jobExpTwo;
-    private String jobExpThree;
+    @Column(name = "schooling", nullable = false)
+    @Enumerated(value = EnumType.STRING)
     private Schooling schooling;
-
+    @Column(name = "job_option_one", nullable = false)
+    private String jobOptionOne;
+    @Column(name = "job_option_two")
+    private String jobOptionTwo;
+    @Column(name = "job_option_three")
+    private String jobOptionThree;
 
     public Resume toResume(){
         return Resume.builder()
+                .cid(this.cid)
                 .name(this.name)
                 .birthDate(this.birthDate)
                 .gender(this.gender)
                 .phone(this.phone)
                 .cellPhone(this.cellPhone)
                 .email(this.email)
-                .cep(this.cep)
+                .postalCode(this.postalCode)
                 .district(this.district)
                 .jobOptionOne(this.jobOptionOne)
                 .jobOptionTwo(this.jobOptionTwo)
                 .jobOptionThree(this.jobOptionThree)
-                .jobExpOne(this.jobExpOne)
-                .jobExpTwo(this.jobExpTwo)
-                .jobExpThree(this.jobExpThree)
                 .schooling(this.schooling)
                 .build();
     }
@@ -75,11 +81,12 @@ public class ResumeEntity {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         ResumeEntity that = (ResumeEntity) o;
-        return id != null && Objects.equals(id, that.id);
+        return cid != null && Objects.equals(cid, that.cid);
     }
 
     @Override
     public int hashCode() {
         return getClass().hashCode();
     }
+
 }
