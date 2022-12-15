@@ -40,24 +40,37 @@ public class ValidateJobExperience implements ExecutorChain<ResumePayload> {
     }
 
     private static void inputValidate(JobExperience jobExperience, ResumePayload payload) {
+
+        validateEmptyField("title", jobExperience.getTitle(), payload);
+        validateEmptyField("description", jobExperience.getDescription(), payload);
+        starMonthValidate(jobExperience, payload);
+        startYearValidate(jobExperience, payload);
+
+        if (!jobExperience.isCurrentJob()){
+            validateNotCurrentJob(jobExperience, payload);
+        }
+
+    }
+
+    private static void validateEmptyField(String field, String value, ResumePayload payload){
         try {
-            if (jobExperience.getTitle().isBlank()) throw new InvalidInputException("title", ERROR_MSG_FIELD_CANNOT_BE_EMPTY);
+            if (value.isBlank()) throw new InvalidInputException(field, ERROR_MSG_FIELD_CANNOT_BE_EMPTY);
         }catch (InvalidInputException ex){
             payload.putError(ex.getError(), ex.getMessage());
             log.info(LOG_BUILDER, payload, ex.getMessage(), FAILURE);
         }
-        try {
-            if (jobExperience.getDescription().isBlank()) throw new InvalidInputException("description", ERROR_MSG_FIELD_CANNOT_BE_EMPTY);
-        }catch (InvalidInputException ex){
-            payload.putError(ex.getError(), ex.getMessage());
-            log.info(LOG_BUILDER, payload, ex.getMessage(), FAILURE);
-        }
+    }
+
+    private static void starMonthValidate(JobExperience jobExperience, ResumePayload payload){
         try {
             if (jobExperience.getStartMonth() > 0 && jobExperience.getStartMonth() < 13) throw new InvalidInputException("startMonth", ERROR_MSG_MONTH_INVALID);
         }catch (InvalidInputException ex){
             payload.putError(ex.getError(), ex.getMessage());
             log.info(LOG_BUILDER, payload, ex.getMessage(), FAILURE);
         }
+    }
+
+    private static void startYearValidate(JobExperience jobExperience, ResumePayload payload){
         try {
             if (jobExperience.getStartYear() < LocalDate.now().getYear() - 100
                     && jobExperience.getStartYear() > LocalDate.now().getYear()) throw new InvalidInputException("startYear", ERROR_MSG_YEAR_INVALID);
@@ -65,33 +78,37 @@ public class ValidateJobExperience implements ExecutorChain<ResumePayload> {
             payload.putError(ex.getError(), ex.getMessage());
             log.info(LOG_BUILDER, payload, ex.getMessage(), FAILURE);
         }
+    }
 
-        //regras:
-        //  se é não é o emprego atual:
-        // - verificar se endMonth e endYear nao sao null ou empty
-        // - verificar se o endYear não é menor que o startYear
-        // - verificar se o quando o endYear é igual o startYear, o endMonth é igual ou maior que o startMonth
+    private static void validateNotCurrentJob(JobExperience jobExperience, ResumePayload payload){
+        endMonthValidate(jobExperience, payload);
+        endYearValidate(jobExperience, payload);
 
-        if (!jobExperience.isCurrentJob()){
-            try {
-                if (jobExperience.getEndMonth() > 0
-                        && jobExperience.getEndMonth() < 13) throw new InvalidInputException("endtMonth", ERROR_MSG_MONTH_INVALID);
-                if (jobExperience.getEndYear() == jobExperience.getStartYear()
-                        && jobExperience.getEndMonth() < jobExperience.getStartMonth()) throw new InvalidInputException("endtMonth", ERROR_MSG_MONTH_QUIT_BEFORE_ENTER);
-            }catch (InvalidInputException ex){
-                payload.putError(ex.getError(), ex.getMessage());
-                log.info(LOG_BUILDER, payload, ex.getMessage(), FAILURE);
-            }
-            try {
-                if (jobExperience.getEndYear() < LocalDate.now().getYear() - 100
-                        && jobExperience.getStartYear() > LocalDate.now().getYear()) throw new InvalidInputException("endYear", ERROR_MSG_YEAR_INVALID);
-                if (jobExperience.getEndYear() < jobExperience.getStartYear()) throw new InvalidInputException("endYear", ERROR_MSG_YEAR_QUIT_BEFORE_ENTER);
-            }catch (InvalidInputException ex){
-                payload.putError(ex.getError(), ex.getMessage());
-                log.info(LOG_BUILDER, payload, ex.getMessage(), FAILURE);
-            }
+
+    }
+
+    private static void endMonthValidate(JobExperience jobExperience, ResumePayload payload){
+        try {
+            if (jobExperience.getEndMonth() > 0
+                    && jobExperience.getEndMonth() < 13) throw new InvalidInputException("endtMonth", ERROR_MSG_MONTH_INVALID);
+            if (jobExperience.getEndYear() == jobExperience.getStartYear()
+                    && jobExperience.getEndMonth() < jobExperience.getStartMonth()) throw new InvalidInputException("endtMonth", ERROR_MSG_MONTH_QUIT_BEFORE_ENTER);
+        }catch (InvalidInputException ex){
+            payload.putError(ex.getError(), ex.getMessage());
+            log.info(LOG_BUILDER, payload, ex.getMessage(), FAILURE);
         }
 
+    }
+
+    private static void endYearValidate(JobExperience jobExperience, ResumePayload payload){
+        try {
+            if (jobExperience.getEndYear() < LocalDate.now().getYear() - 100
+                    && jobExperience.getStartYear() > LocalDate.now().getYear()) throw new InvalidInputException("endYear", ERROR_MSG_YEAR_INVALID);
+            if (jobExperience.getEndYear() < jobExperience.getStartYear()) throw new InvalidInputException("endYear", ERROR_MSG_YEAR_QUIT_BEFORE_ENTER);
+        }catch (InvalidInputException ex){
+            payload.putError(ex.getError(), ex.getMessage());
+            log.info(LOG_BUILDER, payload, ex.getMessage(), FAILURE);
+        }
     }
 
 }
