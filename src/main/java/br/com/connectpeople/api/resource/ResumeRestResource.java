@@ -2,7 +2,7 @@ package br.com.connectpeople.api.resource;
 
 import br.com.connectpeople.api.request.ResumeRequest;
 import br.com.connectpeople.resume.domain.Resume;
-import br.com.connectpeople.resume.usecase.RegisterResume;
+import br.com.connectpeople.resume.usecase.RegisterResumeUseCase;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,13 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/resume")
-public class ResumeRestResource {
+public class ResumeRestResource implements ResumeController {
 
-    private final RegisterResume registerResume;
+    private final RegisterResumeUseCase registerResumeUseCase;
 
+    @Override
     @PostMapping
-    public Resume save(@RequestBody ResumeRequest request){
-       return registerResume.execute(request.toResume());
+    public Resume register(@RequestBody ResumeRequest request) {
+        return registerResumeUseCase.execute(request.toResume());
     }
+
 
 }
