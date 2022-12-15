@@ -1,9 +1,16 @@
 package br.com.connectpeople.api.request;
 
-import br.com.connectpeople.resume.domain.JobExperience;
+import br.com.connectpeople.jobexperience.domain.JobExperience;
 import br.com.connectpeople.resume.domain.Resume;
 import br.com.connectpeople.resume.domain.enums.Gender;
 import br.com.connectpeople.resume.domain.enums.Schooling;
+import br.com.connectpeople.resume.usecase.chain.ErrorHandler;
+import br.com.connectpeople.resume.usecase.chain.ValidateBirthDate;
+import br.com.connectpeople.resume.usecase.chain.ValidateName;
+import br.com.connectpeople.resume.usecase.chain.ValidatePhone;
+import br.com.connectpeople.resume.usecase.chain.ValidatePostalCode;
+import br.com.connectpeople.resume.usecase.executor.Executor;
+import br.com.connectpeople.resume.usecase.executor.ResumePayload;
 import lombok.Builder;
 import lombok.Data;
 
@@ -23,7 +30,7 @@ public class ResumeRequest {
     private String phone;
     private String cellPhone;
     private String email;
-    private String cep;
+    private String postalCode;
     private String district;
     private String jobOptionOne;
     private String jobOptionTwo;
@@ -31,20 +38,20 @@ public class ResumeRequest {
     private List<JobExperience> jobExperiences;
     private Schooling schooling;
 
-    public Resume toResume(){
+    public Resume toResume() {
         List<JobExperience> jobList = new ArrayList<>();
         jobExperiences.forEach(job -> {
-            if(Objects.nonNull(job)) jobList.add(job);
+            if (Objects.nonNull(job)) jobList.add(job);
         });
 
         return Resume.builder()
                 .name(this.name)
-                .birthDate(LocalDate.parse(this.birthDate, DateTimeFormatter.ofPattern("dd-MM-yyyy")))
+                .birthDate(this.birthDate)
                 .gender(this.gender)
                 .phone(this.phone)
                 .cellPhone(this.cellPhone)
                 .email(this.email)
-                .postalCode(this.cep)
+                .postalCode(this.postalCode)
                 .district(this.district)
                 .jobOptionOne(this.jobOptionOne)
                 .jobOptionTwo(this.jobOptionTwo)
@@ -53,4 +60,5 @@ public class ResumeRequest {
                 .schooling(this.schooling)
                 .build();
     }
+
 }

@@ -1,12 +1,14 @@
 package br.com.connectpeople.resume.domain;
 
 import br.com.connectpeople.adapters.repository.entity.ResumeEntity;
+import br.com.connectpeople.jobexperience.domain.JobExperience;
 import br.com.connectpeople.resume.domain.enums.Gender;
 import br.com.connectpeople.resume.domain.enums.Schooling;
 import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Builder
@@ -14,7 +16,7 @@ import java.util.List;
 public class Resume {
     private String cid;
     private String name;
-    private LocalDate birthDate;
+    private String birthDate;
     private Gender gender;
     private String phone;
     private String cellPhone;
@@ -27,11 +29,11 @@ public class Resume {
     private List<JobExperience> jobExperiences;
     private Schooling schooling;
 
-    public ResumeEntity toEntity(){
+    public ResumeEntity toEntity() {
         return ResumeEntity.builder()
                 .cid(this.cid)
                 .name(this.name)
-                .birthDate(this.birthDate)
+                .birthDate(LocalDate.parse(this.birthDate, DateTimeFormatter.ofPattern("dd-MM-yyyy")))
                 .gender(this.gender)
                 .phone(this.phone)
                 .cellPhone(this.cellPhone)

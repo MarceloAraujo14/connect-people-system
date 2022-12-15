@@ -11,15 +11,14 @@ Basic AWS infra structure:
 - Creates a EC2 Instance under the public Subnet and Security Group
 
 ---
-To run the project locally you will need to create an aws account, install and config the 
-aws CLI, create and provide a secret key pair. To connect the ec2 instance you will need to
-configure ssh on your system.
+To run the project locally you will need to create an aws account, install and config the aws CLI, create and provide a
+secret key pair. To connect the ec2 instance you will need to configure ssh on your system.
 
 After:
-- Use the commands: 
+
+- Use the commands:
   ``` terraform plan ```
-  to visualize what resources will be provisioned
-  If everythin is ok:
+  to visualize what resources will be provisioned If everythin is ok:
   ``` terraform apply ```
   if everything is ok, type: "yes"
 

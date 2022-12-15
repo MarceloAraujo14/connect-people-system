@@ -1,6 +1,6 @@
 package br.com.connectpeople.resume.usecase.executor;
 
-import br.com.connectpeople.resume.domain.JobExperience;
+import br.com.connectpeople.jobexperience.domain.JobExperience;
 import br.com.connectpeople.resume.domain.enums.Gender;
 import br.com.connectpeople.resume.domain.enums.Schooling;
 import lombok.Builder;
@@ -31,11 +31,11 @@ public class ResumePayload {
 
     private Map<String, String> errors;
 
-    public void putError(String error, String message){
-        if (Objects.isNull(errors)){
+    public void putError(String error, String message) {
+        if (Objects.isNull(errors)) {
             this.errors = new HashMap<>();
             this.errors.put(error, message);
-        }else {
+        } else {
             this.errors.put(error, message);
         }
     }

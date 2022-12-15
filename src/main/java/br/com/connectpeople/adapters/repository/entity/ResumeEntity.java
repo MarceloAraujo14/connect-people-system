@@ -18,6 +18,7 @@ import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Builder
@@ -58,11 +59,11 @@ public class ResumeEntity {
     @Column(name = "job_option_three")
     private String jobOptionThree;
 
-    public Resume toResume(){
+    public Resume toResume() {
         return Resume.builder()
                 .cid(this.cid)
                 .name(this.name)
-                .birthDate(this.birthDate)
+                .birthDate(this.birthDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))
                 .gender(this.gender)
                 .phone(this.phone)
                 .cellPhone(this.cellPhone)

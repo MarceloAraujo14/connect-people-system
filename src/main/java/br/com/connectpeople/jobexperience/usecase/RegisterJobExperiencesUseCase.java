@@ -1,7 +1,7 @@
-package br.com.connectpeople.resume.usecase.jobexperience;
+package br.com.connectpeople.jobexperience.usecase;
 
 import br.com.connectpeople.adapters.repository.JobExperienceJpaRepository;
-import br.com.connectpeople.resume.domain.JobExperience;
+import br.com.connectpeople.jobexperience.domain.JobExperience;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,15 +11,15 @@ import static br.com.connectpeople.adapters.repository.mapper.JobExperienceMappe
 
 @Service
 @AllArgsConstructor
-public class RegisterJobExperienceUseCase {
+public class RegisterJobExperiencesUseCase {
 
     private final JobExperienceJpaRepository jobExperienceJpaRepository;
 
-    public void execute(String cid, List<JobExperience> jobExperiences){
+    public List<JobExperience> execute(String cid, List<JobExperience> jobExperiences) {
         var jobExperienceEntities = toJobExperienceList(jobExperiences);
         jobExperienceEntities.forEach(job -> job.setCid(cid));
         jobExperienceJpaRepository.saveAll(jobExperienceEntities);
-
+        return jobExperiences;
     }
 
 }

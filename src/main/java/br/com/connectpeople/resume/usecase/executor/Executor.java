@@ -8,7 +8,7 @@ public class Executor<T> {
         this.t = t;
     }
 
-    public Executor<T> chain(ExecutorChain<T> chain){
+    public Executor<T> chain(ExecutorChain<T> chain) {
         chain.execute(this.t);
         return this;
     }

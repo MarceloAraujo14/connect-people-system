@@ -1,15 +1,16 @@
 package br.com.connectpeople.adapters.repository.mapper;
 
 import br.com.connectpeople.adapters.repository.entity.JobExperienceEntity;
-import br.com.connectpeople.resume.domain.JobExperience;
+import br.com.connectpeople.jobexperience.domain.JobExperience;
 
 import java.util.List;
 
 public class JobExperienceMapper {
 
-    private JobExperienceMapper() {}
+    private JobExperienceMapper() {
+    }
 
-    public static JobExperienceEntity toJobExperienceEntity(JobExperience jobExperience){
+    public static JobExperienceEntity toJobExperienceEntity(JobExperience jobExperience) {
         return JobExperienceEntity.builder()
                 .description(jobExperience.getDescription())
                 .title(jobExperience.getTitle())
@@ -21,7 +22,7 @@ public class JobExperienceMapper {
                 .build();
     }
 
-    public static List<JobExperienceEntity> toJobExperienceList(List<JobExperience> jobExperiences){
+    public static List<JobExperienceEntity> toJobExperienceList(List<JobExperience> jobExperiences) {
         return jobExperiences.stream().map(JobExperienceMapper::toJobExperienceEntity).toList();
     }
 

@@ -9,18 +9,18 @@ import java.util.Map;
 @Setter
 public class InvalidInputException extends RuntimeException{
 
+    private Map<String, String> errorDetails;
     private String error;
     private String message;
-
-    private final Map<String, String> errorDetails;
 
     public InvalidInputException(String error, String message) {
         this.error = error;
         this.message = message;
-        this.errorDetails = Map.of(error, message);
+
     }
 
     public InvalidInputException(Map<String, String> errors) {
         this.errorDetails = errors;
     }
+
 }

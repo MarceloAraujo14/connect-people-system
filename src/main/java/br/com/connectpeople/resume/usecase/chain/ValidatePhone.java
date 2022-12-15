@@ -1,4 +1,4 @@
-package br.com.connectpeople.resume.usecase.resume.chain;
+package br.com.connectpeople.resume.usecase.chain;
 
 import br.com.connectpeople.resume.domain.exception.InvalidInputException;
 import br.com.connectpeople.resume.usecase.executor.ExecutorChain;
@@ -9,10 +9,8 @@ import org.springframework.stereotype.Component;
 import java.util.Objects;
 
 import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_FIELD_CANNOT_BE_EMPTY;
-import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_FIELD_CANNOT_BE_NULL;
 import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_PHONENUMBER_INVALID;
 import static br.com.connectpeople.resume.domain.constants.Constants.StateProcess.FAILURE;
-import static br.com.connectpeople.resume.domain.constants.Constants.StateProcess.PROCESSING;
 
 @Log4j2
 @Component
@@ -20,23 +18,9 @@ public class ValidatePhone implements ExecutorChain<ResumePayload> {
 
     public static final String PHONE_NUMBER = "phoneNumber";
 
-
-    @Override
-    public ResumePayload execute(ResumePayload payload) {
-        try {
-            inputValidate(payload.getCellPhone());
-            if(!isValidPhoneNumber(payload.getPhone())) throw new InvalidInputException(PHONE_NUMBER, ERROR_MSG_PHONENUMBER_INVALID);
-        }catch (InvalidInputException ex){
-            payload.putError(ex.getError(), ex.getMessage());
-            log.info("M execute, payload={}, error={}, state={}", payload, ex.getMessage(), FAILURE);
-        }
-        return payload;
-    }
-
-    private static void inputValidate(String phone){
-        if (Objects.isNull(phone)) throw new InvalidInputException(PHONE_NUMBER, ERROR_MSG_FIELD_CANNOT_BE_NULL);
-        if (phone.isBlank()) throw new InvalidInputException(PHONE_NUMBER, ERROR_MSG_FIELD_CANNOT_BE_EMPTY);
-        if(!isValidPhoneNumber(phone)) throw new InvalidInputException(PHONE_NUMBER, ERROR_MSG_PHONENUMBER_INVALID);
+    private static void inputValidate(String phone) {
+        if (Objects.isNull(phone) || phone.isBlank()) throw new InvalidInputException(PHONE_NUMBER, ERROR_MSG_FIELD_CANNOT_BE_EMPTY);
+        if (!isValidPhoneNumber(phone)) throw new InvalidInputException(PHONE_NUMBER, ERROR_MSG_PHONENUMBER_INVALID);
     }
 
     public static boolean isValidPhoneNumber(String phoneNumber) {
@@ -61,6 +45,19 @@ public class ValidatePhone implements ExecutorChain<ResumePayload> {
 
         // Validating the subscriber number
         return subscriberNumber.matches("\\d{8,9}");
+    }
+
+    @Override
+    public ResumePayload execute(ResumePayload payload) {
+        try {
+            inputValidate(payload.getCellPhone());
+            if (!isValidPhoneNumber(payload.getPhone()))
+                throw new InvalidInputException(PHONE_NUMBER, ERROR_MSG_PHONENUMBER_INVALID);
+        } catch (InvalidInputException ex) {
+            payload.putError(ex.getError(), ex.getMessage());
+            log.info("M execute, payload={}, error={}, state={}", payload, ex.getMessage(), FAILURE);
+        }
+        return payload;
     }
 
 }
