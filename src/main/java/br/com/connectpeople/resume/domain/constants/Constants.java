@@ -17,8 +17,8 @@ public class Constants {
         public static final String ERROR_MSG_EMAIL_ALREADY_REGISTER = "O e-mail informado já está registrado.";
         public static final String ERROR_MSG_MONTH_INVALID = "Selecione um mês válido";
         public static final String ERROR_MSG_YEAR_INVALID = "Selecione um ano válido";
-        public static final String ERROR_MSG_MONTH_QUIT_BEFORE_ENTER = "A data de saída não pode ser menor que a data de entrada";
-        public static final String ERROR_MSG_YEAR_QUIT_BEFORE_ENTER = "O ano de entrada não pode ser maior que o ano de saída";
+        public static final String ERROR_MSG_MONTH_END_BEFORE_START = "A data de saída não pode ser menor que a data de entrada";
+        public static final String ERROR_MSG_YEAR_END_BEFORE_START = "O ano de entrada não pode ser maior que o ano de saída";
 
         private ErrorMessage() {
         }
