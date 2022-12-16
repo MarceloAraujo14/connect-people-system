@@ -91,6 +91,17 @@
             <input type="text" class="form-control" id="distric" th:field="*{cellPhone}">
           </div>
         </div>
+
+        <div class="col-md-3">
+          <label for="schooling" class="form-label">Escolaridade</label>
+          <select id="schooling" class="form-select option" th:field="*{schooling}">
+            <option selected>PRIMÁRIO</option>
+            <option>FUNDAMENTAL</option>
+            <option>MÉDIO</option>
+            <option>SUPERIOR</option>
+          </select>
+        </div>
+
         <br>
         <p>Cargo pretendido</p>
         <div class="row">
@@ -127,18 +138,12 @@
         <p>Experiência Profissional</p>
         <button type="button" class="addxp-btn" onclick="addJobExp(this)">+ Adicionar Experiência</button>        
 
-        
-
         <div class="row">
           <button type="submit" class="submit-btn">Enviar Curriculo</button>
         </div>
       </form>
-
-      
     </div>
   </div>
 
-
 </body>
-
 </html>

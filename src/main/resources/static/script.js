@@ -38,7 +38,8 @@ yearSelec.forEach(years => {
 
 function addJobExp(element){
     var jobXp = 
-    `<div class="row">
+    `
+    <div class="row">
     <div class="col-md-6">
       <label for="title" class="form-label">Título</label>
       <input type="text" class="form-control" id="title" placeholder="Hoteleiro" th:field="*{title}">
