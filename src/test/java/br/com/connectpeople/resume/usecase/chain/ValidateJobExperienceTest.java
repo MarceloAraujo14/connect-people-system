@@ -9,7 +9,9 @@ import java.util.Collections;
 import java.util.List;
 
 import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_FIELD_CANNOT_BE_EMPTY;
+import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_MONTH_END_BEFORE_START;
 import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_MONTH_INVALID;
+import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_YEAR_END_BEFORE_START;
 import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_YEAR_INVALID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -138,9 +140,33 @@ class ValidateJobExperienceTest {
         assertTrue(result.getErrors().containsKey("endYear"));
         assertEquals(ERROR_MSG_YEAR_INVALID, result.getErrors().get("endYear"));
     }
+
     //erro se nao é trabalho atual e ano de saida é menor que ano de entrada
+    @Test
+    void shouldThrowWhenIsNotCurrentJobEndYearMoreThanStarYear(){
+        JobExperience jobExperience = buildJobExperience();
+        jobExperience.setCurrentJob(false);
+        jobExperience.setEndYear(LocalDate.now().getYear() - 10);
+        ResumePayload result = validateJobExperience.execute(ResumePayload.builder().jobExperiences(List.of(jobExperience)).build());
+        assertNotNull(result.getErrors());
+        assertTrue(result.getErrors().containsKey("endYear"));
+        assertEquals(ERROR_MSG_YEAR_END_BEFORE_START, result.getErrors().get("endYear"));
+    }
 
     //erro se nao é trabalho atual, ano de saida é igual ano de entrada e mes de saida é menor que mes de entrada
+    @Test
+    void shouldThrowWhenIsNotCurrentJobEndYearEqualsStarYearAndEndMonthLessThanStartMonth(){
+        JobExperience jobExperience = buildJobExperience();
+        jobExperience.setCurrentJob(false);
+        jobExperience.setStartYear(LocalDate.now().getYear());
+        jobExperience.setEndYear(LocalDate.now().getYear());
+        jobExperience.setStartMonth(2);
+        jobExperience.setEndMonth(1);
+        ResumePayload result = validateJobExperience.execute(ResumePayload.builder().jobExperiences(List.of(jobExperience)).build());
+        assertNotNull(result.getErrors());
+        assertTrue(result.getErrors().containsKey("endMonth"));
+        assertEquals(ERROR_MSG_MONTH_END_BEFORE_START, result.getErrors().get("endMonth"));
+    }
 
     private static JobExperience buildJobExperience(){
         return JobExperience.builder()
