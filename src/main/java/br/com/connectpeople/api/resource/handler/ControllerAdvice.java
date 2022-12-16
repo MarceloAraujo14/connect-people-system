@@ -19,7 +19,7 @@ public class ControllerAdvice {
     }
 
     @ExceptionHandler(RegisterAlreadyExistsException.class)
-    public ResponseEntity<Map<String, String>> inputExceptionHandler(RegisterAlreadyExistsException ex) {
+    public ResponseEntity<Map<String, String>> registerAlreadyExistsHandler(RegisterAlreadyExistsException ex) {
         return ResponseEntity.status(BAD_REQUEST).body(Map.of(ex.getError(), ex.getMessage()));
     }
 

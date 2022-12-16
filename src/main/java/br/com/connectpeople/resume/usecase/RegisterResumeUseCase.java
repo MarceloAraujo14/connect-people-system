@@ -5,6 +5,7 @@ import br.com.connectpeople.jobexperience.usecase.RegisterJobExperiencesUseCase;
 import br.com.connectpeople.resume.domain.Resume;
 import br.com.connectpeople.resume.domain.exception.RegisterAlreadyExistsException;
 import br.com.connectpeople.resume.usecase.chain.ErrorHandler;
+import br.com.connectpeople.resume.usecase.chain.ValidateAlreadyRegister;
 import br.com.connectpeople.resume.usecase.chain.ValidateBirthDate;
 import br.com.connectpeople.resume.usecase.chain.ValidateDistrict;
 import br.com.connectpeople.resume.usecase.chain.ValidateName;
@@ -26,6 +27,7 @@ public class RegisterResumeUseCase {
     private final ResumeJpaRepository resumeJpaRepository;
     private final RegisterJobExperiencesUseCase registerJobExperienceUseCase;
 
+    private final ValidateAlreadyRegister validateAlreadyRegister;
     private final ValidateName validateName;
     private final ValidateBirthDate validateBirthDate;
     private final ValidatePhone validatePhone;
@@ -36,7 +38,6 @@ public class RegisterResumeUseCase {
     @Transactional
     public Resume execute(Resume resume) {
         validateInput(buildInput(resume));
-        verifyAlreadyRegister(resume.getEmail());
         String generatedId = getGeneratedId();
         resume.setCid(generatedId);
         resumeJpaRepository.save(resume.toEntity());
@@ -44,15 +45,10 @@ public class RegisterResumeUseCase {
         return resume;
     }
 
-    private void verifyAlreadyRegister(String email){
-        if (resumeJpaRepository.existsByEmail(email)){
-            throw new RegisterAlreadyExistsException("email", ERROR_MSG_EMAIL_ALREADY_REGISTER);
-        }
-    }
-
     private void validateInput(ResumePayload payload) {
         Executor<ResumePayload> executor = new Executor<>(payload);
-        executor.chain(validateName)
+        executor.chain(validateAlreadyRegister)
+                .chain(validateName)
                 .chain(validateBirthDate)
                 .chain(validatePhone)
                 .chain(validatePostalCode)
