@@ -14,6 +14,7 @@ public class JobExperienceMapper {
         return JobExperienceEntity.builder()
                 .description(jobExperience.getDescription())
                 .title(jobExperience.getTitle())
+                .company(jobExperience.getCompany())
                 .startMonth(jobExperience.getStartMonth())
                 .startYear(jobExperience.getStartYear())
                 .isCurrentJob(jobExperience.isCurrentJob())

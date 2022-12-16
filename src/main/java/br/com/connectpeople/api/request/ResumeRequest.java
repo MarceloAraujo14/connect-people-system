@@ -30,6 +30,7 @@ public class ResumeRequest {
     private String phone;
     private String cellPhone;
     private String email;
+    private String linkedin;
     private String postalCode;
     private String district;
     private String jobOptionOne;

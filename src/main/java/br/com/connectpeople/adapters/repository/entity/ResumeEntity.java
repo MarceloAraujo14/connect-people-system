@@ -45,6 +45,8 @@ public class ResumeEntity {
     private String cellPhone;
     @Column(name = "email", nullable = false)
     private String email;
+    @Column(name = "linkedin", nullable = false)
+    private String linkedin;
     @Column(name = "postal_code", nullable = false)
     private String postalCode;
     @Column(name = "district", nullable = false)
@@ -68,6 +70,7 @@ public class ResumeEntity {
                 .phone(this.phone)
                 .cellPhone(this.cellPhone)
                 .email(this.email)
+                .linkedin(this.linkedin)
                 .postalCode(this.postalCode)
                 .district(this.district)
                 .jobOptionOne(this.jobOptionOne)

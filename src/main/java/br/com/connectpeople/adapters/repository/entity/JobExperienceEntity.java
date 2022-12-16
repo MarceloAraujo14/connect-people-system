@@ -29,6 +29,7 @@ public class JobExperienceEntity {
     private Long id;
     private String cid;
     private String title;
+    private String company;
     private int startMonth;
     private int startYear;
     private boolean isCurrentJob;

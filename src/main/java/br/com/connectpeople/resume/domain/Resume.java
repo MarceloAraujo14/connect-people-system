@@ -21,6 +21,7 @@ public class Resume {
     private String phone;
     private String cellPhone;
     private String email;
+    private String linkedin;
     private String postalCode;
     private String district;
     private String jobOptionOne;
@@ -38,6 +39,7 @@ public class Resume {
                 .phone(this.phone)
                 .cellPhone(this.cellPhone)
                 .email(this.email)
+                .linkedin(this.linkedin)
                 .postalCode(this.postalCode)
                 .district(this.district)
                 .jobOptionOne(this.jobOptionOne)
