@@ -13,9 +13,9 @@ import java.util.Objects;
 
 import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_FIELD_CANNOT_BE_EMPTY;
 import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_MONTH_INVALID;
-import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_MONTH_QUIT_BEFORE_ENTER;
+import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_MONTH_END_BEFORE_START;
 import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_YEAR_INVALID;
-import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_YEAR_QUIT_BEFORE_ENTER;
+import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_YEAR_END_BEFORE_START;
 import static br.com.connectpeople.resume.domain.constants.Constants.StateProcess.FAILURE;
 
 @Log4j2
@@ -35,12 +35,10 @@ public class ValidateJobExperience implements ExecutorChain<ResumePayload> {
             return payload;
         }
         jobExperiences.forEach(jobExperience -> inputValidate(jobExperience, payload));
-
         return payload;
     }
 
     private static void inputValidate(JobExperience jobExperience, ResumePayload payload) {
-
         validateEmptyField("title", jobExperience.getTitle(), payload);
         validateEmptyField("description", jobExperience.getDescription(), payload);
         starMonthValidate(jobExperience, payload);
@@ -49,7 +47,11 @@ public class ValidateJobExperience implements ExecutorChain<ResumePayload> {
         if (!jobExperience.isCurrentJob()){
             validateNotCurrentJob(jobExperience, payload);
         }
+    }
 
+    private static void validateNotCurrentJob(JobExperience jobExperience, ResumePayload payload){
+        endMonthValidate(jobExperience, payload);
+        endYearValidate(jobExperience, payload);
     }
 
     private static void validateEmptyField(String field, String value, ResumePayload payload){
@@ -63,7 +65,11 @@ public class ValidateJobExperience implements ExecutorChain<ResumePayload> {
 
     private static void starMonthValidate(JobExperience jobExperience, ResumePayload payload){
         try {
-            if (jobExperience.getStartMonth() > 0 && jobExperience.getStartMonth() < 13) throw new InvalidInputException("startMonth", ERROR_MSG_MONTH_INVALID);
+            if (jobExperience.getStartMonth() < 1 || jobExperience.getStartMonth() > 12)
+                throw new InvalidInputException("startMonth", ERROR_MSG_MONTH_INVALID);
+            if (jobExperience.getStartYear() == LocalDate.now().getYear()
+                && jobExperience.getStartMonth() > LocalDate.now().getMonthValue())
+                throw new InvalidInputException("startMonth", ERROR_MSG_MONTH_INVALID);
         }catch (InvalidInputException ex){
             payload.putError(ex.getError(), ex.getMessage());
             log.info(LOG_BUILDER, payload, ex.getMessage(), FAILURE);
@@ -73,38 +79,35 @@ public class ValidateJobExperience implements ExecutorChain<ResumePayload> {
     private static void startYearValidate(JobExperience jobExperience, ResumePayload payload){
         try {
             if (jobExperience.getStartYear() < LocalDate.now().getYear() - 100
-                    && jobExperience.getStartYear() > LocalDate.now().getYear()) throw new InvalidInputException("startYear", ERROR_MSG_YEAR_INVALID);
+                    || jobExperience.getStartYear() > LocalDate.now().getYear())
+                throw new InvalidInputException("startYear", ERROR_MSG_YEAR_INVALID);
         }catch (InvalidInputException ex){
             payload.putError(ex.getError(), ex.getMessage());
             log.info(LOG_BUILDER, payload, ex.getMessage(), FAILURE);
         }
-    }
-
-    private static void validateNotCurrentJob(JobExperience jobExperience, ResumePayload payload){
-        endMonthValidate(jobExperience, payload);
-        endYearValidate(jobExperience, payload);
-
-
     }
 
     private static void endMonthValidate(JobExperience jobExperience, ResumePayload payload){
         try {
-            if (jobExperience.getEndMonth() > 0
-                    && jobExperience.getEndMonth() < 13) throw new InvalidInputException("endtMonth", ERROR_MSG_MONTH_INVALID);
+            if (jobExperience.getEndMonth() < 1
+                    || jobExperience.getEndMonth() > 12)
+                throw new InvalidInputException("endMonth", ERROR_MSG_MONTH_INVALID);
             if (jobExperience.getEndYear() == jobExperience.getStartYear()
-                    && jobExperience.getEndMonth() < jobExperience.getStartMonth()) throw new InvalidInputException("endtMonth", ERROR_MSG_MONTH_QUIT_BEFORE_ENTER);
+                    && jobExperience.getEndMonth() < jobExperience.getStartMonth())
+                throw new InvalidInputException("endMonth", ERROR_MSG_MONTH_END_BEFORE_START);
         }catch (InvalidInputException ex){
             payload.putError(ex.getError(), ex.getMessage());
             log.info(LOG_BUILDER, payload, ex.getMessage(), FAILURE);
         }
-
     }
 
     private static void endYearValidate(JobExperience jobExperience, ResumePayload payload){
         try {
+            if (jobExperience.getEndYear() < jobExperience.getStartYear())
+                throw new InvalidInputException("endYear", ERROR_MSG_YEAR_END_BEFORE_START);
             if (jobExperience.getEndYear() < LocalDate.now().getYear() - 100
-                    && jobExperience.getStartYear() > LocalDate.now().getYear()) throw new InvalidInputException("endYear", ERROR_MSG_YEAR_INVALID);
-            if (jobExperience.getEndYear() < jobExperience.getStartYear()) throw new InvalidInputException("endYear", ERROR_MSG_YEAR_QUIT_BEFORE_ENTER);
+                    || jobExperience.getEndYear() > LocalDate.now().getYear())
+                throw new InvalidInputException("endYear", ERROR_MSG_YEAR_INVALID);
         }catch (InvalidInputException ex){
             payload.putError(ex.getError(), ex.getMessage());
             log.info(LOG_BUILDER, payload, ex.getMessage(), FAILURE);
