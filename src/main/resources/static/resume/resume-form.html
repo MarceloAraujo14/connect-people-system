@@ -43,9 +43,9 @@
           <div class="col-md-3">
             <label for="gender" class="form-label">Sexo</label>
             <select id="gender" class="form-select">
-              <option selected>M</option>
-              <option>F</option>
-              <option>NI</option>
+              <option selected value=1>M</option>
+              <option value=2>F</option>
+              <option value=3>NI</option>
             </select>
           </div>
 
@@ -70,25 +70,25 @@
         <div class="row">
           <div class="col-md-6">
             <label for="email" class="form-label">Email</label>
-            <input type="text" class="form-control" id="email" placeholder="jhondoe@gmail.com" th:field="*{cellPhone}">
+            <input type="text" class="form-control" id="email" placeholder="jhondoe@gmail.com" th:field="*{email}">
           </div>
 
           <div class="col-md-6">
-            <label for="email" class="form-label">Linkedin</label>
-            <input type="text" class="form-control" id="email" placeholder="https://linkedin.com/in/jhondoe"
-              th:field="*{cellPhone}">
+            <label for="linkedin" class="form-label">Linkedin</label>
+            <input type="text" class="form-control" id="linkedin" placeholder="https://linkedin.com/in/jhondoe"
+              th:field="*{linkedin}">
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-2">
             <label for="postalCode" class="form-label">CEP</label>
-            <input type="text" class="form-control" id="postalCode" placeholder="00000-000" th:field="*{cellPhone}">
+            <input type="text" class="form-control" id="postalCode" placeholder="00000-000" th:field="*{postalCode}">
           </div>
 
           <div class="col-md-6">
             <label for="distric" class="form-label">Bairro</label>
-            <input type="text" class="form-control" id="distric" th:field="*{cellPhone}">
+            <input type="text" class="form-control" id="distric" th:field="*{distric}">
           </div>
         </div>
 
@@ -102,8 +102,8 @@
         <p>Cargo pretendido</p>
         <div class="row">
           <div class="col-md-3">
-            <label for="gender" class="form-label">Opção 1</label>
-            <select id="gender" class="form-select option" th:field="*{cellPhone}">
+            <label for="jobOptionOne" class="form-label">Opção 1</label>
+            <select id="jobOptionOne" class="form-select option" th:field="*{jobOptionOne}">
               <option>Hoteleiro</option>
               <option>Camareira</option>
               <option>Almoxarife</option>
@@ -111,8 +111,9 @@
           </div>
 
           <div class="col-md-3">
-            <label for="gender" class="form-label">Opção 2</label>
-            <select id="gender" class="form-select option" th:field="*{cellPhone}">
+            <label for="jobOptionTwo" class="form-label">Opção 2</label>
+            <select id="jobOptionTwo" class="form-select option" th:field="*{jobOptionTwo}">
+              <option selected></option>
               <option>Hoteleiro</option>
               <option>Camareira</option>
               <option>Almoxarife</option>
@@ -120,8 +121,9 @@
           </div>
 
           <div class="col-md-3">
-            <label for="gender" class="form-label">Opção 3</label>
-            <select id="gender" class="form-select option" th:field="*{cellPhone}">
+            <label for="jobOptionThree" class="form-label">Opção 3</label>
+            <select id="jobOptionThree" class="form-select option" th:field="*{jobOptionThree}">
+              <option selected></option>
               <option>Hoteleiro</option>
               <option>Camareira</option>
               <option>Almoxarife</option>
