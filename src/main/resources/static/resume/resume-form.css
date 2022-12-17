@@ -95,13 +95,28 @@ input,
     padding: 15px 40px;
     width: 30%;
 }
-
-.addxp-btn {
+#job-experience{
+    position: relative;
+}
+.xp-btn {
     color: rgb(252, 213, 162);
     border-style: solid;
     border: 2px solid rgb(255, 255, 255);
     background-color: black;
     margin-top: 10px;
+    width: 30%;
+}
+.delxp-div{
+    display: flex;
+    justify-content: flex-end;
+}
+.delxp-btn {
+    color: rgb(252, 213, 162);
+    border-style: solid;
+    border: 2px solid rgb(255, 255, 255);
+    background-color: black;
+    margin-top: 10px;
+    position: relative;
     width: 30%;
 }
 

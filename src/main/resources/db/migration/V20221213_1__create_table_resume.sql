@@ -6,6 +6,7 @@ CREATE TABLE if not exists resume (
    phone VARCHAR(16),
    cell_phone VARCHAR(16) NOT NULL,
    email VARCHAR(80) NOT NULL,
+   linkedin VARCHAR(120),
    postal_code VARCHAR(12) NOT NULL,
    district VARCHAR(80) NOT NULL,
    job_option_one VARCHAR(50) NOT NULL,
