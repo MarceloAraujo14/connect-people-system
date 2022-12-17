@@ -1,8 +1,12 @@
 package br.com.connectpeople.resume.domain.enums;
 
 public enum Schooling {
-    PRIMARIO,
-    FUNDAMENTAL,
-    MEDIO,
-    SUPERIOR
+    PRIMARIO_INCOMPLETO,
+    PRIMARIO_COMPLETO,
+    FUNDAMENTAL_INCOMPLETO,
+    FUNDAMENTAL_COMPLETO,
+    MEDIO_INCOMPLETO,
+    MEDIO_COMPLETO,
+    SUPERIOR_INCOMPLETO,
+    SUPERIOR_COMPLETO
 }
