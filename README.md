@@ -43,6 +43,7 @@ O projeto na sua versão atual (0.1-a) conta com as seguintes funcionalidades:
 - Spring Actuator
 - Spring Thymeleaf
 - Spring Web
+- Spring Cloud
 - Flyway Migration
 - Lombok
 - Postgresql
