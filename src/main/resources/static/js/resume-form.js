@@ -160,64 +160,53 @@ function deleteJobExp(element) {
   }
 }
 
-class JobExperience{
-  constructor(title, company, startMonth, startYear, isCurrentJob, endMonth, endYear, description){
-    this.title = title; this.company = company; this.startMonth = startMonth; this.startYear = startYear;
-    this.isCurrentJob = isCurrentJob; this.endMonth = endMonth; this.endYear = endYear, this.description = description;
+async function buildResumeFromJson(){
+  var resume = await fetch('./json/ResumeRequest.json').then(response => response.json());
+
+  var form = document.querySelector('form')
+  resume.name = form.querySelector('#name').value;
+  resume.birthDate = form.querySelector('#birthDate').value;
+  resume.gender = form.querySelector('#gender').value;
+  resume.phone = form.querySelector('#phone').value;
+  resume.cellPhone = form.querySelector('#cellPhone').value;
+  resume.email = form.querySelector('#email').value;
+  resume.linkedin = form.querySelector('#linkedin').value;
+  resume.postalCode = form.querySelector('#postalCode').value;
+  resume.district = form.querySelector('#district').value;
+  resume.jobOptionOne = form.querySelector('#jobOptionOne').value;
+  resume.jobOptionTwo = form.querySelector('#jobOptionTwo').value;
+  resume.jobOptionThree = form.querySelector('#jobOptionThree').value;
+  resume.schooling = form.querySelector('#schooling').value;
+
+  const jobExperiences = form.querySelectorAll('#jobExperiences');
+
+  var count = jobExperiences.length;
+
+  for(let i = 0; i < count; i++){
+    resume['jobExperiences'][i] = {};
+    resume.jobExperiences[i]['title'] = jobExperiences[i].querySelector('#title').value;
+    resume.jobExperiences[i]['company'] = jobExperiences[i].querySelector('#company').value;
+    resume.jobExperiences[i]['startMonth'] = jobExperiences[i].querySelector('#startMonth').value;
+    resume.jobExperiences[i]['startYear'] = jobExperiences[i].querySelector('#startYear').value;
+    resume.jobExperiences[i]['isCurrentJob'] = jobExperiences[i].querySelector('#isCurrentJob').checked;
+    resume.jobExperiences[i]['endMonth'] = jobExperiences[i].querySelector('#endMonth').value;
+    resume.jobExperiences[i]['endYear'] = jobExperiences[i].querySelector('#endYear').value;
+    resume.jobExperiences[i]['description'] = jobExperiences[i].querySelector('#description').value;
   }
-}
 
-class Resume {
-    constructor(name, birthDate, gender, phone, cellPhone, email, postalCode, linkeind,
-      district, jobOptionOne, jobOptionTwo, jobOptionThree, jobExperiences, schooling) {
-        this.name = name; this.birthDate = birthDate; this.gender = gender; this.phone = phone;
-        this.cellPhone = cellPhone; this.email = email; this.postalCode = postalCode; this.linkeind = linkeind;
-        this.district = district; this.jobOptionOne = jobOptionOne; this.jobOptionTwo = jobOptionTwo; this.jobOptionThree = jobOptionThree;
-        this.jobExperiences = jobExperiences; this.schooling = schooling;
-      }
-}
-
-function buildResumeForm(){
- var resume = document.querySelector('form')
-  const name = resume.querySelector('#name').value;
-  const birthDate = resume.querySelector('#birthDate').value;
-  const gender = resume.querySelector('#gender').value;
-  const phone = resume.querySelector('#phone').value;
-  const cellPhone = resume.querySelector('#cellPhone').value;
-  const email = resume.querySelector('#email').value;
-  const postalCode = resume.querySelector('#postalCode').value;
-  const district = resume.querySelector('#district').value;
-  const jobOptionOne = resume.querySelector('#jobOptionOne').value;
-  const jobOptionTwo = resume.querySelector('#jobOptionTwo').value;
-  const jobOptionThree = resume.querySelector('#jobOptionThree').value;
-  const schooling = resume.querySelector('#schooling').value;
-
-  const jobExperiences = resume.querySelectorAll('#jobExperiences');
-  let jobList = []
-
-  jobExperiences.forEach(job => {
-  
-    const title = job.querySelector('#title').value;
-    const company = job.querySelector('#company').value;
-    const startMonth = job.querySelector('#startMonth').value;
-    const startYear = job.querySelector('#startYear').value;
-    const isCurrentJob = job.querySelector('#isCurrentJob').checked;
-    const endMonth = job.querySelector('#endMonth').value;
-    const endYear = job.querySelector('#endYear').value;
-    const description = job.querySelector('#description').value;
-
-    const newJob = new JobExperience(title, company, startMonth, startYear, isCurrentJob, 
-      endMonth, endYear, description);
-
-    jobList.push(newJob);
-  })
-
-  return jobList;
+  return resume;
 }
 
 async function sendResume(){
-  console.log(buildResumeForm())
-  //const resp = await post('/api/resume')
+
+  // const resume = await buildResumeFromJson().then(resp => resp);
+
+  // const resp = await post('/api/resume', resume).then(resp => resp.json());
+
+  // console.log(resp);
+
+  console.log(jobExperiences[i].querySelector('#isCurrentJob').checked)
+
 }
 
 //api functions

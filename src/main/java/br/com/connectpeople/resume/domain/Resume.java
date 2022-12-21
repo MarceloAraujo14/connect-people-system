@@ -8,7 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Builder
@@ -34,7 +33,7 @@ public class Resume {
         return ResumeEntity.builder()
                 .cid(this.cid)
                 .name(this.name)
-                .birthDate(LocalDate.parse(this.birthDate, DateTimeFormatter.ofPattern("dd-MM-yyyy")))
+                .birthDate(LocalDate.parse(this.birthDate))
                 .gender(this.gender)
                 .phone(this.phone)
                 .cellPhone(this.cellPhone)

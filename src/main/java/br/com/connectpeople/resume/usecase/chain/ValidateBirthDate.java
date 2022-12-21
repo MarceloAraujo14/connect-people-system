@@ -21,7 +21,7 @@ import static br.com.connectpeople.resume.domain.constants.Constants.StateProces
 public class ValidateBirthDate implements ExecutorChain<ResumePayload> {
 
     public static final String BIRTH_DATE = "birthDate";
-    public static final String DD_MM_YYYY = "dd-MM-yyyy";
+    public static final String DATE_FORMAT = "yyyy-MM-dd";
     private static final int MIN_AGE = 16;
     private static final int MAX_AGE = 100;
 
@@ -30,7 +30,7 @@ public class ValidateBirthDate implements ExecutorChain<ResumePayload> {
         LocalDate date;
         try {
             birthDate = birthDate.replace("/", "-");
-            date = LocalDate.parse(birthDate, DateTimeFormatter.ofPattern(DD_MM_YYYY));
+            date = LocalDate.parse(birthDate, DateTimeFormatter.ofPattern(DATE_FORMAT));
         } catch (Exception exception) {
             throw new InvalidInputException(BIRTH_DATE, ERROR_MSG_BIRTH_DATE_FORMAT);
         }
