@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  loadMonthAndYear();
   loadSchooling();
 });
 
@@ -39,7 +38,6 @@ function loadMonthAndYear() {
     "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
   ];
 
-
   monthSelect.forEach(month => {
 
     const defaultOption = document.createElement("option");
@@ -49,7 +47,7 @@ function loadMonthAndYear() {
 
     for (const monthName of months) {
       const option = document.createElement("option");
-      option.value = months.indexOf(month);
+      option.value = months.indexOf(monthName) +1;
       option.text = monthName;
       month.appendChild(option);
     }
@@ -103,13 +101,13 @@ function addJobExp() {
     <div class="col">
       <p>Entrada</p>
       <div class="row">
-        <div class="col-md-5">
-          <label for="month" class="form-label">Mês</label>
-          <select class="form-select month" id="month" name="startMonth">
-        </div>
+          <div class="col-md-5">
+              <label for="month" class="form-label">Mês</label>
+              <select class="form-select month" id="startMonth" name="month"></select>
+            </div>
         <div class="col-md-4">
           <label for="year" class="form-label">Ano</label>
-          <select class="form-select year" id="year" name="startYear">
+          <select class="form-select year" id="startYear" name="year"></select>
         </div>
         <div class="row-cols-1">
           <label class="form-check-label" for="isCurrentJob">Trabalho atual</label>
@@ -123,11 +121,11 @@ function addJobExp() {
       <div class="row">
         <div class="col-md-5">
           <label for="month" class="form-label">Mês</label>
-          <select class="form-select month" id="month" name="endMonth">
+          <select class="form-select month" id="endMonth" name="month"></select>
         </div>
         <div class="col-md-4">
           <label for="year" class="form-label">Ano</label>
-          <select class="form-select year" id="year" name="endYear">
+          <select class="form-select year" id="endYear" name="year"></select>
         </div>
       </div>
     </div>
@@ -141,7 +139,8 @@ function addJobExp() {
     <button type="button" class="delxp-btn" onclick="deleteJobExp(this)">- Remover Experiência</button>
   </div>
   <div class="divider"></div>
-  <br> </div>`;
+  <br> </div>
+</div>`;
 
   job_xp.append(job);
   element = document.getElementById("job-xp")
@@ -161,10 +160,10 @@ function deleteJobExp(element) {
   }
 }
 
-class JobExperiences{
-  constructor(title, company, startMonth, startYear, isCurrentJob, endMonth, endYear){
+class JobExperience{
+  constructor(title, company, startMonth, startYear, isCurrentJob, endMonth, endYear, description){
     this.title = title; this.company = company; this.startMonth = startMonth; this.startYear = startYear;
-    this.isCurrentJob = isCurrentJob; this.endMonth = endMonth; this.endYear = endMonth;
+    this.isCurrentJob = isCurrentJob; this.endMonth = endMonth; this.endYear = endYear, this.description = description;
   }
 }
 
@@ -194,9 +193,26 @@ function buildResumeForm(){
   const schooling = resume.querySelector('#schooling').value;
 
   const jobExperiences = resume.querySelectorAll('#jobExperiences');
-  
+  let jobList = []
 
-  return jobExperiences;
+  jobExperiences.forEach(job => {
+  
+    const title = job.querySelector('#title').value;
+    const company = job.querySelector('#company').value;
+    const startMonth = job.querySelector('#startMonth').value;
+    const startYear = job.querySelector('#startYear').value;
+    const isCurrentJob = job.querySelector('#isCurrentJob').checked;
+    const endMonth = job.querySelector('#endMonth').value;
+    const endYear = job.querySelector('#endYear').value;
+    const description = job.querySelector('#description').value;
+
+    const newJob = new JobExperience(title, company, startMonth, startYear, isCurrentJob, 
+      endMonth, endYear, description);
+
+    jobList.push(newJob);
+  })
+
+  return jobList;
 }
 
 async function sendResume(){
