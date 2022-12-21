@@ -4,8 +4,12 @@ import br.com.connectpeople.jobexperience.domain.JobExperience;
 import br.com.connectpeople.resume.domain.Resume;
 import br.com.connectpeople.resume.domain.enums.Gender;
 import br.com.connectpeople.resume.domain.enums.Schooling;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +17,8 @@ import java.util.Objects;
 
 @Builder
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ResumeRequest {
 
     private String name;
@@ -29,6 +35,7 @@ public class ResumeRequest {
     private String jobOptionThree;
     private List<JobExperience> jobExperiences;
     private Schooling schooling;
+
 
     public Resume toResume() {
         List<JobExperience> jobList = new ArrayList<>();

@@ -35,3 +35,11 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### NODE ####
+node_modules
+build
+npm-debug.log
+.nyc
+.env
+.DS_Store

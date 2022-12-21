@@ -19,16 +19,23 @@ body {
 .form-logo {
     margin-top: 10%;
     height: 30%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .connect-logo {
-    width: 250px;
+    width: 70%;
 }
 
 .side-form-btn {
     height: 30%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .form-btn {
@@ -37,7 +44,7 @@ body {
     border-style: solid;
     border: 2px solid rgb(255, 255, 255);
     padding: 15px;
-    width: 150%;
+    width: 60%;
     margin-top: 30px;
 }
 
@@ -50,20 +57,20 @@ body {
 .side-form {
     display: flex;
     flex-direction: column;
-    background-color: rgb(0, 0, 0);
+    justify-content: center;
     width: 40%;
     align-items: center;
 }
 
 .form-container {
-    background-color: rgb(0, 0, 0);
     width: 60%;
     height: 100%;
     align-items: center;
+    justify-content: center;
     border: 1px solid rgb(252, 213, 162);
     padding: 20px;
     overflow-y: scroll;
-    overflow-x: none;
+    overflow-x: hidden;
 }
 
 .form-label,
@@ -92,8 +99,9 @@ input,
     background-color: black;
     margin-top: 20px;
     margin-left: 10px;
-    padding: 15px 40px;
-    width: 30%;
+    padding: 15px 20px;
+    min-width: 30%;
+    max-width: 250px;
 }
 #job-experience{
     position: relative;
@@ -104,7 +112,8 @@ input,
     border: 2px solid rgb(255, 255, 255);
     background-color: black;
     margin-top: 10px;
-    width: 30%;
+    min-width: 40%;
+    max-width: 250px;
 }
 .delxp-div{
     display: flex;
@@ -117,7 +126,8 @@ input,
     background-color: black;
     margin-top: 10px;
     position: relative;
-    width: 30%;
+    min-width: 40%;
+    max-width: 250px;
 }
 
 label {
@@ -129,7 +139,7 @@ label {
 }
 
 /* .form-control::-webkit-calendar-picker-indicator {
-    color: rgb(255, 255, 255); 
+    color: rgb(255, 255, 255);
 } */
 
 .form-control[type="date" i] {

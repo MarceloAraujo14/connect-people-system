@@ -23,9 +23,9 @@ public class ControllerAdvice {
         return ResponseEntity.status(BAD_REQUEST).body(Map.of(ex.getError(), ex.getMessage()));
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, String>> genericExceptionHandler(Exception ex) {
-        return ResponseEntity.status(BAD_REQUEST).body(Map.of("Generic error:", ex.getMessage()));
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<Map<String, String>> genericExceptionHandler(Exception ex) {
+//        return ResponseEntity.status(BAD_REQUEST).body(Map.of("Generic error:", ex.getMessage()));
+//    }
 
 }
