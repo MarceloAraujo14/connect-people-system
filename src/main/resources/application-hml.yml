@@ -5,9 +5,9 @@ spring:
 
   #Database Conf
   datasource:
-    url: jdbc:postgresql://postgres-db:5432/connectpeople_6p86?currentSchema=public
-    username: admin
-    password: admin
+    url: jdbc:postgresql://${DB_HOST_HML}/connectpeople_6p86?currentSchema=public
+    username: "connectuser"
+    password: ${DB_PASSWORD}
     driver-class-name: "org.postgresql.Driver"
 
     tomcat:
