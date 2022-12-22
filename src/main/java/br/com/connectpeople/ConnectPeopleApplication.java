@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class ConnectpeopleApplication {
+public class ConnectPeopleApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ConnectpeopleApplication.class, args);
+        SpringApplication.run(ConnectPeopleApplication.class, args);
     }
 
 }

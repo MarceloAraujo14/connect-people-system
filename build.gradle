@@ -6,11 +6,11 @@ plugins {
 }
 
 application {
-    mainClass = 'br.com.connectpeople.ConnectpeopleApplication'
+    mainClass = 'br.com.connectpeople.ConnectPeopleApplication'
 }
 
 group = 'br.com'
-version = '0.1-a'
+version = '0.1'
 sourceCompatibility = '17'
 
 configurations {
