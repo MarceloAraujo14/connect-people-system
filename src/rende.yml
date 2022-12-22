@@ -1,0 +1,4 @@
+services:
+  #connect-people-app
+  - type: web
+    name: connect-people
