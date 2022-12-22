@@ -5,7 +5,7 @@
 ## Descrição
 
 
-O ConnectPeople é um sistema para connsultoria de RH que atua especificamente com o nicho de 
+O ConnectPeople é um Web Service para connsultoria de RH que atua especificamente com o nicho de 
 hotelaria, o sistema possui funcionalidades para auxiliar no desenvolvimento de serviços como: 
 Implantação, R&S, Onboarding, Treinamentos, Programa de formação, Endomarketing, Consultoria, 
 Cliente oculto e testes comportamentais.

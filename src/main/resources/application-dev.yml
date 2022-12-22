@@ -5,7 +5,7 @@ spring:
 
   #Database Conf
   datasource:
-    url: jdbc:postgresql://${DB_HOST_DEV}/connectpeople_6p86?currentSchema=public
+    url: jdbc:postgresql://${DB_HOST_DEV}?currentSchema=public
     username: "connectuser"
     password: ${DB_PASSWORD}
     driver-class-name: "org.postgresql.Driver"
