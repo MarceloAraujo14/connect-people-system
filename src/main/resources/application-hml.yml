@@ -2,10 +2,11 @@ server:
   port: 80
 
 spring:
-
+  config:
+    import: classpath:deploy/secret.properties
   #Database Conf
   datasource:
-    url: jdbc:postgresql://${DB_HOST_HML}/connectpeople_6p86?currentSchema=public
+    url: jdbc:postgresql://${DB_HOST_HML}/?currentSchema=public
     username: "connectuser"
     password: ${DB_PASSWORD}
     driver-class-name: "org.postgresql.Driver"
@@ -31,4 +32,4 @@ spring:
 
 springdoc:
   swagger-ui:
-    path: "/dev/swagger-ui.html"
+    path: "/prd/swagger-ui.html"
