@@ -2,5 +2,7 @@ FROM eclipse-temurin:17.0.5_8-jre-alpine@sha256:15c47cd825f2bf77b40860bc9c18d465
 WORKDIR /app
 RUN addgroup --system javauser && adduser -S javauser -G javauser
 USER javauser:javauser
+RUN chmod +x /bootstrap.sh
+RUN ./bootstrap.sh
 COPY build/libs/connect-people-0.1.jar connect-people.jar
 ENTRYPOINT ["java","-jar", "/app/connect-people.jar"]
