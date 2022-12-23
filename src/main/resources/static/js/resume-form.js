@@ -16,7 +16,7 @@ function loadSchooling() {
     'Superior Incompleto', 'Superior completo'];
 
   const defaultOption = document.createElement("option");
-  defaultOption.value = null;
+  defaultOption.value = "";
   defaultOption.text = "Selecione sua escolaridade";
   defaultOption.selected = true;
   schooling.appendChild(defaultOption);
@@ -201,7 +201,7 @@ async function sendResume(){
 
   const resume = await buildResumeFromJson().then(resp => resp);
 
-  const resp = await post('/api/resume', resume).then(resp => resp.json());
+  const resp = await post('/api/resume', resume).then(resp => resp.json()).catch(error => console.log(error));
 
   console.log(resp);
 
@@ -210,13 +210,12 @@ async function sendResume(){
 //api functions
 async function post(url, obj){
   console.log(obj)
-  const req = await fetch(url, {
+  const resp = await fetch(url, {
   method: 'POST',
   body: JSON.stringify(obj),
   headers: {'Content-type': 'application/json'}
   }).catch(error => error);
 
-  const resp = await req.json();
-  console.log(resp);
+  return resp;
 }
 

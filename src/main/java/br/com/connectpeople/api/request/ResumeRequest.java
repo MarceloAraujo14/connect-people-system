@@ -10,7 +10,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -23,7 +22,8 @@ public class ResumeRequest {
 
     private String name;
     private String birthDate;
-    private Gender gender;
+    @NotBlank(message = "Por favor selecione uma das opções.")
+    private String gender;
     private String phone;
     private String cellPhone;
     private String email;
@@ -35,7 +35,7 @@ public class ResumeRequest {
     private String jobOptionThree;
     private List<JobExperience> jobExperiences;
     @NotBlank(message = "Por favor selecione uma das opções.")
-    private Schooling schooling;
+    private String schooling;
 
 
     public Resume toResume() {
@@ -47,7 +47,7 @@ public class ResumeRequest {
         return Resume.builder()
                 .name(this.name)
                 .birthDate(this.birthDate)
-                .gender(this.gender)
+                .gender(Gender.valueOf(this.gender))
                 .phone(this.phone)
                 .cellPhone(this.cellPhone)
                 .email(this.email)
@@ -57,7 +57,7 @@ public class ResumeRequest {
                 .jobOptionTwo(this.jobOptionTwo)
                 .jobOptionThree(this.jobOptionThree)
                 .jobExperiences(jobList)
-                .schooling(this.schooling)
+                .schooling(Schooling.valueOf(this.schooling))
                 .build();
     }
 

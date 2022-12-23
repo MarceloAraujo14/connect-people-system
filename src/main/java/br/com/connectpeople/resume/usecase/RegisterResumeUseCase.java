@@ -3,7 +3,6 @@ package br.com.connectpeople.resume.usecase;
 import br.com.connectpeople.adapters.repository.ResumeJpaRepository;
 import br.com.connectpeople.jobexperience.usecase.RegisterJobExperiencesUseCase;
 import br.com.connectpeople.resume.domain.Resume;
-import br.com.connectpeople.resume.domain.exception.RegisterAlreadyExistsException;
 import br.com.connectpeople.resume.usecase.chain.ErrorHandler;
 import br.com.connectpeople.resume.usecase.chain.ValidateAlreadyRegister;
 import br.com.connectpeople.resume.usecase.chain.ValidateBirthDate;
@@ -17,7 +16,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_EMAIL_ALREADY_REGISTER;
 import static br.com.connectpeople.util.IdGenerator.generateId;
 
 @Service
