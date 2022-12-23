@@ -199,13 +199,11 @@ async function buildResumeFromJson(){
 
 async function sendResume(){
 
-  // const resume = await buildResumeFromJson().then(resp => resp);
+  const resume = await buildResumeFromJson().then(resp => resp);
 
-  // const resp = await post('/api/resume', resume).then(resp => resp.json());
+  const resp = await post('/api/resume', resume).then(resp => resp.json());
 
-  // console.log(resp);
-
-  console.log(jobExperiences[i].querySelector('#isCurrentJob').checked)
+  console.log(resp);
 
 }
 
