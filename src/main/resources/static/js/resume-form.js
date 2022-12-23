@@ -16,7 +16,7 @@ function loadSchooling() {
     'Superior Incompleto', 'Superior completo'];
 
   const defaultOption = document.createElement("option");
-  defaultOption.value = "";
+  defaultOption.value = null;
   defaultOption.text = "Selecione sua escolaridade";
   defaultOption.selected = true;
   schooling.appendChild(defaultOption);
@@ -214,7 +214,7 @@ async function post(url, obj){
   method: 'POST',
   body: JSON.stringify(obj),
   headers: {'Content-type': 'application/json'}
-  });
+  }).catch(error => error);
 
   const resp = await req.json();
   console.log(resp);

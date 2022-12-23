@@ -4,12 +4,12 @@ import br.com.connectpeople.jobexperience.domain.JobExperience;
 import br.com.connectpeople.resume.domain.Resume;
 import br.com.connectpeople.resume.domain.enums.Gender;
 import br.com.connectpeople.resume.domain.enums.Schooling;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +34,7 @@ public class ResumeRequest {
     private String jobOptionTwo;
     private String jobOptionThree;
     private List<JobExperience> jobExperiences;
+    @NotBlank(message = "Por favor selecione uma das opções.")
     private Schooling schooling;
 
 

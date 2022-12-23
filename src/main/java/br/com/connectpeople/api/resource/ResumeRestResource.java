@@ -3,6 +3,7 @@ package br.com.connectpeople.api.resource;
 import br.com.connectpeople.api.request.ResumeRequest;
 import br.com.connectpeople.resume.domain.Resume;
 import br.com.connectpeople.resume.usecase.RegisterResumeUseCase;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.MediaType;
@@ -23,7 +24,7 @@ public class ResumeRestResource {
     private final RegisterResumeUseCase registerResumeUseCase;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Resume register(@RequestBody ResumeRequest request) {
+    public Resume register(@Valid @RequestBody ResumeRequest request) {
         log.info("M register, request={}, state={}", request, NEW);
         Resume execute = registerResumeUseCase.execute(request.toResume());
         log.info("M register, request={}, state={}", execute, SUCCESS);
