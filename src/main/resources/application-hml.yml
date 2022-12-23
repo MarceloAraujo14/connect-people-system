@@ -2,7 +2,8 @@ server:
   port: 80
 
 spring:
-
+  config:
+    import: classpath:deploy/secret.properties
   #Database Conf
   datasource:
     url: jdbc:postgresql://${DB_HOST_HML}/?currentSchema=public
@@ -31,4 +32,4 @@ spring:
 
 springdoc:
   swagger-ui:
-    path: "/dev/swagger-ui.html"
+    path: "/prd/swagger-ui.html"

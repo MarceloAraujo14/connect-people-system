@@ -5,22 +5,12 @@ spring:
 
   #Database Conf
   datasource:
-    url: jdbc:postgresql://postgres-db:5432/connectpeople_6p86?currentSchema=public
-    username: admin
-    password: admin
+    url: jdbc:postgresql://0.0.0.0:5432/connectpeople?currentSchema=public
+    username: "admin"
+    password: "admin"
     driver-class-name: "org.postgresql.Driver"
 
-    tomcat:
-      initial-size: 15
-      max-wait: 20000
-      max-active: 80
-      max-idle: 15
-      min-idle: 8
-      default-auto-commit: true
-
   jpa:
-    hibernate:
-      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -31,4 +21,4 @@ spring:
 
 springdoc:
   swagger-ui:
-    path: "/dev/swagger-ui.html"
+    path: "/qa/swagger-ui.html"

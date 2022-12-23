@@ -3,4 +3,4 @@ WORKDIR /app
 RUN addgroup --system javauser && adduser -S javauser -G javauser
 USER javauser:javauser
 COPY build/libs/connect-people-0.1.jar connect-people.jar
-ENTRYPOINT ["java","-jar", "/app/connect-people-0.1.jar"]
+ENTRYPOINT ["java","-jar", "/app/connect-people.jar"]
