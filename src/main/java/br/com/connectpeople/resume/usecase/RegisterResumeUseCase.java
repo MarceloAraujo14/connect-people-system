@@ -57,7 +57,7 @@ public class RegisterResumeUseCase {
     private ResumePayload buildInput(Resume resume) {
         return ResumePayload.builder()
                 .name(resume.getName())
-                .birthDate(resume.getBirthDate().toString())
+                .birthDate(resume.getBirthDate())
                 .gender(resume.getGender())
                 .phone(resume.getPhone())
                 .cellPhone(resume.getCellPhone())
