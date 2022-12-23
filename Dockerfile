@@ -1,25 +1,15 @@
-FROM eclipse-temurin:17.0.5_8-jre-alpine@sha256:15c47cd825f2bf77b40860bc9c18d4659c72584d16ef5f533eb49a232b3702f3 as build
+FROM gradle:jdk17-alpine as build
+COPY --chown=gradle:gradle . /home/gradle/src
+WORKDIR /home/gradle/src
+RUN gradle build -DskipTests --no-daemon
 
-RUN addgroup --system javauser && adduser -S javauser -G javauser
-USER root
+FROM eclipse-temurin:17.0.5_8-jre-alpine
 
-COPY --chown=javauser:javauser gradlew /gradlew
-COPY --chown=javauser:javauser gradle /gradle
-COPY --chown=javauser:javauser build.gradle .
-COPY --chown=javauser:javauser settings.gradle .
+EXPOSE 80
 
-COPY src .src
+RUN mkdir /app
 
-RUN chmod +x gradlew
+COPY --from=build /home/gradle/src/build/libs/*.jar /app/connect-people.jar
 
-RUN ./gradlew bootJar
+ENTRYPOINT ["java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseContainerSupport","-XX:MaxRAMPercentage=80", "-XX:InitialRAMPercentage=40", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app/connect-people.jar"]
 
-FROM eclipse-temurin:17.0.5_8-jre-alpine@sha256:15c47cd825f2bf77b40860bc9c18d4659c72584d16ef5f533eb49a232b3702f3
-
-COPY --from=build build/libs/connect-people-0.1.jar connect-people.jar
-
-RUN chmod 775 .
-
-USER javauser
-
-ENTRYPOINT ["java","-jar", "/app/connect-people.jar"]

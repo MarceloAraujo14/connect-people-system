@@ -2,13 +2,11 @@ server:
   port: 80
 
 spring:
-  config:
-    import: classpath:deploy/secret.properties
 
   #Database Conf
   datasource:
-    url: jdbc:postgresql://${DB_HOST_DEV}/?currentSchema=public
-    username: "connectuser"
+    url: jdbc:postgresql://${DB_HOST_DEV}/${DB_NAME}?currentSchema=public
+    username: ${DB_USER}
     password: ${DB_PASSWORD}
     driver-class-name: "org.postgresql.Driver"
 
