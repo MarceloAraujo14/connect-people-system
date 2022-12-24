@@ -199,23 +199,27 @@ async function buildResumeFromJson(){
 
 async function sendResume(){
 
-  const resume = await buildResumeFromJson().then(resp => resp);
+  const resume = buildResumeFromJson();
 
-  const resp = await post('/api/resume', resume).then(resp => resp.json()).catch(error => console.log(error));
+  const response = await post('http://localhost:80/api/resume', resume);
 
-  console.log(resp);
+  if (response.status >= 200 || response.status <= 299) {
+    document.querySelector('#success-message').innerHTML = "<p>Currículo Cadastrado com sucesso!</p>";
+  } 
 
 }
 
 //api functions
 async function post(url, obj){
-  console.log(obj)
-  const resp = await fetch(url, {
+  const response = await fetch(url, {
   method: 'POST',
   body: JSON.stringify(obj),
   headers: {'Content-type': 'application/json'}
-  }).catch(error => error);
+  })
+  .then(res => console.log(res));
 
-  return resp;
+  console.log(response)
+
+  return response;
 }
 
