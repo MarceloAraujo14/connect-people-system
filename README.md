@@ -1,13 +1,13 @@
-# Connect People R&S 
+# Connect People R&S
 
-**versão**: 0.1-a
+**versão**: 0.1
 
 ## Descrição
 
 
-O ConnectPeople é um Web Service para connsultoria de RH que atua especificamente com o nicho de 
-hotelaria, o sistema possui funcionalidades para auxiliar no desenvolvimento de serviços como: 
-Implantação, R&S, Onboarding, Treinamentos, Programa de formação, Endomarketing, Consultoria, 
+O ConnectPeople é um Web Service para connsultoria de RH que atua especificamente com o nicho de
+hotelaria, o sistema possui funcionalidades para auxiliar no desenvolvimento de serviços como:
+Implantação, R&S, Onboarding, Treinamentos, Programa de formação, Endomarketing, Consultoria,
 Cliente oculto e testes comportamentais.
 
 
@@ -23,7 +23,7 @@ além de auxiliar na capacitação de profissionais buscando recolocação no me
 ## Sobre o projeto
 
 
-O projeto na sua versão atual (0.1-a) conta com as seguintes funcionalidades:
+O projeto na sua versão atual (0.1) conta com as seguintes funcionalidades:
 - Página estática (home)
 - Página de Formulário de Cadastro de Currículos
 - Página de Formulário de Cadastro de Vagas
