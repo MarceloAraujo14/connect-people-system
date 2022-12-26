@@ -24,7 +24,7 @@ public class ResumeRestResource {
 
     private final RegisterResumeUseCase registerResumeUseCase;
 
-    @CrossOrigin(origins = {"*localhost*", "*127.0.0.1*"})
+    @CrossOrigin(originPatterns = {"*localhost*", "*127.0.0.1*"})
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Resume register(@Valid @RequestBody ResumeRequest request) {
         log.info("M register, request={}, state={}", request, NEW);

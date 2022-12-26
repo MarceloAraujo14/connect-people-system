@@ -138,10 +138,6 @@ label {
     font-weight: bolder;
 }
 
-/* .form-control::-webkit-calendar-picker-indicator {
-    color: rgb(255, 255, 255);
-} */
-
 .form-control[type="date" i] {
     position: relative;
 }

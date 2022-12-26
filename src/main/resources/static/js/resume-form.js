@@ -161,7 +161,8 @@ function deleteJobExp(element) {
 }
 
 async function buildResumeFromJson(){
-  var resume = await fetch('./json/ResumeRequest.json').then(response => response.json());
+  // var resume = await fetch('./json/ResumeRequest.json').then(response => response.json());
+  var resume = await fetch('../static/json/ResumeRequest.json').then(response => response.json());
 
   var form = document.querySelector('form')
   resume.name = form.querySelector('#name').value;
@@ -202,9 +203,13 @@ async function sendResume(){
   const resume = buildResumeFromJson();
 
   const response = await post('http://localhost:80/api/resume', resume);
-
-  if (response.status >= 200 || response.status <= 299) {
-    document.querySelector('#success-message').innerHTML = "<p>Currículo Cadastrado com sucesso!</p>";
+  
+  if (response.status >= 200 && response.status <= 299) {
+    document.querySelector('.success-message').innerHTML = "<p>Currículo Cadastrado com sucesso!</p>";
+  }
+  
+  if (response.status >= 400 && response.status <= 499) {
+    document.querySelector('.success-message').innerHTML = "<p>Currículo Cadastrado com sucesso!</p>";
   } 
 
 }
@@ -216,7 +221,7 @@ async function post(url, obj){
   body: JSON.stringify(obj),
   headers: {'Content-type': 'application/json'}
   })
-  .then(res => console.log(res));
+  .then(res => res);
 
   console.log(response)
 

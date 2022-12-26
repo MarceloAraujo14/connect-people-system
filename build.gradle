@@ -13,6 +13,9 @@ group = 'br.com'
 version = '0.1'
 sourceCompatibility = '17'
 
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -55,4 +58,11 @@ tasks.named('test') {
 
 bootBuildImage{
     imageName = "connect-people-api:${version}"
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+tasks.withType(Test) {
+    jvmArgs '-Dfile.encoding=UTF-8'
 }
