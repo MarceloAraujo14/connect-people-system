@@ -27,40 +27,106 @@
     </div>
 
     <form class="form-container" id="form-container">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" type="button" role="tab"
-                        aria-controls="home-tab-pane" aria-selected="true">Dados Pessoais
+        <nav>
+            <div class="nav nav-tabs " id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                        type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dados Pessoais
                 </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" type="button" role="tab"
-                        aria-controls="profile-tab-pane" aria-selected="false">Formação Acadêmica
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                        type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Experiência
+                    Profissional
                 </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="interest-tab" data-bs-toggle="tab" type="button" role="tab"
-                        aria-controls="interest-tab-pane" aria-selected="false">Interesse Profissional
+                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+                        type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Formação Acadêmica
                 </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" type="button" role="tab"
-                        aria-controls="contact-tab-pane" aria-selected="false">Experiência Profissional
+                <button class="nav-link" id="nav-interesse-tab" data-bs-toggle="tab" data-bs-target="#nav-interesse"
+                        type="button" role="tab" aria-controls="nav-interesse" aria-selected="false">Interesse
+                    Profissional
                 </button>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
-                 tabindex="0">...
             </div>
-            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                ...
+        </nav>
+        <br>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
+                 tabindex="0">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="name" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="name" placeholder="Nome" name="name">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="lastname" class="form-label">Sobrenome</label>
+                        <input type="text" class="form-control" id="lastname" placeholder="Sobrenome" name="lastname">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="gender" class="form-label">Sexo</label>
+                        <select id="gender" class="form-select" name="gender">
+                            <option selected value="M">M</option>
+                            <option value="F">F</option>
+                            <option value="N">NI</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="birthDate" class="form-label">Nascimento</label>
+                        <input type="date" class="form-control" id="birthDate" name="birthDate"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="phone" class="form-label">Telefone</label>
+                        <input type="text" class="form-control" id="phone" placeholder="(00) 0000-0000" name="phone">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="cellPhone" class="form-label">Celular</label>
+                        <input type="text" class="form-control" id="cellPhone" placeholder="(00) 0000-0000"
+                               name="cellPhone">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="email" placeholder="jhondoe@gmail.com" name="email">
+                    </div>
+
+                    <div class="col-md-5">
+                        <label for="linkedin" class="form-label">Linkedin</label>
+                        <input type="text" class="form-control" id="linkedin"
+                               placeholder="https://linkedin.com/in/jhondoe"
+                               name="linkedin">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <label for="postalCode" class="form-label">CEP</label>
+                        <input type="text" class="form-control" id="postalCode" placeholder="00000-000"
+                               name="postalCode">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="district" class="form-label">Bairro</label>
+                        <input type="text" class="form-control" id="district" name="district">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="city" class="form-label">Cidade</label>
+                        <input type="text" class="form-control" id="city" name="city">
+                    </div>
+                </div>
             </div>
-            <div class="tab-pane fade" id="interest-tab-pane" role="tabpanel" aria-labelledby="insterest-tab"
-                 tabindex="0">...
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                Experiencia Profissional
             </div>
-            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-                ...
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+                Formação Academica
+            </div>
+            <div class="tab-pane fade" id="nav-interesse" role="tabpanel" aria-labelledby="nav-interesse-tab"
+                 tabindex="0">Interesse Profissional
             </div>
         </div>
     </form>
