@@ -1,4 +1,4 @@
-package br.com.connectpeople.constants;
+package br.com.connectpeople.resume.domain.constants;
 
 public class Constants {
 
@@ -7,7 +7,6 @@ public class Constants {
 
     public static class ErrorMessage {
 
-        //Resume Errors
         public static final String ERROR_MSG_FIELD_CANNOT_BE_EMPTY = "O campo não pode estar vazio";
         public static final String ERROR_MSG_SELECT_OPTION = "Por favor selecione uma das opções.";
         public static final String ERROR_MSG_NAME_INVALID = "O nome deve conter um nome e pelo menos um sobrenome";
@@ -21,11 +20,6 @@ public class Constants {
         public static final String ERROR_MSG_YEAR_INVALID = "Selecione um ano válido";
         public static final String ERROR_MSG_MONTH_END_BEFORE_START = "A data de saída não pode ser menor que a data de entrada";
         public static final String ERROR_MSG_YEAR_END_BEFORE_START = "O ano de entrada não pode ser maior que o ano de saída";
-
-        //User Errors
-        public static final String ERROR_MSG_USER_NOT_FOUND = "Email ou senha inválidos.";
-        public static final String ERROR_MSG_WEAK_PASSWORD = "Senha deve conter ao menos 6 caracteres, 1 letra maiuscula, 1 letra minuscula, 1 numero e 1 caracter especial.";
-
 
         private ErrorMessage() {
         }

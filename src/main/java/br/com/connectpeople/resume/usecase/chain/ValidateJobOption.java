@@ -1,6 +1,6 @@
 package br.com.connectpeople.resume.usecase.chain;
 
-import br.com.connectpeople.exception.InvalidInputException;
+import br.com.connectpeople.resume.domain.exception.InvalidInputException;
 import br.com.connectpeople.resume.usecase.executor.ExecutorChain;
 import br.com.connectpeople.resume.usecase.executor.ResumePayload;
 import lombok.extern.log4j.Log4j2;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
-import static br.com.connectpeople.constants.Constants.StateProcess.FAILURE;
+import static br.com.connectpeople.resume.domain.constants.Constants.StateProcess.FAILURE;
 
 @Log4j2
 @Component

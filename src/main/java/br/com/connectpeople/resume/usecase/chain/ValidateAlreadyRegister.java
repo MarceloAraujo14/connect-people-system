@@ -1,13 +1,13 @@
 package br.com.connectpeople.resume.usecase.chain;
 
 import br.com.connectpeople.adapters.repository.ResumeJpaRepository;
-import br.com.connectpeople.exception.RegisterAlreadyExistsException;
+import br.com.connectpeople.resume.domain.exception.RegisterAlreadyExistsException;
 import br.com.connectpeople.resume.usecase.executor.ExecutorChain;
 import br.com.connectpeople.resume.usecase.executor.ResumePayload;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_EMAIL_ALREADY_REGISTER;
+import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_EMAIL_ALREADY_REGISTER;
 
 @Component
 @RequiredArgsConstructor

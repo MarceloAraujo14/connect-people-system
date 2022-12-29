@@ -6,7 +6,7 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 .main-container {
-    margin-top: 80px;
+    margin-top: 40px;
     width: 300px;
     padding: 20px;
     border: 2px solid rgb(252, 213, 162);
@@ -58,7 +58,7 @@ body {
 }
 
 .fgt-pwd:hover{
-    color: rgb(252, 213, 162);
+    color: blue;
     cursor: pointer;
 }
 

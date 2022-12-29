@@ -10,7 +10,7 @@ public class ResumeViewResource {
 
     @GetMapping
     public String resume(){
-        return "resume-form";
+        return "resume-save";
     }
 
 }

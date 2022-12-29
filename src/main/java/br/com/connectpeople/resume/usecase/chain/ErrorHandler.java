@@ -1,6 +1,6 @@
 package br.com.connectpeople.resume.usecase.chain;
 
-import br.com.connectpeople.exception.InvalidInputException;
+import br.com.connectpeople.resume.domain.exception.InvalidInputException;
 import br.com.connectpeople.resume.usecase.executor.ExecutorChain;
 import br.com.connectpeople.resume.usecase.executor.ResumePayload;
 import org.springframework.stereotype.Component;

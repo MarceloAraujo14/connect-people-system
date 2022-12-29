@@ -1,4 +1,4 @@
-package br.com.connectpeople.exception;
+package br.com.connectpeople.resume.domain.exception;
 
 import lombok.Getter;
 import lombok.Setter;
