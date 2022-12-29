@@ -1,4 +1,4 @@
-﻿package br.com.connectpeople.api.request;
+package br.com.connectpeople.api.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -1,4 +1,4 @@
-﻿package br.com.connectpeople.user.usecase;
+package br.com.connectpeople.user.usecase;
 
 import br.com.connectpeople.adapters.repository.UserRepository;
 import br.com.connectpeople.adapters.repository.entity.UserEntity;
@@ -39,16 +39,17 @@ class RegisterUserUseCaseTest {
     @Test
     void shouldValidateAndSaveUser(){
         var user = getUser();
-        when(passwordEncoder.encode(user.getPassword())).thenReturn(any());
+        when(passwordEncoder.encode(user.getPassword())).thenReturn(user.getPassword());
         when(userRepository.findById(user.getEmail())).thenReturn(Optional.empty());
-        when(userRepository.save(user.toEntity())).thenReturn(userEntityCaptor.getValue());
+        when(userRepository.save(any())).thenReturn(user.toEntity());
 
         User result = registerUserUseCase.execute(user);
 
         verify(passwordEncoder, times(1)).encode(user.getPassword());
         verify(userRepository, times(1)).findById(user.getEmail());
-        verify(userRepository, times(1)).save(user.toEntity());
+        verify(userRepository, times(1)).save(userEntityCaptor.capture());
         assertEquals(Role.USER, userEntityCaptor.getValue().getRoles());
+        assertEquals(Role.USER, result.getRoles());
 
     }
 

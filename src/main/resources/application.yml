@@ -1,7 +1,19 @@
 server:
   port: 80
 
+security:
+  admin: ${ADMIN_PASS}
 spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: ${GITHUB_CID}
+            clientSecret: ${GITHUB_CS}
+          google:
+            clientId: ${GOOGLE_CID}
+            clientSecret: ${GOOGLE_CS}
 
   #Database Conf
   datasource:
@@ -21,3 +33,7 @@ spring:
 springdoc:
   swagger-ui:
     path: "/resume/swagger-ui.html"
+
+#logging:
+#  level:
+#    org.springframework.security: TRACE
