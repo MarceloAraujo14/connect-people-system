@@ -8,9 +8,9 @@ spring:
     oauth2:
       client:
         registration:
-          github:
-            clientId: ${GITHUB_CID}
-            clientSecret: ${GITHUB_CS}
+          linkedin:
+            clientId: ${LINKEDIN_CID}
+            clientSecret: ${LINKEDIN_CS}
           google:
             clientId: ${GOOGLE_CID}
             clientSecret: ${GOOGLE_CS}
