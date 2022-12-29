@@ -1,6 +1,5 @@
 ﻿package br.com.connectpeople.api.request;
 
-import br.com.connectpeople.user.domain.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
@@ -18,6 +17,5 @@ public class UserRequest {
     private String email;
     @NotBlank(message = ERROR_MSG_FIELD_CANNOT_BE_EMPTY)
     private String password;
-    private Role role;
 
 }

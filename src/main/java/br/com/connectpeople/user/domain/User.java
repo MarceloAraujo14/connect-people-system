@@ -10,13 +10,13 @@ public class User {
 
     private String email;
     private String password;
-    private Role role;
+    private Role roles;
 
     public UserEntity toEntity(){
         return UserEntity.builder()
                 .email(this.email)
                 .password(this.password)
-                .role(this.role)
+                .roles(this.roles)
                 .build();
     }
 }
