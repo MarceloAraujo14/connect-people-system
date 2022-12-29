@@ -8,12 +8,27 @@ spring:
     oauth2:
       client:
         registration:
-          linkedin:
-            clientId: ${LINKEDIN_CID}
-            clientSecret: ${LINKEDIN_CS}
+#          linkedin:
+#            clientId: ${LINKEDIN_CID}
+#            clientSecret: ${LINKEDIN_CS}
+#            clientAuthenticationMethod: post
+#            authorizationGrantType: authorization_code
+#            redirectUri: '{baseUrl}/login/oauth2/code/{registrationId}'
+#            scope: r_liteprofile, r_emailaddress
+#            clientName: Linkedin
+
+
           google:
             clientId: ${GOOGLE_CID}
             clientSecret: ${GOOGLE_CS}
+
+        provider:
+          linkedin:
+            tokenUri: https://www.linkedin.com/oauth/v2/accessToken
+            authorizationUri: https://www.linkedin.com/oauth/v2/authorization
+            userInfoUri: https://api.linkedin.com/v2/me
+            userNameAttribute: id
+
 
   #Database Conf
   datasource:
