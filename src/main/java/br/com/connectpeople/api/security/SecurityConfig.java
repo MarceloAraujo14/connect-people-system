@@ -1,7 +1,6 @@
-package br.com.connectpeople.api.security;
+﻿package br.com.connectpeople.api.security;
 
 import br.com.connectpeople.user.domain.Role;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,53 +18,53 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Value("${security.admin}")
-    private String pass;
-
     @Bean
     public static PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(10);
+        return new BCryptPasswordEncoder(10000);
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/static/**", "/css/**", "/js/**", "/img/**").permitAll()
+                        .requestMatchers("/", "/login", "/static/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .headers(headers -> headers.frameOptions().sameOrigin())
                 .oauth2Login(oauth -> oauth
                         .loginPage("/login")
-                        .defaultSuccessUrl("/resume", true)
-                        .failureUrl("/login?error=true"))
+                        .defaultSuccessUrl("/logged"))
                 .formLogin(login -> login
                         .loginPage("/login")
                         .usernameParameter("email")
                         .passwordParameter("password")
-                        .defaultSuccessUrl("/resume", true)
+                        .defaultSuccessUrl("/logged")
                         .loginProcessingUrl("/login")
                         .failureForwardUrl("/login?error=true")
                         .permitAll())
                 .logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
-                                .logoutSuccessUrl("/login").permitAll()
+                                .logoutSuccessUrl("/").permitAll()
                 );
 
         return http.build();
     }
 
-
-
     @Bean
     public UserDetailsService users(){
         UserDetails admin = User.builder()
                 .username("admin")
-                .password(passwordEncoder().encode(pass))
+                .password("{noop}password")
                 .roles(Role.ADMIN.toString())
                 .build();
 
-        return new InMemoryUserDetailsManager(admin);
+        UserDetails user = User.builder()
+                .username("user")
+                .password("{noop}password")
+                .roles(Role.USER.toString())
+                .build();
+
+        return new InMemoryUserDetailsManager(admin, user);
     }
 }

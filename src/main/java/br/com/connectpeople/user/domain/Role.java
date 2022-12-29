@@ -1,4 +1,4 @@
-package br.com.connectpeople.user.domain;
+﻿package br.com.connectpeople.user.domain;
 
 public enum Role {
     ADMIN,

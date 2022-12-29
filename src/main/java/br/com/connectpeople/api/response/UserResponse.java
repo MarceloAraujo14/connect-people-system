@@ -1,4 +1,4 @@
-package br.com.connectpeople.api.response;
+﻿package br.com.connectpeople.api.response;
 
 import lombok.Builder;
 import lombok.Data;

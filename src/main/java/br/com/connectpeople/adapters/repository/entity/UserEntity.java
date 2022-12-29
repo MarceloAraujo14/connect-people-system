@@ -1,4 +1,4 @@
-package br.com.connectpeople.adapters.repository.entity;
+﻿package br.com.connectpeople.adapters.repository.entity;
 
 import br.com.connectpeople.user.domain.Role;
 import br.com.connectpeople.user.domain.User;
@@ -16,7 +16,6 @@ import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import java.util.Objects;
-
 @Builder
 @Entity
 @Table(name = "users")

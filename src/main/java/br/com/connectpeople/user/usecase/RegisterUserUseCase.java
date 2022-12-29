@@ -1,4 +1,4 @@
-package br.com.connectpeople.user.usecase;
+﻿package br.com.connectpeople.user.usecase;
 
 import br.com.connectpeople.adapters.repository.UserRepository;
 import br.com.connectpeople.exception.RegisterAlreadyExistsException;

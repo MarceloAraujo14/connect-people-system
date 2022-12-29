@@ -1,4 +1,4 @@
-package br.com.connectpeople.user.domain;
+﻿package br.com.connectpeople.user.domain;
 
 import br.com.connectpeople.adapters.repository.entity.UserEntity;
 import lombok.Builder;
