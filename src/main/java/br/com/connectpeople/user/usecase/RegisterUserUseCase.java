@@ -43,7 +43,7 @@ public class RegisterUserUseCase {
         1 numerals (0-9)
         1 letters in Lower Case
          */
-        if (password.matches("^(?=.[a-z])(?=.[A-Z])(?=.\\d)(?=.[!@#$%^&*]).{6,}"))
+        if (password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{6,})"))
             throw new WeakPasswordException("password", ERROR_MSG_WEAK_PASSWORD);
     }
 
