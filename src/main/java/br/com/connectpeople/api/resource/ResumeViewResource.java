@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/resume")
 public class ResumeViewResource {
 
     @GetMapping
     public String resume(){
-        return "resume-save";
+        return "resume-form";
     }
 
 }

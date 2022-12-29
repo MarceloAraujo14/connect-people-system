@@ -1,7 +1,7 @@
 package br.com.connectpeople.resume.usecase.chain;
 
 import br.com.connectpeople.adapters.repository.ResumeJpaRepository;
-import br.com.connectpeople.resume.domain.exception.RegisterAlreadyExistsException;
+import br.com.connectpeople.exception.RegisterAlreadyExistsException;
 import br.com.connectpeople.resume.usecase.executor.ResumePayload;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

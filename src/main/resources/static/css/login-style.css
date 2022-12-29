@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body {
+    color: white;
+    background-color: rgb(0, 0, 0);
+    font-family: 'Roboto', sans-serif;
+}
+.main-container {
+    margin-top: 80px;
+    width: 300px;
+    padding: 20px;
+    border: 2px solid rgb(252, 213, 162);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(0, 0, 0);
+}
+.form-logo{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.connect-logo {
+    width: 60%;
+}
+.btn-social {
+    background-color: black;
+    color: rgb(252, 213, 162);
+    border-style: solid;
+    border: 2px solid rgb(255, 255, 255);
+    padding: 5px;
+    width: 100%;
+    margin-top: 10px;
+}
+.container-login-btn{
+    display: flex;
+    justify-content: space-between;
+}
+.form-btn {
+    background-color: black;
+    color: rgb(252, 213, 162);
+    border-style: solid;
+    border: 2px solid rgb(255, 255, 255);
+    padding: 5px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.btn-social:hover,
+.form-btn:hover {
+    border: 2px solid rgb(252, 213, 162);
+    font-weight: bolder;
+}
+.form-label,
+.form-check,
+.c-white, label {
+    color: white;
+}
+
+.fgt-pwd:hover{
+    color: rgb(252, 213, 162);
+    cursor: pointer;
+}
+
+.form-control,
+.form-select,
+input,
+.form-control:focus,
+.form-select:focus {
+    border-radius: 0;
+    background-color: black;
+    color: white;
+    lighting-color: black;
+    border-color: rgb(252, 213, 162);
+    box-shadow: none;
+}
+.submit-btn {
+    color: rgb(252, 213, 162);
+    border-style: solid;
+    border: 2px solid rgb(255, 255, 255);
+    background-color: black;
+    margin-top: 20px;
+    margin-left: 10px;
+    padding: 15px 20px;
+    min-width: 30%;
+    max-width: 250px;
+}
+label {
+    padding-top: 15px;
+}
+.semi-bold-txt {
+    font-weight: bolder;
+}
+.divider {
+    border-bottom: 1px solid rgb(252, 213, 162);
+    margin-top: 30px;
+}

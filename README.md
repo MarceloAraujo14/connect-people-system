@@ -1,13 +1,13 @@
 # Connect People R&S
 
-**vers„o**: 0.1-a
+**vers√£o**: 0.1
 
-## DescriÁ„o
+## Descri√ß√£o
 
 
-O ConnectPeople È um Web Service para connsultoria de RH que atua especificamente com o nicho de 
-hotelaria, o sistema possui funcionalidades para auxiliar no desenvolvimento de serviÁos como: 
-ImplantaÁ„o, R&S, Onboarding, Treinamentos, Programa de formaÁ„o, Endomarketing, Consultoria, 
+O ConnectPeople √© um Web Service para connsultoria de RH que atua especificamente com o nicho de
+hotelaria, o sistema possui funcionalidades para auxiliar no desenvolvimento de servi√ßos como:
+Implanta√ß√£o, R&S, Onboarding, Treinamentos, Programa de forma√ß√£o, Endomarketing, Consultoria,
 Cliente oculto e testes comportamentais.
 
 
@@ -15,19 +15,19 @@ Cliente oculto e testes comportamentais.
 
 
 O ConnectPeople R&S foi desenvolvido com o intuito de contribuir no dia a dia do profissional
-de RH aliando o tecnolÛgico ao humano para criar ferramentas e soluÁıes que ajudem cada vez
-mais pessoas a se conectarem a seus propÛsitos da forma mais r·pida e mais humanizada possÌvel,
-alÈm de auxiliar na capacitaÁ„o de profissionais buscando recolocaÁ„o no mercado.
+de RH aliando o tecnol√≥gico ao humano para criar ferramentas e solu√ß√µes que ajudem cada vez
+mais pessoas a se conectarem a seus prop√≥sitos da forma mais r√°pida e mais humanizada poss√≠vel,
+al√©m de auxiliar na capacita√ß√£o de profissionais buscando recoloca√ß√£o no mercado.
 
 
 ## Sobre o projeto
 
 
-O projeto na sua vers„o atual (0.1-a) conta com as seguintes funcionalidades:
-- P·gina est·tica (home)
-- P·gina de Formul·rio de Cadastro de CurrÌculos
-- P·gina de Formul·rio de Cadastro de Vagas
-- Busca de currÌculos por palavra-chave
+O projeto na sua vers√£o atual (0.1) conta com as seguintes funcionalidades:
+- P√°gina est√°tica (home)
+- P√°gina de Formul√°rio de Cadastro de Curr√≠culos
+- P√°gina de Formul√°rio de Cadastro de Vagas
+- Busca de curr√≠culos por palavra-chave
 
 ## Tecnologias
 

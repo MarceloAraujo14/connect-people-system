@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static br.com.connectpeople.resume.domain.constants.Constants.StateProcess.NEW;
-import static br.com.connectpeople.resume.domain.constants.Constants.StateProcess.SUCCESS;
+import static br.com.connectpeople.constants.Constants.StateProcess.NEW;
+import static br.com.connectpeople.constants.Constants.StateProcess.SUCCESS;
 
 @Log4j2
 @AllArgsConstructor
