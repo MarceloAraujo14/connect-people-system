@@ -26,7 +26,7 @@ public class RegisterUserUseCase {
         weakPasswordValidate(user.getPassword());
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(Role.USER);
+        user.setRole(Role.USER);
         return userRepository.save(user.toEntity()).toUser();
     }
 

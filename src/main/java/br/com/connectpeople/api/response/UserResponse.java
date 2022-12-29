@@ -1,11 +1,10 @@
 ﻿package br.com.connectpeople.api.response;
 
-import lombok.Builder;
-import lombok.Data;
+import br.com.connectpeople.user.domain.Role;
 
-@Data
-@Builder
 public class UserResponse {
 
     private String email;
+    private String password;
+    private Role role;
 }
