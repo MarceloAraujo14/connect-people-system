@@ -1,63 +1,63 @@
 <!DOCTYPE html>
 <!--<html lang="pt-br">-->
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link href="./css/login-style.css" rel="stylesheet">
-    <title>Connect People</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="./css/login-style.css" rel="stylesheet">
+  <title>Connect People</title>
 </head>
 
 <body>
-<div class="container main-container">
+  <div class="container main-container">
     <div class="form-logo">
-        <img class="connect-logo" src="./img/connect-logo.webp">
+      <img class="connect-logo" src="./img/connect-logo.webp">
     </div>
     <div class="social-container" id="form-container">
 
-        <a href="/oauth2/authorization/google">
-            <button class="btn-social"><i class="fab fa-google"></i>
-                <span class="semi-bold-txt">&nbsp;&nbsp;&nbsp;Login</span> com Google
-            </button>
-        </a>
-        <a href="/oauth2/authorization/github">
-            <button class="btn-social"><i class="fab fa-linkedin-in"></i>
-                <span class="semi-bold-txt">&nbsp;&nbsp;&nbsp;Login</span> com Linkedin
-            </button>
-        </a>
+      <a href="/oauth2/authorization/google">
+        <button class="btn-social"><i class="fab fa-google"></i>
+        <span class="semi-bold-txt">&nbsp;&nbsp;&nbsp;Login</span> com Google
+        </button>
+      </a>
+      <a href="/oauth2/authorization/github">
+        <button class="btn-social"><i class="fab fa-linkedin-in"></i>
+        <span class="semi-bold-txt">&nbsp;&nbsp;&nbsp;Login</span> com Linkedin
+      </button>
+      </a>
     </div>
 
     <div class="divider"></div>
     <br>
 
     <form class="form-signin" method="post" th:action="@{/login}">
-        <div>
-            <input type="text" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
-            <br>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-        </div>
-        <button class="form-btn" type="submit"><span class="semi-bold-txt">Entrar</span></button>
+      <div>
+        <input type="text" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
+        <br>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+      </div>
+      <sec:csrfInput />
+      <button class="form-btn" type="submit"><span class="semi-bold-txt">Entrar</span></button>
     </form>
-
-    <a href="#"><label class="fgt-pwd">Esqueci a senha</label></a>
-
+      <a href="#"><label class="fgt-pwd">Esqueci a senha</label></a>
     <div class="divider"></div>
-
     <label>Ainda não possui cadastro?</label>
-    <button class="form-btn"><span class="semi-bold-txt">Criar nova conta</span></button>
+    <button class="form-btn">
+      <span class="semi-bold-txt">Criar nova conta</span>
+    </button>
 
-</div>
+  </div>
 
-<script src="./js/login.js" type="text/javascript" language="javascript"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" type="text/javascript"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
-<script src="https://kit.fontawesome.com/ee33819c9f.js" crossorigin="anonymous" type="text/javascript"></script>
+  <script src="./js/login.js" type="text/javascript" language="javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" type="text/javascript"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ee33819c9f.js" crossorigin="anonymous" type="text/javascript"></script>
 </body>
 
 </html>
