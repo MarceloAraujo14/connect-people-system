@@ -8,11 +8,11 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 
-import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_FIELD_CANNOT_BE_EMPTY;
-import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_MONTH_END_BEFORE_START;
-import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_MONTH_INVALID;
-import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_YEAR_END_BEFORE_START;
-import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_YEAR_INVALID;
+import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_FIELD_CANNOT_BE_EMPTY;
+import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_MONTH_END_BEFORE_START;
+import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_MONTH_INVALID;
+import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_YEAR_END_BEFORE_START;
+import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_YEAR_INVALID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;

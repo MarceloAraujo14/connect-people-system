@@ -15,16 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_EMAIL_INVALID;
-import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_FIELD_CANNOT_BE_EMPTY;
-import static br.com.connectpeople.resume.domain.constants.Constants.ErrorMessage.ERROR_MSG_SELECT_OPTION;
+import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_EMAIL_INVALID;
+import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_FIELD_CANNOT_BE_EMPTY;
+import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_SELECT_OPTION;
 
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResumeRequest {
-
 
     @NotBlank(message = ERROR_MSG_FIELD_CANNOT_BE_EMPTY)
     private String name;

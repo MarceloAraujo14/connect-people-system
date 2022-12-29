@@ -1,7 +1,7 @@
 package br.com.connectpeople.api.resource;
 
-import br.com.connectpeople.resume.domain.exception.InvalidInputException;
-import br.com.connectpeople.resume.domain.exception.RegisterAlreadyExistsException;
+import br.com.connectpeople.exception.InvalidInputException;
+import br.com.connectpeople.exception.RegisterAlreadyExistsException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;

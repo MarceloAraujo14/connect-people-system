@@ -1,4 +1,4 @@
-package br.com.connectpeople.resume.domain.exception;
+package br.com.connectpeople.exception;
 
 public class ResumeNotFoundException extends RuntimeException{
 }

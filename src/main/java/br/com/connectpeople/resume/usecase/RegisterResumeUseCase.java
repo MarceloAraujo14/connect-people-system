@@ -12,14 +12,14 @@ import br.com.connectpeople.resume.usecase.chain.ValidatePhone;
 import br.com.connectpeople.resume.usecase.chain.ValidatePostalCode;
 import br.com.connectpeople.resume.usecase.executor.Executor;
 import br.com.connectpeople.resume.usecase.executor.ResumePayload;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import static br.com.connectpeople.util.IdGenerator.generateId;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class RegisterResumeUseCase {
 
     private final ResumeJpaRepository resumeJpaRepository;
