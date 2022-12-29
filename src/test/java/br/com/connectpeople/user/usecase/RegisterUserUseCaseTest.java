@@ -43,13 +43,12 @@ class RegisterUserUseCaseTest {
         when(userRepository.findById(user.getEmail())).thenReturn(Optional.empty());
         when(userRepository.save(any())).thenReturn(user.toEntity());
 
-        User result = registerUserUseCase.execute(user);
+        registerUserUseCase.execute(user);
 
         verify(passwordEncoder, times(1)).encode(user.getPassword());
         verify(userRepository, times(1)).findById(user.getEmail());
         verify(userRepository, times(1)).save(userEntityCaptor.capture());
         assertEquals(Role.USER, userEntityCaptor.getValue().getRoles());
-        assertEquals(Role.USER, result.getRoles());
 
     }
 
