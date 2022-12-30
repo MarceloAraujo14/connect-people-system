@@ -47,7 +47,7 @@
     font-weight: bolder;
 }
 
-.btn-add-xp {
+.btn-add {
     color: rgb(252, 213, 162);
     border-style: solid;
     border: 2px solid rgb(255, 255, 255);
@@ -57,7 +57,7 @@
     max-width: 250px;
 }
 
-.btn-del-xp {
+.btn-del {
     color: rgb(252, 213, 162);
     border-style: solid;
     border: 2px solid rgb(255, 255, 255);
@@ -163,6 +163,11 @@ input,
     position: absolute;
     right: 6px;
     color: rgb(255, 255, 255);
+}
+
+#superior-container{
+    display: flex;
+    flex-direction: column;
 }
 
 /* Job Experience Container*/
