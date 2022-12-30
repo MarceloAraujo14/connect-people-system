@@ -15,12 +15,6 @@ function loadSchooling() {
     'Médio incompleto', 'Médio completo',
     'Superior Incompleto', 'Superior completo'];
 
-  const defaultOption = document.createElement("option");
-  defaultOption.value = "";
-  defaultOption.text = "Selecione sua escolaridade";
-  defaultOption.selected = true;
-  schooling.appendChild(defaultOption);
-
   for (const grade of grades) {
     const option = document.createElement("option");
     option.value = gradeValue[grades.indexOf(grade)];

@@ -2,6 +2,7 @@ package br.com.connectpeople.api.resource;
 
 import br.com.connectpeople.resume.domain.exception.InvalidInputException;
 import br.com.connectpeople.resume.domain.exception.RegisterAlreadyExistsException;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
