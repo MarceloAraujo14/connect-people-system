@@ -1,44 +1,12 @@
-document.addEventListener("DOMContentLoaded", function () {
-  loadSchooling();
-});
-
-function loadSchooling() {
-  var schooling = document.getElementById("schooling");
-
-  var gradeValue = ['PRIMARIO_INCOMPLETO', 'PRIMARIO_COMPLETO',
-    'FUNDAMENTAL_INCOMPLETO', 'FUNDAMENTAL_COMPLETO',
-    'MEDIO_INCOMPLETO', 'MEDIO_COMPLETO',
-    'SUPERIOR_INCOMPLETO', 'SUPERIOR_COMPLETO']
-
-  var grades = ['Primário Incompleto', 'Primário completo',
-    'Fundamental Incompleto', 'Fundamental completo',
-    'Médio incompleto', 'Médio completo',
-    'Superior Incompleto', 'Superior completo'];
-
-  for (const grade of grades) {
-    const option = document.createElement("option");
-    option.value = gradeValue[grades.indexOf(grade)];
-    option.text = grade;
-    schooling.appendChild(option);
-  }
-}
-
 function loadMonthAndYear() {
 
   var monthSelect = document.getElementsByName("month");
-
   var months = [
     "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
     "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
   ];
 
   monthSelect.forEach(month => {
-
-    const defaultOption = document.createElement("option");
-    defaultOption.value = "";
-    defaultOption.text = "";
-    month.appendChild(defaultOption);
-
     for (const monthName of months) {
       const option = document.createElement("option");
       option.value = months.indexOf(monthName) +1;
@@ -49,14 +17,10 @@ function loadMonthAndYear() {
 
   var yearSelec = document.getElementsByName("year");
 
-  var startYear = 1922;
-  var endYear = 2022;
+  var startYear = new Date().getFullYear() - 100;
+  var endYear = new Date().getFullYear();
 
   yearSelec.forEach(years => {
-    const defaultOption = document.createElement("option");
-    defaultOption.value = "";
-    defaultOption.text = "";
-    years.appendChild(defaultOption);
 
     for (var year = startYear; year <= endYear; year++) {
       var option = document.createElement("option");
@@ -152,6 +116,48 @@ function deleteJobExp(element) {
   if(jobCount < 3){
     document.getElementById("btn-add-xp").hidden = false;
   }
+}
+
+function hasSuperior(){
+  var schooling = document.getElementById("schooling");
+  var superior = document.getElementById("superior-container");
+    if (schooling.value == 'SUPERIOR_INCOMPLETO'){
+      
+      superior.innerHTML = `<label>Curso Superior</label>
+      <div class="col-md-4">
+          <label for="college_name" class="form-label">Instituição</label>
+          <input type="text" class="form-control" id="college_name" name="college_name">
+      </div>
+      <div class="col-md-4">
+          <label for="college_course" class="form-label">Curso</label>
+          <input type="text" class="form-control" id="college_course" name="college_course">
+      </div>
+      <div class="col-md-4">
+          <label for="college_step" class="form-label">Situação</label>
+          <select id="college_step" class="form-select option" name="college_step">
+              <option value="CURSANDO">Cursando</option>
+              <option value="TRANCADO">Trancado ou Interrompido</option>
+          </select>
+      </div>`
+    }else if(schooling.value == 'SUPERIOR_COMPLETO'){
+      superior.innerHTML = `<label>Curso Superior</label>
+      <div class="col-md-4">
+          <label for="college_name" class="form-label">Instituição</label>
+          <input type="text" class="form-control" id="college_name" name="college_name">
+      </div>
+      <div class="col-md-4">
+          <label for="college_course" class="form-label">Curso</label>
+          <input type="text" class="form-control" id="college_course" name="college_course">
+      </div>
+      <div class="col-md-3">
+          <label for="college_year" class="form-label">Ano de Conclusão</label>
+          <select id="college_year" class="form-select option" name="year"></select>
+      </div>`
+
+      loadMonthAndYear();
+    }else {
+      superior.innerHTML = '';
+    }
 }
 
 async function buildResumeFromJson(){

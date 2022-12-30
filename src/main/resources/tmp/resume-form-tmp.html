@@ -140,28 +140,22 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label for="schooling" class="form-label">Escolaridade</label>
-                            <select id="schooling" name="schooling" class="form-select option"></select>
+                            <select id="schooling" onchange="hasSuperior()" name="schooling" class="form-select option">
+                                <option value="PRIMARIO_INCOMPLETO">Primário Incompleto</option>
+                                <option value="PRIMARIO_COMPLETO">Primário completo</option>
+                                <option value="FUNDAMENTAL_INCOMPLETO">Fundamental Incompleto</option>
+                                <option value="FUNDAMENTAL_COMPLETO">Fundamental completo</option>
+                                <option value="MEDIO_INCOMPLETO">Médio Incompleto</option>
+                                <option value="MEDIO_COMPLETO">Médio completo</option>
+                                <option value="SUPERIOR_INCOMPLETO">Superior Incompleto</option>
+                                <option value="SUPERIOR_COMPLETO">Superior completo</option>
+                            </select>
+                            
                         </div>
                     </div>
                     <br>
-                    <div class="row">
-                        <label>Curso Superior</label>
-                        <div class="col-md-4">
-                            <label for="college_name" class="form-label">Instituição</label>
-                            <input type="text" class="form-control" id="college_name" name="college_name">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="college_course" class="form-label">Curso</label>
-                            <input type="text" class="form-control" id="college_course" name="college_course">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="college_step" class="form-label">Situação</label>
-                            <select id="college_step" class="form-select option" name="college_step">
-                                <option value="Hoteleiro">Concluído</option>
-                                <option value="Camareira">Cursando</option>
-                                <option value="Almoxarife">Trancado ou Interrompido</option>
-                            </select>
-                        </div>
+                    <div class="row" id="superior-container">
+                        
                     </div>
                     <br>
                     <label>Certificados e Cursos</label>
