@@ -47,13 +47,13 @@ public class SecurityConfig {
                 .headers(headers -> headers.frameOptions().sameOrigin())
                 .oauth2Login(oauth -> oauth
                         .loginPage("/login")
-                        .defaultSuccessUrl("/resume", true)
+                        .defaultSuccessUrl("/", true)
                         .failureUrl("/login?error=true"))
                 .formLogin(login -> login
                         .loginPage("/login")
                         .usernameParameter("email")
                         .passwordParameter("password")
-                        .defaultSuccessUrl("/resume", true)
+                        .defaultSuccessUrl("/", true)
                         .loginProcessingUrl("/login")
                         .failureForwardUrl("/login?error=true")
                         .permitAll())
