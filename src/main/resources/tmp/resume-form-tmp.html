@@ -145,30 +145,53 @@
                     <label>Curso Superior</label>
                     <div class="row">
                         <div class="col-md-4">
-                            <label for="college" class="form-label">Instituição</label>
-                            <input type="text" class="form-control" id="college" name="college">
+                            <label for="college_name" class="form-label">Instituição</label>
+                            <input type="text" class="form-control" id="college_name" name="college_name">
                         </div>
                         <div class="col-md-4">
-                            <label for="course" class="form-label">Curso</label>
-                            <input type="text" class="form-control" id="course" name="course">
+                            <label for="college_course" class="form-label">Curso</label>
+                            <input type="text" class="form-control" id="college_course" name="college_course">
                         </div>
                         <div class="col-md-4">
-                            <label for="course_step" class="form-label">Situação</label>
-                            <select id="course_step" class="form-select option" name="course_step">
+                            <label for="college_step" class="form-label">Situação</label>
+                            <select id="college_step" class="form-select option" name="college_step">
                                 <option value="Hoteleiro">Concluído</option>
                                 <option value="Camareira">Cursando</option>
                                 <option value="Almoxarife">Trancado ou Interrompido</option>
                             </select>
                         </div>
                     </div>
+                    <br>
+                    <label>Certificados e Cursos</label>
                     <div class="row">
-
+                        <div class="col-md-4">
+                            <label for="course_institution" class="form-label">Instituição</label>
+                            <input type="text" class="form-control" id="course_institution" name="course_institution">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="course_name" class="form-label">Certificado ou Curso</label>
+                            <input type="text" class="form-control" id="course_name" name="course_name">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="course_type" class="form-label">Tipo</label>
+                            <select id="course_type" class="form-select option" name="course_type">
+                                <option value="Hoteleiro">Curso Livre</option>
+                                <option value="Camareira">Certificado</option>
+                                <option value="Camareira">Curso Técnico</option>
+                                <option value="Almoxarife">Pós Graduação</option>
+                                <option value="Almoxarife">Mestrado</option>
+                                <option value="Almoxarife">MBA</option>
+                                <option value="Almoxarife">Outros</option>
+                            </select>
+                        </div>
                     </div>
 
                 </div>
                 <div class="tab-pane fade" id="nav-job" role="tabpanel" aria-labelledby="nav-job-tab"
                      tabindex="0">
-                    <p>Cargos pretendidos</p>
+                    <label>Cargos pretendidos</label>
+                    <br>
+                    <p>Selecione até 3 cargos que possua interesse</p>
                     <div class="row">
                         <div class="col-md-4">
                             <label for="jobOptionOne" class="form-label">Opção 1</label>
