@@ -283,8 +283,44 @@ function resetCount(){
   console.log(superiorCount);
 }
 
+const course = `<div id="course-child" class="row">
+<div class="row">
+    <div class="col-md-4">
+        <label for="course_institution" class="form-label">Instituição</label>
+        <input type="text" class="form-control" id="course_institution"
+            name="course_institution">
+    </div>
+    <div class="col-md-4">
+        <label for="course_name" class="form-label">Certificado ou Curso</label>
+        <input type="text" class="form-control" id="course_name" name="course_name">
+    </div>
+    <div class="col-md-4">
+        <label for="course_type" class="form-label">Tipo</label>
+        <select id="course_type" class="form-select option" name="course_type">
+            <option value="Hoteleiro">Curso Livre</option>
+            <option value="Camareira">Certificado</option>
+            <option value="Camareira">Curso Técnico</option>
+            <option value="Almoxarife">Pós Graduação</option>
+            <option value="Almoxarife">Mestrado</option>
+            <option value="Almoxarife">MBA</option>
+            <option value="Almoxarife">Outros</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="w-25">
+        <button class="btn-add" id="btn-add-course">+ curso</button>
+    </div>
+</div>
+</div>`
 
+function addCourse(){
 
+}
+
+function deleteCourse(element){
+  
+}
 
 async function buildResumeFromJson() {
   // var resume = await fetch('./json/ResumeRequest.json').then(response => response.json());
