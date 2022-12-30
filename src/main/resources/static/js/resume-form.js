@@ -129,28 +129,28 @@ function addJobExp() {
     <label for="description" class="form-label">Descrição</label>
     <textarea class="form-control" id="description" rows="3" name="description"></textarea>
   </div>
-  <div class="delxp-div">
-    <button type="button" class="delxp-btn" onclick="deleteJobExp(this)">- Remover Experiência</button>
+  <div class="del-xp-container">
+    <button type="button" class="btn-del-xp" onclick="deleteJobExp(this)">- Remover Experiência</button>
   </div>
   <div class="divider"></div>
   <br> </div>
 </div>`;
 
   job_xp.append(job);
-  element = document.getElementById("job-xp")
+  element = document.getElementById("job-xp-container")
   element.append(job_xp);
   loadMonthAndYear();
   jobCount++;
   if(jobCount == 3){
-    document.getElementById("xp-btn").hidden = true;
+    document.getElementById("btn-add-xp").hidden = true;
   }
 }
 
 function deleteJobExp(element) {
-  element.parentElement.parentElement.outerHTML = `<div id="job-xp"></div>`;
+  element.parentElement.parentElement.outerHTML = `<div id="job-xp-container"></div>`;
   jobCount--;
   if(jobCount < 3){
-    document.getElementById("xp-btn").hidden = false;
+    document.getElementById("btn-add-xp").hidden = false;
   }
 }
 
