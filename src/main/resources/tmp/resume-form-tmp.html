@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link href="../static/css/resume.css" rel="stylesheet">
+    <title>Connect People</title>
+</head>
+
+<body>
+    <div class="container main-container">
+        <div class="form-left-container col">
+            <div class="logo-container">
+                <img class="connect-logo" src="../static/img/connect-logo.webp">
+            </div>
+            <div class="btn-left-container col">
+                <button class="btn-form ">
+                    <span class="semi-bold-txt">Cadastrar</span> Curriculo
+                </button>
+                <button class="btn-form c-white">
+                    <span class="semi-bold-txt">Cadastrar</span> Vaga
+                </button>
+                <div class="success-message"></div>
+            </div>
+        </div>
+
+        <form class="col-lg-8">
+            <nav>
+                <div class="nav nav-tabs " id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-personal-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-personal" type="button" role="tab" aria-controls="nav-personal"
+                        aria-selected="true">Dados Pessoais
+                    </button>
+                    <button class="nav-link " id="nav-professional-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-professional" type="button" role="tab" aria-controls="nav-professional"
+                        aria-selected="false">Experiência
+                        Profissional
+                    </button>
+                    <button class="nav-link" id="nav-education-tab" data-bs-toggle="tab" data-bs-target="#nav-education"
+                        type="button" role="tab" aria-controls="nav-education" aria-selected="false">Formação
+                        Acadêmica
+                    </button>
+                    <button class="nav-link" id="nav-job-tab" data-bs-toggle="tab" data-bs-target="#nav-job"
+                        type="button" role="tab" aria-controls="nav-job" aria-selected="false">Interesse
+                        Profissional
+                    </button>
+                </div>
+            </nav>
+            <div class="resume-container" id="form-container">
+
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-personal" role="tabpanel"
+                        aria-labelledby="nav-personal-tab" tabindex="0">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="name" class="form-label">Nome</label>
+                                <input type="text" class="form-control" id="name" placeholder="Nome" name="name">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="lastname" class="form-label">Sobrenome</label>
+                                <input type="text" class="form-control" id="lastname" placeholder="Sobrenome"
+                                    name="lastname">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="gender" class="form-label">Sexo</label>
+                                <select id="gender" class="form-select" name="gender">
+                                    <option selected value="M">M</option>
+                                    <option value="F">F</option>
+                                    <option value="N">NI</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="birthDate" class="form-label">Nascimento</label>
+                                <input type="date" class="form-control" id="birthDate" name="birthDate" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="phone" class="form-label">Telefone</label>
+                                <input type="text" class="form-control" id="phone" placeholder="(00) 0000-0000"
+                                    name="phone">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="cellPhone" class="form-label">Celular</label>
+                                <input type="text" class="form-control" id="cellPhone" placeholder="(00) 0000-0000"
+                                    name="cellPhone">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="text" class="form-control" id="email" placeholder="jhondoe@gmail.com"
+                                    name="email">
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="linkedin" class="form-label">Linkedin</label>
+                                <input type="text" class="form-control" id="linkedin"
+                                    placeholder="https://linkedin.com/in/jhondoe" name="linkedin">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="postalCode" class="form-label">CEP</label>
+                                <input type="text" class="form-control" id="postalCode" placeholder="00000-000"
+                                    name="postalCode">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="district" class="form-label">Bairro</label>
+                                <input type="text" class="form-control" id="district" name="district">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="city" class="form-label">Cidade</label>
+                                <input type="text" class="form-control" id="city" name="city">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-professional" role="tabpanel"
+                        aria-labelledby="nav-professional-tab" tabindex="0">
+                        <div id="job-xp-container"></div>
+                        <button type="button" class="btn-add" id="btn-add-xp" onclick="addJobExp()">+ Adicionar
+                            Experiência
+                        </button>
+                    </div>
+                    <div class="tab-pane fade" id="nav-education" role="tabpanel" aria-labelledby="nav-education-tab"
+                        tabindex="0">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="schooling" class="form-label">Escolaridade</label>
+                                <select id="schooling" onchange="resetCount();addSuperior();" name="schooling"
+                                    class="form-select option">
+                                    <option value="PRIMARIO_INCOMPLETO">Primário Incompleto</option>
+                                    <option value="PRIMARIO_COMPLETO">Primário completo</option>
+                                    <option value="FUNDAMENTAL_INCOMPLETO">Fundamental Incompleto</option>
+                                    <option value="FUNDAMENTAL_COMPLETO">Fundamental completo</option>
+                                    <option value="MEDIO_INCOMPLETO">Médio Incompleto</option>
+                                    <option value="MEDIO_COMPLETO">Médio completo</option>
+                                    <option value="SUPERIOR_INCOMPLETO">Superior Incompleto</option>
+                                    <option value="SUPERIOR_COMPLETO">Superior completo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row" id="superior-container"></div>
+                        <br>
+                        <label>Certificados e Cursos</label>
+                        <div class="col" id="course-container">
+
+                        </div>
+                        <div class="w-25" id="btn-add-course-container">
+                            <button type="button" class="btn-add" id="btn-add-course" onclick="addCourse()">+
+                                curso</button>
+                        </div>
+
+
+
+                    </div>
+                    <div class="tab-pane fade" id="nav-job" role="tabpanel" aria-labelledby="nav-job-tab" tabindex="0">
+                        <label>Cargos pretendidos</label>
+                        <br>
+                        <p>Selecione até 3 cargos que possua interesse</p>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="jobOptionOne" class="form-label">Opção 1</label>
+                                <select id="jobOptionOne" class="form-select option" name="jobOptionOne">
+                                    <option value="Hoteleiro">Recepcionista</option>
+                                    <option value="Camareira">Camareira</option>
+                                    <option value="Almoxarife">Almoxarife</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="jobOptionTwo" class="form-label">Opção 2</label>
+                                <select id="jobOptionTwo" class="form-select option" name="jobOptionTwo">
+                                    <option selected value=""></option>
+                                    <option value="Hoteleiro">Garçom</option>
+                                    <option value="Camareira">Governanta</option>
+                                    <option value="Almoxarife">Assistente de Rouparia</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="jobOptionThree" class="form-label">Opção 3</label>
+                                <select id="jobOptionThree" class="form-select option" name="jobOptionThree">
+                                    <option selected value=""></option>
+                                    <option value="Hoteleiro">Hoteleiro</option>
+                                    <option value="Camareira">Camareira</option>
+                                    <option value="Almoxarife">Almoxarife</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="submit-div">
+                <button type="button" class="btn-submit" onclick="sendResume()">Enviar Curriculo</button>
+            </div>
+        </form>
+
+
+    </div>
+
+    <script src="../static/js/resume-form.js" type="text/javascript" language="javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" type="text/javascript"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ee33819c9f.js" crossorigin="anonymous" type="text/javascript"></script>
+</body>
+
+</html>

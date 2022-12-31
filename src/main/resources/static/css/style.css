@@ -6,164 +6,12 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.main-container {
-    margin-top: 100px;
-    padding: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 670px;
-    background-color: rgb(0, 0, 0);
-}
-
-.form-logo {
-    margin-top: 10%;
-    height: 30%;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;  
-}
-
-.connect-logo {
-    min-width: 45%;  
-}
-
-.side-form-btn {
-    height: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.form-btn {
-    background-color: black;
-    color: rgb(252, 213, 162);
-    border-style: solid;
-    border: 2px solid rgb(255, 255, 255);
-    padding: 15px;
-    width: 60%;
-    margin-top: 30px;
-}
-
-.form-btn:hover,
-.submit-btn:hover {
-    border: 2px solid rgb(252, 213, 162);
-    font-weight: bolder;
-}
-
-.side-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 40%;
-    align-items: center;
-}
-
-.form-container {
-    width: 60%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgb(252, 213, 162);
-    padding: 20px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
-.form-label,
-.form-check,
-.c-white {
-    color: white;
-}
-
-.form-control,
-.form-select,
-input,
-.form-control:focus,
-.form-select:focus {
-    border-radius: 0;
-    background-color: black;
-    color: white;
-    lighting-color: black;
-    border-color: rgb(252, 213, 162);
-    box-shadow: none;
-}
-
-.submit-btn {
-    color: rgb(252, 213, 162);
-    border-style: solid;
-    border: 2px solid rgb(255, 255, 255);
-    background-color: black;
-    margin-top: 20px;
-    margin-left: 10px;
-    padding: 15px 20px;
-    min-width: 30%;
-    max-width: 250px;
-}
-#job-experience{
-    position: relative;
-}
-.xp-btn {
-    color: rgb(252, 213, 162);
-    border-style: solid;
-    border: 2px solid rgb(255, 255, 255);
-    background-color: black;
-    margin-top: 10px;
-    min-width: 40%;
-    max-width: 250px;
-}
-.delxp-div{
-    display: flex;
-    justify-content: flex-end;
-}
-.delxp-btn {
-    color: rgb(252, 213, 162);
-    border-style: solid;
-    border: 2px solid rgb(255, 255, 255);
-    background-color: black;
-    margin-top: 10px;
-    position: relative;
-    min-width: 40%;
-    max-width: 250px;
-}
-
 label {
     padding-top: 15px;
 }
 
 .semi-bold-txt {
     font-weight: bolder;
-}
-
-/* .form-control::-webkit-calendar-picker-indicator {
-    color: rgb(255, 255, 255);
-} */
-
-.form-control[type="date" i] {
-    position: relative;
-}
-
-.form-control[type="date" i]::-webkit-calendar-picker-indicator {
-    color: transparent;
-    background: none;
-    z-index: 1;
-}
-
-.form-control[type="date" i]:before {
-    color: white;
-    background: none;
-    display: block;
-    font-family: 'FontAwesome';
-    content: '\f073';
-    /* This is the calendar icon in FontAwesome */
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    right: 6px;
-    color: rgb(255, 255, 255);
 }
 
 #form-container::-webkit-scrollbar-track,
@@ -196,3 +44,4 @@ label {
     border-bottom: 1px solid rgb(252, 213, 162);
     margin-top: 30px;
 }
+

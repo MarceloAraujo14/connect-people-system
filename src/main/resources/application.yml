@@ -18,6 +18,11 @@ spring:
   flyway:
     locations: "db/migration"
     baseline-on-migrate: false
+
+  devtools:
+    livereload:
+      enabled: true
+
 springdoc:
   swagger-ui:
     path: "/resume/swagger-ui.html"
