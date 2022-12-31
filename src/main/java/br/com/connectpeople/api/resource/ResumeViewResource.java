@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ResumeViewResource {
 
     @GetMapping
+    public String home(){
+        return "resume-form";
+    }
+
+    @GetMapping("/resume")
     public String resume(){
         return "resume-save";
     }
