@@ -209,7 +209,7 @@ const supComp = `
 </div>
 `;
 const supCompRem = ` 
-  <div class="row" id="superior-child">
+  <div class="col" id="superior-child">
     <div class="row">
       <div class="col-md-4">
           <label for="college_name" class="form-label">Instituição</label>
@@ -253,7 +253,7 @@ function addSuperior(element) {
     if(superiorCount == 0){
       superior.innerHTML = supComp;
     }else{
-      superior.innerHTML = supCompRem;
+      element.outerHTML = supCompRem;
     }
     
   } else {
@@ -261,21 +261,28 @@ function addSuperior(element) {
     return;
   } 
 
-  
-  const btn_sup_container = document.createElement("div");
-  btn_sup_container.className = "btn-sup-container";
-  btn_sup_container.innerHTML = '<button type="button" class="btn-add" onclick="addSuperior(this)">Clique Aqui</button>';
-  superior.append(btn_sup_container);
-
   loadMonthAndYear();
   superiorCount++;
-  console.log(superiorCount)
+
+  if(superiorCount >= 3){
+    return;
+  }
+  const btn_sup_container = document.createElement("div");
+  btn_sup_container.className = "btn-sup-container";
+  btn_sup_container.innerHTML = '<button type="button" class="btn-add" onclick="addSuperior(this)">+ graduação</button>';
+  superior.append(btn_sup_container);
 }
 
 function deleteSuperior(element) {
-  element.parentElement.parentElement.parentElement.outerHTML = ``;
   superiorCount--;
-  console.log(superiorCount)
+  if(superiorCount == 2 ){
+    const superior = document.getElementById("superior-container");
+    const btn_sup_container = document.createElement("div");
+    btn_sup_container.className = "btn-sup-container";
+    btn_sup_container.innerHTML = '<button type="button" class="btn-add" onclick="addSuperior(this)">+ graduação</button>';
+    superior.append(btn_sup_container);
+  }
+  element.parentElement.parentElement.parentElement.outerHTML = ``;
 }
 
 function resetCount(){
@@ -314,12 +321,59 @@ const course = `<div id="course-child" class="row">
 </div>
 </div>`
 
+let courseCount = 0;
 function addCourse(){
+  if(courseCount >= 5){
+    return;
+  }
+  const course_container = document.querySelector("#course-container");
+  const course = document.createElement('div')
+  course.className = "row"
+  course.id = "course-child"
+  course.innerHTML = `
+  <div class="row">
+    <div class="col-md-4">
+        <label for="course_institution" class="form-label">Instituição</label>
+        <input type="text" class="form-control" id="course_institution"
+            name="course_institution">
+    </div>
+    <div class="col-md-4">
+        <label for="course_name" class="form-label">Certificado ou Curso</label>
+        <input type="text" class="form-control" id="course_name" name="course_name">
+    </div>
+    <div class="col-md-4">
+        <label for="course_type" class="form-label">Tipo</label>
+        <select id="course_type" class="form-select option" name="course_type">
+            <option value="Hoteleiro">Curso Livre</option>
+            <option value="Camareira">Certificado</option>
+            <option value="Camareira">Curso Técnico</option>
+            <option value="Almoxarife">Pós Graduação</option>
+            <option value="Almoxarife">Mestrado</option>
+            <option value="Almoxarife">MBA</option>
+            <option value="Almoxarife">Outros</option>
+        </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="w-25">
+        <button type="button" class="btn-del" id="btn-del-course" onclick="deleteCourse(this)">- remover</button>
+    </div>
+  </div>`;
 
+  course_container.appendChild(course);
+  courseCount++;
+  if(courseCount >= 5){
+    document.querySelector("#btn-add-course-container").innerHTML = '';
+  }
 }
 
 function deleteCourse(element){
-  
+  element.parentElement.parentElement.parentElement.outerHTML = ``;
+  if(courseCount == 5){
+    document.querySelector("#btn-add-course-container").innerHTML = `<button type="button" class="btn-add" id="btn-add-course" onclick="addCourse()">+
+    curso</button>`;
+  }
+  courseCount--;
 }
 
 async function buildResumeFromJson() {
