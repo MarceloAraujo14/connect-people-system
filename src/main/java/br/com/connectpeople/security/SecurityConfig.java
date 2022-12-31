@@ -40,28 +40,33 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/static/**", "/css/**", "/js/**", "/img/**", "/actuator/health").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .headers(headers -> headers.frameOptions().sameOrigin())
-                .oauth2Login(oauth -> oauth
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/", true)
-                        .failureUrl("/login?error=true"))
-                .formLogin(login -> login
-                        .loginPage("/login")
-                        .usernameParameter("email")
-                        .passwordParameter("password")
-                        .defaultSuccessUrl("/", true)
-                        .loginProcessingUrl("/login")
-                        .failureForwardUrl("/login?error=true")
-                        .permitAll())
-                .logout(
-                        logout -> logout
-                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
-                                .logoutSuccessUrl("/login").permitAll()
-                );
+                .cors().disable()
+                .csrf().disable()
+                .authorizeHttpRequests().anyRequest().permitAll();
+//                .csrf().disable()
+//                .cors().disable()
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/login", "/static/**", "/css/**", "/js/**", "/img/**", "/actuator/health").permitAll()
+//                        .anyRequest().authenticated()
+//                )
+//                .headers(headers -> headers.frameOptions().sameOrigin())
+//                .oauth2Login(oauth -> oauth
+//                        .loginPage("/login")
+//                        .defaultSuccessUrl("/", true)
+//                        .failureUrl("/login?error=true"))
+//                .formLogin(login -> login
+//                        .loginPage("/login")
+//                        .usernameParameter("email")
+//                        .passwordParameter("password")
+//                        .defaultSuccessUrl("/", true)
+//                        .loginProcessingUrl("/login")
+//                        .failureForwardUrl("/login?error=true")
+//                        .permitAll())
+//                .logout(
+//                        logout -> logout
+//                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
+//                                .logoutSuccessUrl("/login").permitAll()
+//                );
 
         return http.build();
     }

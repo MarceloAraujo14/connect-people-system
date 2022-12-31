@@ -425,6 +425,7 @@ async function sendResume() {
   }
 
   if (response.status >= 400 && response.status <= 499) {
+    console.log(await response.json())
     document.querySelector('.success-message').innerHTML = "<p>Erro ao Cadastrar curriculo</p>";
   }
 
