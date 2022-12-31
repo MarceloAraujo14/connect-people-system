@@ -1,53 +1,15 @@
-document.addEventListener("DOMContentLoaded", function () {
-  loadSchooling();
-});
-
-function loadSchooling() {
-  var schooling = document.getElementById("schooling");
-
-  var gradeValue = ['PRIMARIO_INCOMPLETO', 'PRIMARIO_COMPLETO',
-    'FUNDAMENTAL_INCOMPLETO', 'FUNDAMENTAL_COMPLETO',
-    'MEDIO_INCOMPLETO', 'MEDIO_COMPLETO',
-    'SUPERIOR_INCOMPLETO', 'SUPERIOR_COMPLETO']
-
-  var grades = ['Primário Incompleto', 'Primário completo',
-    'Fundamental Incompleto', 'Fundamental completo',
-    'Médio incompleto', 'Médio completo',
-    'Superior Incompleto', 'Superior completo'];
-
-  const defaultOption = document.createElement("option");
-  defaultOption.value = "";
-  defaultOption.text = "Selecione sua escolaridade";
-  defaultOption.selected = true;
-  schooling.appendChild(defaultOption);
-
-  for (const grade of grades) {
-    const option = document.createElement("option");
-    option.value = gradeValue[grades.indexOf(grade)];
-    option.text = grade;
-    schooling.appendChild(option);
-  }
-}
-
 function loadMonthAndYear() {
 
   var monthSelect = document.getElementsByName("month");
-
   var months = [
     "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
     "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
   ];
 
   monthSelect.forEach(month => {
-
-    const defaultOption = document.createElement("option");
-    defaultOption.value = "";
-    defaultOption.text = "";
-    month.appendChild(defaultOption);
-
     for (const monthName of months) {
       const option = document.createElement("option");
-      option.value = months.indexOf(monthName) +1;
+      option.value = months.indexOf(monthName) + 1;
       option.text = monthName;
       month.appendChild(option);
     }
@@ -55,14 +17,10 @@ function loadMonthAndYear() {
 
   var yearSelec = document.getElementsByName("year");
 
-  var startYear = 1922;
-  var endYear = 2022;
+  var startYear = new Date().getFullYear() - 100;
+  var endYear = new Date().getFullYear();
 
   yearSelec.forEach(years => {
-    const defaultOption = document.createElement("option");
-    defaultOption.value = "";
-    defaultOption.text = "";
-    years.appendChild(defaultOption);
 
     for (var year = startYear; year <= endYear; year++) {
       var option = document.createElement("option");
@@ -77,10 +35,10 @@ let jobCount = 0;
 
 function addJobExp() {
 
-  if(jobCount == 3){
+  if (jobCount >= 3) {
     return;
   }
-  
+
   const job_xp = document.createDocumentFragment();
   const job = document.createElement('div');
   job.className = "job-experience";
@@ -90,7 +48,7 @@ function addJobExp() {
       <label for="title" class="form-label">Título</label>
       <input type="text" name="title" class="form-control" id="title" placeholder="Hoteleiro">
     </div>
-  
+
     <div class="col-md-6">
       <label for="company" class="form-label">Empresa</label>
       <input type="text" name="company" class="form-control" id="company" placeholder="Company S.A.">
@@ -98,25 +56,25 @@ function addJobExp() {
   </div>
   <br>
   <div class="row">
-    <div class="col">
+    <div class="col" id="startJob">
       <p>Entrada</p>
       <div class="row">
-          <div class="col-md-5">
-              <label for="month" class="form-label">Mês</label>
-              <select class="form-select month" id="startMonth" name="month"></select>
-            </div>
+        <div class="col-md-5">
+          <label for="month" class="form-label">Mês</label>
+          <select class="form-select month" id="startMonth" name="month"></select>
+        </div>
         <div class="col-md-4">
           <label for="year" class="form-label">Ano</label>
           <select class="form-select year" id="startYear" name="year"></select>
         </div>
         <div class="row-cols-1">
           <label class="form-check-label" for="isCurrentJob">Trabalho atual</label>
-          <input class="form-check-input" type="checkbox" id="isCurrentJob" name="isCurrentJob" >
+          <input class="form-check-input" onchange="currentJob(this)" type="checkbox" id="isCurrentJob" name="isCurrentJob" checked>
         </div>
       </div>
     </div>
-  
-    <div class="col">
+
+    <div class="col" id="endJob">
       <p>Saída</p>
       <div class="row">
         <div class="col-md-5">
@@ -130,38 +88,297 @@ function addJobExp() {
       </div>
     </div>
   </div>
-  
+
   <div class="mb-3">
     <label for="description" class="form-label">Descrição</label>
     <textarea class="form-control" id="description" rows="3" name="description"></textarea>
   </div>
-  <div class="delxp-div">
-    <button type="button" class="delxp-btn" onclick="deleteJobExp(this)">- Remover Experiência</button>
+  <div class="del-xp-container">
+    <button type="button" class="btn-del" onclick="deleteJobExp(this)">- Remover Experiência</button>
   </div>
   <div class="divider"></div>
   <br> </div>
 </div>`;
 
   job_xp.append(job);
-  element = document.getElementById("job-xp")
+  element = document.getElementById("job-xp-container")
   element.append(job_xp);
   loadMonthAndYear();
   jobCount++;
-  if(jobCount == 3){
-    document.getElementById("xp-btn").hidden = true;
+  if (jobCount == 3) {
+    document.getElementById("btn-add-xp").hidden = true;
+  }
+}
+
+function currentJob(checkbox){
+  if(checkbox.checked){
+      checkbox.parentElement.parentElement.parentElement.parentElement.querySelector("#endJob").innerHTML =
+      `<p>Saída</p>
+      <div class="row">
+        <div class="col-md-5">
+          <label for="month" class="form-label">Mês</label>
+          <select class="form-select month" id="endMonth" name="month"></select>
+        </div>
+        <div class="col-md-4">
+          <label for="year" class="form-label">Ano</label>
+          <select class="form-select year" id="endYear" name="year"></select>
+        </div>
+      </div>
+    </div>`
+  }else {
+    checkbox.parentElement.parentElement.parentElement.parentElement.querySelector("#endJob").innerHTML = '';
   }
 }
 
 function deleteJobExp(element) {
-  element.parentElement.parentElement.outerHTML = `<div id="job-xp"></div>`;
+  element.parentElement.parentElement.outerHTML = `<div id="job-xp-container"></div>`;
   jobCount--;
-  if(jobCount < 3){
-    document.getElementById("xp-btn").hidden = false;
+  if (jobCount < 3) {
+    document.getElementById("btn-add-xp").hidden = false;
   }
 }
 
-async function buildResumeFromJson(){
-  var resume = await fetch('./json/ResumeRequest.json').then(response => response.json());
+let superiorCount = 0;
+const supIncomp = `
+<div id="superior">
+  <label>Curso Superior</label>
+  <div class="row" id="superior-child">
+    <div class="col-md-4">
+        <label for="college_name" class="form-label">Instituição</label>
+        <input type="text" class="form-control" id="college_name" name="college_name">
+    </div>
+    <div class="col-md-4">
+        <label for="college_course" class="form-label">Curso</label>
+        <input type="text" class="form-control" id="college_course" name="college_course">
+    </div>
+    <div class="col-md-4">
+        <label for="college_step" class="form-label">Situação</label>
+        <select id="college_step" class="form-select option" name="college_step">
+            <option value="CURSANDO">Cursando</option>
+            <option value="TRANCADO">Trancado ou Interrompido</option>
+        </select>
+    </div>
+  </div>
+  <br>
+</div>
+`;
+const supIncompRem = `
+  <div class="col" id="superior-child">
+    <div class="row">
+      <div class="col-md-4">
+          <label for="college_name" class="form-label">Instituição</label>
+          <input type="text" class="form-control" id="college_name" name="college_name">
+      </div>
+      <div class="col-md-4">
+          <label for="college_course" class="form-label">Curso</label>
+          <input type="text" class="form-control" id="college_course" name="college_course">
+      </div>
+      <div class="col-md-4">
+          <label for="college_step" class="form-label">Situação</label>
+          <select id="college_step" class="form-select option" name="college_step">
+              <option value="CURSANDO">Cursando</option>
+              <option value="TRANCADO">Trancado ou Interrompido</option>
+          </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <button type="button" class="btn-del" onclick="deleteSuperior(this)"> - remove </button>
+      </div>
+    </div>
+  </div>
+`;
+const supComp = `
+<div id='superior' class="superior">
+  <label>Curso Superior</label>
+  <div class="row" id="superior-child">
+    <div class="col-md-4">
+        <label for="college_name" class="form-label">Instituição</label>
+        <input type="text" class="form-control" id="college_name" name="college_name">
+    </div>
+    <div class="col-md-4">
+        <label for="college_course" class="form-label">Curso</label>
+        <input type="text" class="form-control" id="college_course" name="college_course">
+    </div>
+    <div class="col-md-3">
+        <label for="college_year" class="form-label">Ano de Conclusão</label>
+        <select id="college_year" class="form-select option" name="year"></select>
+    </div>
+  </div>
+  <br>
+</div>
+`;
+const supCompRem = `
+  <div class="col" id="superior-child">
+    <div class="row">
+      <div class="col-md-4">
+          <label for="college_name" class="form-label">Instituição</label>
+          <input type="text" class="form-control" id="college_name" name="college_name">
+      </div>
+      <div class="col-md-4">
+          <label for="college_course" class="form-label">Curso</label>
+          <input type="text" class="form-control" id="college_course" name="college_course">
+      </div>
+      <div class="col-md-3">
+          <label for="college_year" class="form-label">Ano de Conclusão</label>
+          <select id="college_year" class="form-select option" name="year"></select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <button type="button" class="btn-del" onclick="deleteSuperior(this)"> - remove </button>
+      </div>
+    </div>
+  </div>
+`;
+
+function addSuperior(element) {
+
+  if(superiorCount >=3){
+    return;
+  }
+
+  var superior = document.getElementById("superior-container");
+  var schooling = document.getElementById("schooling");
+
+  if (schooling.value == 'SUPERIOR_INCOMPLETO') {
+    if (superiorCount == 0){
+      superior.innerHTML = supIncomp;
+    } else {
+      element.outerHTML = supIncompRem;
+    }
+
+
+  } else if (schooling.value == 'SUPERIOR_COMPLETO') {
+    if(superiorCount == 0){
+      superior.innerHTML = supComp;
+    }else{
+      element.outerHTML = supCompRem;
+    }
+
+  } else {
+    superior.innerHTML = '';
+    return;
+  }
+
+  loadMonthAndYear();
+  superiorCount++;
+
+  if(superiorCount >= 3){
+    return;
+  }
+  const btn_sup_container = document.createElement("div");
+  btn_sup_container.className = "btn-sup-container";
+  btn_sup_container.innerHTML = '<button type="button" class="btn-add" onclick="addSuperior(this)">+ graduação</button>';
+  superior.append(btn_sup_container);
+}
+
+function deleteSuperior(element) {
+  superiorCount--;
+  if(superiorCount == 2 ){
+    const superior = document.getElementById("superior-container");
+    const btn_sup_container = document.createElement("div");
+    btn_sup_container.className = "btn-sup-container";
+    btn_sup_container.innerHTML = '<button type="button" class="btn-add" onclick="addSuperior(this)">+ graduação</button>';
+    superior.append(btn_sup_container);
+  }
+  element.parentElement.parentElement.parentElement.outerHTML = ``;
+}
+
+function resetCount(){
+  superiorCount = 0;
+  console.log(superiorCount);
+}
+
+const course = `<div id="course-child" class="row">
+<div class="row">
+    <div class="col-md-4">
+        <label for="course_institution" class="form-label">Instituição</label>
+        <input type="text" class="form-control" id="course_institution"
+            name="course_institution">
+    </div>
+    <div class="col-md-4">
+        <label for="course_name" class="form-label">Certificado ou Curso</label>
+        <input type="text" class="form-control" id="course_name" name="course_name">
+    </div>
+    <div class="col-md-4">
+        <label for="course_type" class="form-label">Tipo</label>
+        <select id="course_type" class="form-select option" name="course_type">
+            <option value="Hoteleiro">Curso Livre</option>
+            <option value="Camareira">Certificado</option>
+            <option value="Camareira">Curso Técnico</option>
+            <option value="Almoxarife">Pós Graduação</option>
+            <option value="Almoxarife">Mestrado</option>
+            <option value="Almoxarife">MBA</option>
+            <option value="Almoxarife">Outros</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="w-25">
+        <button class="btn-add" id="btn-add-course">+ curso</button>
+    </div>
+</div>
+</div>`
+
+let courseCount = 0;
+function addCourse(){
+  if(courseCount >= 5){
+    return;
+  }
+  const course_container = document.querySelector("#course-container");
+  const course = document.createElement('div')
+  course.className = "row"
+  course.id = "course-child"
+  course.innerHTML = `
+  <div class="row">
+    <div class="col-md-4">
+        <label for="course_institution" class="form-label">Instituição</label>
+        <input type="text" class="form-control" id="course_institution"
+            name="course_institution">
+    </div>
+    <div class="col-md-4">
+        <label for="course_name" class="form-label">Certificado ou Curso</label>
+        <input type="text" class="form-control" id="course_name" name="course_name">
+    </div>
+    <div class="col-md-4">
+        <label for="course_type" class="form-label">Tipo</label>
+        <select id="course_type" class="form-select option" name="course_type">
+            <option value="Hoteleiro">Curso Livre</option>
+            <option value="Camareira">Certificado</option>
+            <option value="Camareira">Curso Técnico</option>
+            <option value="Almoxarife">Pós Graduação</option>
+            <option value="Almoxarife">Mestrado</option>
+            <option value="Almoxarife">MBA</option>
+            <option value="Almoxarife">Outros</option>
+        </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="w-25">
+        <button type="button" class="btn-del" id="btn-del-course" onclick="deleteCourse(this)">- remover</button>
+    </div>
+  </div>`;
+
+  course_container.appendChild(course);
+  courseCount++;
+  if(courseCount >= 5){
+    document.querySelector("#btn-add-course-container").innerHTML = '';
+  }
+}
+
+function deleteCourse(element){
+  element.parentElement.parentElement.parentElement.outerHTML = ``;
+  if(courseCount == 5){
+    document.querySelector("#btn-add-course-container").innerHTML = `<button type="button" class="btn-add" id="btn-add-course" onclick="addCourse()">+
+    curso</button>`;
+  }
+  courseCount--;
+}
+
+async function buildResumeFromJson() {
+  // var resume = await fetch('./json/ResumeRequest.json').then(response => response.json());
+  var resume = await fetch('../static/json/ResumeRequest.json').then(response => response.json());
 
   var form = document.querySelector('form')
   resume.name = form.querySelector('#name').value;
@@ -182,7 +399,7 @@ async function buildResumeFromJson(){
 
   var count = jobExperiences.length;
 
-  for(let i = 0; i < count; i++){
+  for (let i = 0; i < count; i++) {
     resume['jobExperiences'][i] = {};
     resume.jobExperiences[i]['title'] = jobExperiences[i].querySelector('#title').value;
     resume.jobExperiences[i]['company'] = jobExperiences[i].querySelector('#company').value;
@@ -197,25 +414,20 @@ async function buildResumeFromJson(){
   return resume;
 }
 
-async function sendResume(){
+async function sendResume() {
 
-  const resume = await buildResumeFromJson().then(resp => resp);
+  const resume = buildResumeFromJson();
 
-  const resp = await post('/api/resume', resume).then(resp => resp.json()).catch(error => console.log(error));
+  const response = await post('http://localhost:80/api/resume', resume);
 
-  console.log(resp);
+  if (response.status >= 200 && response.status <= 299) {
+    document.querySelector('.success-message').innerHTML = "<p>Currículo Cadastrado com sucesso!</p>";
+  }
+
+  if (response.status >= 400 && response.status <= 499) {
+    document.querySelector('.success-message').innerHTML = "<p>Erro ao Cadastrar curriculo</p>";
+  }
 
 }
 
-//api functions
-async function post(url, obj){
-  console.log(obj)
-  const resp = await fetch(url, {
-  method: 'POST',
-  body: JSON.stringify(obj),
-  headers: {'Content-type': 'application/json'}
-  }).catch(error => error);
-
-  return resp;
-}
 
