@@ -1,21 +1,25 @@
-package br.com.connectpeople.resume.usecase;
+package br.com.connectpeople.resume.usecase.resume;
 
+import br.com.connectpeople.adapters.repository.JobExperienceJpaRepository;
 import br.com.connectpeople.adapters.repository.ResumeJpaRepository;
-import br.com.connectpeople.jobexperience.usecase.RegisterJobExperiencesUseCase;
+import br.com.connectpeople.resume.domain.JobExperience;
 import br.com.connectpeople.resume.domain.Resume;
-import br.com.connectpeople.resume.usecase.chain.ErrorHandler;
-import br.com.connectpeople.resume.usecase.chain.ValidateAlreadyRegister;
-import br.com.connectpeople.resume.usecase.chain.ValidateBirthDate;
-import br.com.connectpeople.resume.usecase.chain.ValidateDistrict;
-import br.com.connectpeople.resume.usecase.chain.ValidateName;
-import br.com.connectpeople.resume.usecase.chain.ValidatePhone;
-import br.com.connectpeople.resume.usecase.chain.ValidatePostalCode;
-import br.com.connectpeople.resume.usecase.executor.Executor;
-import br.com.connectpeople.resume.usecase.executor.ResumePayload;
+import br.com.connectpeople.resume.usecase.resume.chain.ErrorHandler;
+import br.com.connectpeople.resume.usecase.resume.chain.ValidateAlreadyRegister;
+import br.com.connectpeople.resume.usecase.resume.chain.ValidateBirthDate;
+import br.com.connectpeople.resume.usecase.resume.chain.ValidateDistrict;
+import br.com.connectpeople.resume.usecase.resume.chain.ValidateName;
+import br.com.connectpeople.resume.usecase.resume.chain.ValidatePhone;
+import br.com.connectpeople.resume.usecase.resume.chain.ValidatePostalCode;
+import br.com.connectpeople.resume.usecase.resume.executor.Executor;
+import br.com.connectpeople.resume.usecase.resume.executor.ResumePayload;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+import static br.com.connectpeople.adapters.repository.mapper.JobExperienceMapper.toJobExperienceList;
 import static br.com.connectpeople.util.IdGenerator.generateId;
 
 @Service
@@ -23,7 +27,7 @@ import static br.com.connectpeople.util.IdGenerator.generateId;
 public class RegisterResumeUseCase {
 
     private final ResumeJpaRepository resumeJpaRepository;
-    private final RegisterJobExperiencesUseCase registerJobExperienceUseCase;
+    private final JobExperienceJpaRepository jobExperienceJpaRepository;
 
     private final ValidateAlreadyRegister validateAlreadyRegister;
     private final ValidateName validateName;
@@ -39,8 +43,15 @@ public class RegisterResumeUseCase {
         String generatedId = getGeneratedId();
         resume.setCid(generatedId);
         resumeJpaRepository.save(resume.toEntity());
-        registerJobExperienceUseCase.execute(generatedId, resume.getJobExperiences());
+        saveJobExperience(generatedId, resume.getJobExperiences());
         return resume;
+    }
+
+    public List<JobExperience> saveJobExperience(String cid, List<JobExperience> jobExperiences) {
+        var jobExperienceEntities = toJobExperienceList(jobExperiences);
+        jobExperienceEntities.forEach(job -> job.setCid(cid));
+        jobExperienceJpaRepository.saveAll(jobExperienceEntities);
+        return jobExperiences;
     }
 
     private void validateInput(ResumePayload payload) {

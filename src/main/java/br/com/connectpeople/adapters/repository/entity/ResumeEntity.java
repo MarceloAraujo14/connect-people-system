@@ -1,6 +1,9 @@
 package br.com.connectpeople.adapters.repository.entity;
 
+import br.com.connectpeople.resume.domain.Course;
+import br.com.connectpeople.resume.domain.JobExperience;
 import br.com.connectpeople.resume.domain.Resume;
+import br.com.connectpeople.resume.domain.SuperiorCourse;
 import br.com.connectpeople.resume.domain.enums.Gender;
 import br.com.connectpeople.resume.domain.enums.Schooling;
 import jakarta.persistence.Column;
@@ -19,6 +22,7 @@ import org.hibernate.Hibernate;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Objects;
 
 @Builder
@@ -33,33 +37,52 @@ public class ResumeEntity {
     @Id
     @Column(name = "cid", nullable = false)
     private String cid;
-    @Column(name = "name", nullable = false)
-    private String name;
-    @Column(name = "birth_date", nullable = false)
-    private LocalDate birthDate;
+
+    @Column(name = "firstName", nullable = false)
+    private String firstName;
+
+    @Column(name = "lastName", nullable = false)
+    private String lastName;
+
     @Column(name = "gender", nullable = false)
     private Gender gender;
+
+    @Column(name = "birth_date", nullable = false)
+    private LocalDate birthDate;
+
     @Column(name = "phone")
     private String phone;
+
     @Column(name = "cell_phone", nullable = false)
     private String cellPhone;
+
     @Column(name = "email", nullable = false)
     private String email;
+
     @Column(name = "linkedin", nullable = false)
     private String linkedin;
+
     @Column(name = "postal_code", nullable = false)
     private String postalCode;
+
     @Column(name = "district", nullable = false)
     private String district;
+
+    @Column(name = "city", nullable = false)
+    private String city;
+
     @Column(name = "schooling", nullable = false)
     @Enumerated(value = EnumType.STRING)
     private Schooling schooling;
+
     @Column(name = "job_option_one", nullable = false)
     private String jobOptionOne;
     @Column(name = "job_option_two")
     private String jobOptionTwo;
     @Column(name = "job_option_three")
     private String jobOptionThree;
+
+
 
     public Resume toResume() {
         return Resume.builder()

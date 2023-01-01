@@ -1,6 +1,6 @@
 package br.com.connectpeople.api.request;
 
-import br.com.connectpeople.jobexperience.domain.JobExperience;
+import br.com.connectpeople.resume.domain.JobExperience;
 import br.com.connectpeople.resume.domain.Resume;
 import br.com.connectpeople.resume.domain.SuperiorCourse;
 import br.com.connectpeople.resume.domain.enums.Gender;

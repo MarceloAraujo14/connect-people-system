@@ -2,7 +2,7 @@ package br.com.connectpeople.jobexperience.usecase;
 
 import br.com.connectpeople.adapters.repository.JobExperienceJpaRepository;
 import br.com.connectpeople.adapters.repository.entity.JobExperienceEntity;
-import br.com.connectpeople.jobexperience.domain.JobExperience;
+import br.com.connectpeople.resume.domain.JobExperience;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;

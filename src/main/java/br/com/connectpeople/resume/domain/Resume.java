@@ -1,20 +1,13 @@
 package br.com.connectpeople.resume.domain;
 
 import br.com.connectpeople.adapters.repository.entity.ResumeEntity;
-import br.com.connectpeople.jobexperience.domain.JobExperience;
 import br.com.connectpeople.resume.domain.enums.Gender;
 import br.com.connectpeople.resume.domain.enums.Schooling;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
-
-import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_EMAIL_INVALID;
-import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_FIELD_CANNOT_BE_EMPTY;
-import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_SELECT_OPTION;
 
 @Builder
 @Data
@@ -49,6 +42,8 @@ public class Resume {
 
     private List<SuperiorCourse> superiorCourses;
 
+    private List<Course> courses;
+
     private String jobOptionOne;
 
     private String jobOptionTwo;
@@ -67,10 +62,10 @@ public class Resume {
                 .linkedin(this.linkedin)
                 .postalCode(this.postalCode)
                 .district(this.district)
+                .schooling(Schooling.valueOf(this.schooling))
                 .jobOptionOne(this.jobOptionOne)
                 .jobOptionTwo(this.jobOptionTwo)
                 .jobOptionThree(this.jobOptionThree)
-                .schooling(this.schooling)
                 .build();
     }
 }

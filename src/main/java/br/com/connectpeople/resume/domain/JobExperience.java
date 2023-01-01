@@ -1,4 +1,4 @@
-package br.com.connectpeople.jobexperience.domain;
+package br.com.connectpeople.resume.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

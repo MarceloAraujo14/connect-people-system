@@ -1,7 +1,7 @@
 package br.com.connectpeople.adapters.repository.mapper;
 
 import br.com.connectpeople.adapters.repository.entity.JobExperienceEntity;
-import br.com.connectpeople.jobexperience.domain.JobExperience;
+import br.com.connectpeople.resume.domain.JobExperience;
 
 import java.util.List;
 

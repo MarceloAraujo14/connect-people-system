@@ -1,8 +1,8 @@
-package br.com.connectpeople.resume.usecase.chain;
+package br.com.connectpeople.resume.usecase.resume.chain;
 
 import br.com.connectpeople.adapters.repository.ResumeJpaRepository;
 import br.com.connectpeople.exception.RegisterAlreadyExistsException;
-import br.com.connectpeople.resume.usecase.executor.ResumePayload;
+import br.com.connectpeople.resume.usecase.resume.executor.ResumePayload;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

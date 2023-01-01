@@ -1,9 +1,9 @@
-package br.com.connectpeople.resume.usecase.chain;
+package br.com.connectpeople.resume.usecase.resume.chain;
 
 import br.com.connectpeople.adapters.repository.ResumeJpaRepository;
 import br.com.connectpeople.exception.RegisterAlreadyExistsException;
-import br.com.connectpeople.resume.usecase.executor.ExecutorChain;
-import br.com.connectpeople.resume.usecase.executor.ResumePayload;
+import br.com.connectpeople.resume.usecase.resume.executor.ExecutorChain;
+import br.com.connectpeople.resume.usecase.resume.executor.ResumePayload;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

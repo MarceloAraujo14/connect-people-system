@@ -8,6 +8,9 @@ spring:
     oauth2:
       client:
         registration:
+          google:
+            clientId: ${GOOGLE_CID}
+            clientSecret: ${GOOGLE_CS}
 #          linkedin:
 #            clientId: ${LINKEDIN_CID}
 #            clientSecret: ${LINKEDIN_CS}
@@ -15,12 +18,9 @@ spring:
 #            authorizationGrantType: authorization_code
 #            redirectUri: '{baseUrl}/login/oauth2/code/{registrationId}'
 #            scope: r_liteprofile, r_emailaddress
+
+
 #            clientName: Linkedin
-
-
-          google:
-            clientId: ${GOOGLE_CID}
-            clientSecret: ${GOOGLE_CS}
 
         provider:
           linkedin:

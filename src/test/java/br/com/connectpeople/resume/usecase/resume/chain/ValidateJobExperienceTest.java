@@ -1,7 +1,7 @@
-package br.com.connectpeople.resume.usecase.chain;
+package br.com.connectpeople.resume.usecase.resume.chain;
 
-import br.com.connectpeople.jobexperience.domain.JobExperience;
-import br.com.connectpeople.resume.usecase.executor.ResumePayload;
+import br.com.connectpeople.resume.domain.JobExperience;
+import br.com.connectpeople.resume.usecase.resume.executor.ResumePayload;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package br.com.connectpeople.resume.usecase;
+package br.com.connectpeople.resume.usecase.resume;
 
 import br.com.connectpeople.adapters.repository.ResumeJpaRepository;
 import br.com.connectpeople.resume.domain.Resume;

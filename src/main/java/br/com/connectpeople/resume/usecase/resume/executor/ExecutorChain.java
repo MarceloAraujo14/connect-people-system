@@ -1,4 +1,4 @@
-package br.com.connectpeople.resume.usecase.executor;
+package br.com.connectpeople.resume.usecase.resume.executor;
 
 public interface ExecutorChain<T> {
 
