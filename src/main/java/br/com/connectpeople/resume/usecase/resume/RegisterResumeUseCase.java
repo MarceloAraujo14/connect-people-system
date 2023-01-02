@@ -1,9 +1,12 @@
 package br.com.connectpeople.resume.usecase.resume;
 
+import br.com.connectpeople.adapters.repository.CourseRepository;
 import br.com.connectpeople.adapters.repository.JobExperienceJpaRepository;
 import br.com.connectpeople.adapters.repository.ResumeJpaRepository;
+import br.com.connectpeople.adapters.repository.SuperiorCourseRepository;
 import br.com.connectpeople.resume.domain.JobExperience;
 import br.com.connectpeople.resume.domain.Resume;
+import br.com.connectpeople.resume.domain.SuperiorCourse;
 import br.com.connectpeople.resume.usecase.resume.chain.ErrorHandler;
 import br.com.connectpeople.resume.usecase.resume.chain.ValidateAlreadyRegister;
 import br.com.connectpeople.resume.usecase.resume.chain.ValidateBirthDate;
@@ -20,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static br.com.connectpeople.adapters.repository.mapper.JobExperienceMapper.toJobExperienceList;
+import static br.com.connectpeople.adapters.repository.mapper.SuperiorCourseMapper.toSuperiorCourseEntityList;
 import static br.com.connectpeople.util.IdGenerator.generateId;
 
 @Service
@@ -28,6 +32,8 @@ public class RegisterResumeUseCase {
 
     private final ResumeJpaRepository resumeJpaRepository;
     private final JobExperienceJpaRepository jobExperienceJpaRepository;
+    private final SuperiorCourseRepository superiorCourseRepository;
+    private final CourseRepository courseRepository;
 
     private final ValidateAlreadyRegister validateAlreadyRegister;
     private final ValidateName validateName;
@@ -44,14 +50,20 @@ public class RegisterResumeUseCase {
         resume.setCid(generatedId);
         resumeJpaRepository.save(resume.toEntity());
         saveJobExperience(generatedId, resume.getJobExperiences());
+        saveSuperirCourse(generatedId, resume.getSuperiorCourses());
         return resume;
     }
 
-    public List<JobExperience> saveJobExperience(String cid, List<JobExperience> jobExperiences) {
+    public void saveJobExperience(String cid, List<JobExperience> jobExperiences) {
         var jobExperienceEntities = toJobExperienceList(jobExperiences);
         jobExperienceEntities.forEach(job -> job.setCid(cid));
         jobExperienceJpaRepository.saveAll(jobExperienceEntities);
-        return jobExperiences;
+    }
+
+    public void saveSuperirCourse(String cid, List<SuperiorCourse> superiorCourses){
+        var entity = toSuperiorCourseEntityList(superiorCourses);
+        entity.forEach(course -> course.setCid(cid));
+        superiorCourseRepository.saveAll(entity);
     }
 
     private void validateInput(ResumePayload payload) {

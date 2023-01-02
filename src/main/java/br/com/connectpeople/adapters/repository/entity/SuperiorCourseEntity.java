@@ -1,18 +1,52 @@
 package br.com.connectpeople.adapters.repository.entity;
 
-import br.com.connectpeople.resume.domain.Course;
+import br.com.connectpeople.resume.domain.enums.SuperiorCourseStatus;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.Hibernate;
 
-@EqualsAndHashCode(callSuper = true)
+import java.time.LocalDate;
+import java.util.Objects;
+
 @Builder
-@Data
-public class SuperiorCourseEntity extends Course {
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@Entity(name = "superior_couse")
+@NoArgsConstructor
+public class SuperiorCourseEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+    private String cid;
     private String institution;
     private String course;
-    private String status;
-    private String conclusionYear;
+    private SuperiorCourseStatus status;
+    private LocalDate conclusionYear;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        SuperiorCourseEntity that = (SuperiorCourseEntity) o;
+        return id != null && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

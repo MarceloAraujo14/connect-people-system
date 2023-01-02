@@ -1,11 +1,10 @@
 package br.com.connectpeople.resume.domain;
 
-import jakarta.persistence.Entity;
+import br.com.connectpeople.resume.domain.enums.CourseType;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -13,15 +12,16 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
-@Entity(name = "course")
+@AllArgsConstructor
 @NoArgsConstructor
 public class Course {
 
-    private String id;
+    private Long id;
 
+    private String cid;
     private String institution;
-    private String course;
-    private String type;
+    private String name;
+    private CourseType type;
+
 
 }
