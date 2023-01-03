@@ -1,9 +1,6 @@
 package br.com.connectpeople.adapters.repository.entity;
 
-import br.com.connectpeople.resume.domain.Course;
-import br.com.connectpeople.resume.domain.JobExperience;
 import br.com.connectpeople.resume.domain.Resume;
-import br.com.connectpeople.resume.domain.SuperiorCourse;
 import br.com.connectpeople.resume.domain.enums.Gender;
 import br.com.connectpeople.resume.domain.enums.Schooling;
 import jakarta.persistence.Column;
@@ -22,7 +19,6 @@ import org.hibernate.Hibernate;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Objects;
 
 @Builder
@@ -87,9 +83,10 @@ public class ResumeEntity {
     public Resume toResume() {
         return Resume.builder()
                 .cid(this.cid)
-                .name(this.name)
+                .firstName(this.firstName)
+                .lastName(this.lastName)
                 .birthDate(this.birthDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))
-                .gender(this.gender)
+                .gender(String.valueOf(this.gender))
                 .phone(this.phone)
                 .cellPhone(this.cellPhone)
                 .email(this.email)
@@ -99,7 +96,7 @@ public class ResumeEntity {
                 .jobOptionOne(this.jobOptionOne)
                 .jobOptionTwo(this.jobOptionTwo)
                 .jobOptionThree(this.jobOptionThree)
-                .schooling(this.schooling)
+                .schooling(String.valueOf(this.schooling))
                 .build();
     }
 

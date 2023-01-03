@@ -4,6 +4,7 @@ import br.com.connectpeople.adapters.repository.CourseRepository;
 import br.com.connectpeople.adapters.repository.JobExperienceJpaRepository;
 import br.com.connectpeople.adapters.repository.ResumeJpaRepository;
 import br.com.connectpeople.adapters.repository.SuperiorCourseRepository;
+import br.com.connectpeople.resume.domain.Course;
 import br.com.connectpeople.resume.domain.JobExperience;
 import br.com.connectpeople.resume.domain.Resume;
 import br.com.connectpeople.resume.domain.SuperiorCourse;
@@ -11,9 +12,11 @@ import br.com.connectpeople.resume.usecase.resume.chain.ErrorHandler;
 import br.com.connectpeople.resume.usecase.resume.chain.ValidateAlreadyRegister;
 import br.com.connectpeople.resume.usecase.resume.chain.ValidateBirthDate;
 import br.com.connectpeople.resume.usecase.resume.chain.ValidateDistrict;
+import br.com.connectpeople.resume.usecase.resume.chain.ValidateJobExperience;
 import br.com.connectpeople.resume.usecase.resume.chain.ValidateName;
 import br.com.connectpeople.resume.usecase.resume.chain.ValidatePhone;
 import br.com.connectpeople.resume.usecase.resume.chain.ValidatePostalCode;
+import br.com.connectpeople.resume.usecase.resume.chain.ValidateSchooling;
 import br.com.connectpeople.resume.usecase.resume.executor.Executor;
 import br.com.connectpeople.resume.usecase.resume.executor.ResumePayload;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static br.com.connectpeople.adapters.repository.mapper.CourseMapper.toCourseEntityList;
 import static br.com.connectpeople.adapters.repository.mapper.JobExperienceMapper.toJobExperienceList;
 import static br.com.connectpeople.adapters.repository.mapper.SuperiorCourseMapper.toSuperiorCourseEntityList;
 import static br.com.connectpeople.util.IdGenerator.generateId;
@@ -41,6 +45,8 @@ public class RegisterResumeUseCase {
     private final ValidatePhone validatePhone;
     private final ValidatePostalCode validatePostalCode;
     private final ValidateDistrict validateDistrict;
+    private final ValidateJobExperience validateJobExperience;
+    private final ValidateSchooling validateSchooling;
     private final ErrorHandler errorHandler;
 
     @Transactional
@@ -61,9 +67,15 @@ public class RegisterResumeUseCase {
     }
 
     public void saveSuperirCourse(String cid, List<SuperiorCourse> superiorCourses){
-        var entity = toSuperiorCourseEntityList(superiorCourses);
-        entity.forEach(course -> course.setCid(cid));
-        superiorCourseRepository.saveAll(entity);
+        var entityList = toSuperiorCourseEntityList(superiorCourses);
+        entityList.forEach(course -> course.setCid(cid));
+        superiorCourseRepository.saveAll(entityList);
+    }
+
+    public void saveCourse(String cid, List<Course> courses){
+        var entityList = toCourseEntityList(courses);
+        entityList.forEach(course -> course.setCid(cid));
+        courseRepository.saveAll(entityList);
     }
 
     private void validateInput(ResumePayload payload) {
@@ -74,24 +86,31 @@ public class RegisterResumeUseCase {
                 .chain(validatePhone)
                 .chain(validatePostalCode)
                 .chain(validateDistrict)
+                .chain(validateJobExperience)
+                .chain(validateSchooling)
                 .chain(errorHandler);
     }
 
     private ResumePayload buildInput(Resume resume) {
         return ResumePayload.builder()
-                .name(resume.getName())
+                .firstName(resume.getFirstName())
+                .lastName(resume.getLastName())
                 .birthDate(resume.getBirthDate())
                 .gender(resume.getGender())
                 .phone(resume.getPhone())
                 .cellPhone(resume.getCellPhone())
                 .email(resume.getEmail())
+                .linkedin(resume.getLinkedin())
                 .postalCode(resume.getPostalCode())
                 .district(resume.getDistrict())
+                .city(resume.getCity())
+                .jobExperiences(resume.getJobExperiences())
+                .schooling(resume.getSchooling())
+                .superiorCourses(resume.getSuperiorCourses())
+                .courses(resume.getCourses())
                 .jobOptionOne(resume.getJobOptionOne())
                 .jobOptionTwo(resume.getJobOptionTwo())
                 .jobOptionThree(resume.getJobOptionThree())
-                .jobExperiences(resume.getJobExperiences())
-                .schooling(resume.getSchooling())
                 .build();
     }
 

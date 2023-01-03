@@ -10,7 +10,8 @@ public class Constants {
         //Resume Errors
         public static final String ERROR_MSG_FIELD_CANNOT_BE_EMPTY = "O campo não pode estar vazio";
         public static final String ERROR_MSG_SELECT_OPTION = "Por favor selecione uma das opções.";
-        public static final String ERROR_MSG_NAME_INVALID = "O nome deve conter um nome e pelo menos um sobrenome";
+        public static final String ERROR_MSG_VALID_OPTION = "Escolha uma opção válida.";
+        public static final String ERROR_MSG_NAME_INVALID = "Escolha um nome válido.";
         public static final String ERROR_MSG_BIRTH_DATE_BEFORE_AFTER = "Data de nascimento deve estar entre 15 e 100 anos";
         public static final String ERROR_MSG_BIRTH_DATE_FORMAT = "Data deve estar no formato yyyy/MM/dd";
         public static final String ERROR_MSG_POSTALCODE_INVALID = "Insira um CEP válido";

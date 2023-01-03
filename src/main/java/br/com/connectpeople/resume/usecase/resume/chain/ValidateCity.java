@@ -9,25 +9,16 @@ import org.springframework.stereotype.Component;
 import java.util.Objects;
 
 import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_FIELD_CANNOT_BE_EMPTY;
-import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_NAME_INVALID;
 import static br.com.connectpeople.constants.Constants.StateProcess.FAILURE;
 
 @Log4j2
 @Component
-public class ValidateName implements ExecutorChain<ResumePayload> {
-
-    public static final String REGEX_NAME = "^[A-Z][a-z]*( [A-Z][a-z]*)?$";
-
-    static void inputValidate(String field, String value) {
-        if (Objects.isNull(value) || value.isBlank()) throw new InvalidInputException(field, ERROR_MSG_FIELD_CANNOT_BE_EMPTY);
-        if (!value.matches(REGEX_NAME)) throw new InvalidInputException(field, ERROR_MSG_NAME_INVALID);
-    }
+public class ValidateCity implements ExecutorChain<ResumePayload> {
 
     @Override
     public ResumePayload execute(ResumePayload payload) {
         try {
-            inputValidate("firstName", payload.getFirstName());
-            inputValidate("lastName", payload.getLastName());
+            inputValidate(payload.getCity());
         } catch (InvalidInputException ex) {
             payload.putError(ex.getError(), ex.getMessage());
             log.info("M execute, payload={}, error={}, state={}", payload, ex.getMessage(), FAILURE);
@@ -35,5 +26,7 @@ public class ValidateName implements ExecutorChain<ResumePayload> {
         return payload;
     }
 
-
+    private static void inputValidate(String city) {
+        if (Objects.isNull(city) || city.isBlank()) throw new InvalidInputException("city", ERROR_MSG_FIELD_CANNOT_BE_EMPTY);
+    }
 }

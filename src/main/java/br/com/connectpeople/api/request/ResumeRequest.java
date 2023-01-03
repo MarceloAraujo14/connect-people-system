@@ -1,5 +1,6 @@
 package br.com.connectpeople.api.request;
 
+import br.com.connectpeople.resume.domain.Course;
 import br.com.connectpeople.resume.domain.JobExperience;
 import br.com.connectpeople.resume.domain.Resume;
 import br.com.connectpeople.resume.domain.SuperiorCourse;
@@ -65,6 +66,8 @@ public class ResumeRequest {
 
     private List<SuperiorCourse> superiorCourses;
 
+    private List<Course> courses;
+
     @NotBlank(message = ERROR_MSG_FIELD_CANNOT_BE_EMPTY)
     private String jobOptionOne;
 
@@ -81,19 +84,24 @@ public class ResumeRequest {
         });
 
         return Resume.builder()
-                .name(this.name)
+                .firstName(this.firstName)
+                .lastName(this.lastName)
                 .birthDate(this.birthDate)
-                .gender(Gender.valueOf(this.gender))
+                .gender(this.gender)
                 .phone(this.phone)
                 .cellPhone(this.cellPhone)
                 .email(this.email)
+                .linkedin(this.linkedin)
                 .postalCode(this.postalCode)
                 .district(this.district)
+                .city(this.city)
+                .jobExperiences(jobList)
+                .schooling(this.schooling)
+                .courses(this.courses)
+                .superiorCourses(this.superiorCourses)
                 .jobOptionOne(this.jobOptionOne)
                 .jobOptionTwo(this.jobOptionTwo)
                 .jobOptionThree(this.jobOptionThree)
-                .jobExperiences(jobList)
-                .schooling(Schooling.valueOf(this.schooling))
                 .build();
     }
 

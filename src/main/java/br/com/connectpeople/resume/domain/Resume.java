@@ -53,7 +53,8 @@ public class Resume {
     public ResumeEntity toEntity() {
         return ResumeEntity.builder()
                 .cid(this.cid)
-                .name(this.firstName)
+                .firstName(this.firstName)
+                .lastName(this.lastName)
                 .birthDate(LocalDate.parse(this.birthDate))
                 .gender(Gender.valueOf(this.gender))
                 .phone(this.phone)

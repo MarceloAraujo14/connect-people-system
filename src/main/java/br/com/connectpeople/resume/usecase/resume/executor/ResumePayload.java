@@ -1,6 +1,8 @@
 package br.com.connectpeople.resume.usecase.resume.executor;
 
+import br.com.connectpeople.resume.domain.Course;
 import br.com.connectpeople.resume.domain.JobExperience;
+import br.com.connectpeople.resume.domain.SuperiorCourse;
 import br.com.connectpeople.resume.domain.enums.Gender;
 import br.com.connectpeople.resume.domain.enums.Schooling;
 import lombok.Builder;
@@ -15,19 +17,24 @@ import java.util.Objects;
 @Data
 public class ResumePayload {
 
-    private String name;
+    private String firstName;
+    private String lastName;
+    private String gender;
     private String birthDate;
-    private Gender gender;
     private String phone;
     private String cellPhone;
     private String email;
+    private String linkedin;
     private String postalCode;
     private String district;
+    private String city;
+    private List<JobExperience> jobExperiences;
+    private String schooling;
+    private List<SuperiorCourse> superiorCourses;
+    private List<Course> courses;
     private String jobOptionOne;
     private String jobOptionTwo;
     private String jobOptionThree;
-    private List<JobExperience> jobExperiences;
-    private Schooling schooling;
 
     private Map<String, String> errors;
 
