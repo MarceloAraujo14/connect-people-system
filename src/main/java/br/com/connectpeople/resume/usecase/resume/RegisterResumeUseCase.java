@@ -4,10 +4,7 @@ import br.com.connectpeople.adapters.repository.CourseRepository;
 import br.com.connectpeople.adapters.repository.JobExperienceJpaRepository;
 import br.com.connectpeople.adapters.repository.ResumeJpaRepository;
 import br.com.connectpeople.adapters.repository.SuperiorCourseRepository;
-import br.com.connectpeople.resume.domain.Course;
-import br.com.connectpeople.resume.domain.JobExperience;
 import br.com.connectpeople.resume.domain.Resume;
-import br.com.connectpeople.resume.domain.SuperiorCourse;
 import br.com.connectpeople.resume.usecase.resume.chain.ErrorHandler;
 import br.com.connectpeople.resume.usecase.resume.chain.ValidateAlreadyRegister;
 import br.com.connectpeople.resume.usecase.resume.chain.ValidateBirthDate;
@@ -23,8 +20,6 @@ import br.com.connectpeople.resume.usecase.resume.executor.ResumePayload;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 import static br.com.connectpeople.adapters.repository.mapper.CourseMapper.toCourseEntityList;
 import static br.com.connectpeople.adapters.repository.mapper.JobExperienceMapper.toJobExperienceList;
@@ -57,27 +52,27 @@ public class RegisterResumeUseCase {
         String generatedId = getGeneratedId();
         resume.setCid(generatedId);
         resumeJpaRepository.save(resume.toEntity());
-        saveJobExperience(generatedId, resume.getJobExperiences());
-        saveSuperirCourse(generatedId, resume.getSuperiorCourses());
-        saveCourse(generatedId, resume.getCourses());
+        saveJobExperience(resume);
+        saveSuperiorCourse(resume);
+        saveCourse(resume);
         return resume;
     }
 
-    public void saveJobExperience(String cid, List<JobExperience> jobExperiences) {
-        var jobExperienceEntities = toJobExperienceList(jobExperiences);
-        jobExperienceEntities.forEach(job -> job.setCid(cid));
+    private void saveJobExperience(Resume resume) {
+        var jobExperienceEntities = toJobExperienceList(resume.getJobExperiences());
+        jobExperienceEntities.forEach(job -> job.setCid(resume.getCid()));
         jobExperienceJpaRepository.saveAll(jobExperienceEntities);
     }
 
-    public void saveSuperirCourse(String cid, List<SuperiorCourse> superiorCourses){
-        var entityList = toSuperiorCourseEntityList(superiorCourses);
-        entityList.forEach(course -> course.setCid(cid));
+    private void saveSuperiorCourse(Resume resume){
+        var entityList = toSuperiorCourseEntityList(resume.getSuperiorCourses());
+        entityList.forEach(course -> course.setCid(resume.getCid()));
         superiorCourseRepository.saveAll(entityList);
     }
 
-    public void saveCourse(String cid, List<Course> courses){
-        var entityList = toCourseEntityList(courses);
-        entityList.forEach(course -> course.setCid(cid));
+    private void saveCourse(Resume resume){
+        var entityList = toCourseEntityList(resume.getCourses());
+        entityList.forEach(course -> course.setCid(resume.getCid()));
         courseRepository.saveAll(entityList);
     }
 
