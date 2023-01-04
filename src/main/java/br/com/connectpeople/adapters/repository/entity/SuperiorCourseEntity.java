@@ -3,6 +3,8 @@ package br.com.connectpeople.adapters.repository.entity;
 import br.com.connectpeople.resume.domain.enums.SuperiorCourseStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,6 +36,7 @@ public class SuperiorCourseEntity {
     private String cid;
     private String institution;
     private String course;
+    @Enumerated(EnumType.STRING)
     private SuperiorCourseStatus status;
     private LocalDate conclusionYear;
 

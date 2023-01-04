@@ -4,10 +4,9 @@ import br.com.connectpeople.resume.domain.Course;
 import br.com.connectpeople.resume.domain.JobExperience;
 import br.com.connectpeople.resume.domain.Resume;
 import br.com.connectpeople.resume.domain.SuperiorCourse;
-import br.com.connectpeople.resume.domain.enums.Gender;
-import br.com.connectpeople.resume.domain.enums.Schooling;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,9 +27,11 @@ import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_SE
 public class ResumeRequest {
 
     @NotBlank(message = ERROR_MSG_FIELD_CANNOT_BE_EMPTY)
+    @Size(max = 20, message = "Número de caracteres máximo excedido.")
     private String firstName;
 
     @NotBlank(message = ERROR_MSG_FIELD_CANNOT_BE_EMPTY)
+    @Size(max = 60, message = "Número de caracteres máximo excedido.")
     private String lastName;
 
     @NotBlank(message = ERROR_MSG_SELECT_OPTION)
@@ -45,6 +46,7 @@ public class ResumeRequest {
     private String cellPhone;
 
     @NotBlank(message = ERROR_MSG_FIELD_CANNOT_BE_EMPTY)
+    @Size(max = 80, message = "Número de caracteres máximo excedido.")
     @Email(message = ERROR_MSG_EMAIL_INVALID)
     private String email;
 
@@ -75,8 +77,6 @@ public class ResumeRequest {
 
     private String jobOptionThree;
 
-
-
     public Resume toResume() {
         List<JobExperience> jobList = new ArrayList<>();
         jobExperiences.forEach(job -> {
@@ -104,5 +104,4 @@ public class ResumeRequest {
                 .jobOptionThree(this.jobOptionThree)
                 .build();
     }
-
 }

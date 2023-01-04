@@ -63,6 +63,7 @@ public class Resume {
                 .linkedin(this.linkedin)
                 .postalCode(this.postalCode)
                 .district(this.district)
+                .city(this.city)
                 .schooling(Schooling.valueOf(this.schooling))
                 .jobOptionOne(this.jobOptionOne)
                 .jobOptionTwo(this.jobOptionTwo)

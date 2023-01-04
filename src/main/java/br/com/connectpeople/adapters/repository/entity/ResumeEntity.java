@@ -93,10 +93,10 @@ public class ResumeEntity {
                 .linkedin(this.linkedin)
                 .postalCode(this.postalCode)
                 .district(this.district)
+                .schooling(String.valueOf(this.schooling))
                 .jobOptionOne(this.jobOptionOne)
                 .jobOptionTwo(this.jobOptionTwo)
                 .jobOptionThree(this.jobOptionThree)
-                .schooling(String.valueOf(this.schooling))
                 .build();
     }
 

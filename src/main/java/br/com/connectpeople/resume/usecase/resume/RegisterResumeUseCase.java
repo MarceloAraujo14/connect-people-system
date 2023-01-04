@@ -11,6 +11,7 @@ import br.com.connectpeople.resume.domain.SuperiorCourse;
 import br.com.connectpeople.resume.usecase.resume.chain.ErrorHandler;
 import br.com.connectpeople.resume.usecase.resume.chain.ValidateAlreadyRegister;
 import br.com.connectpeople.resume.usecase.resume.chain.ValidateBirthDate;
+import br.com.connectpeople.resume.usecase.resume.chain.ValidateCity;
 import br.com.connectpeople.resume.usecase.resume.chain.ValidateDistrict;
 import br.com.connectpeople.resume.usecase.resume.chain.ValidateJobExperience;
 import br.com.connectpeople.resume.usecase.resume.chain.ValidateName;
@@ -45,6 +46,7 @@ public class RegisterResumeUseCase {
     private final ValidatePhone validatePhone;
     private final ValidatePostalCode validatePostalCode;
     private final ValidateDistrict validateDistrict;
+    private final ValidateCity validateCity;
     private final ValidateJobExperience validateJobExperience;
     private final ValidateSchooling validateSchooling;
     private final ErrorHandler errorHandler;
@@ -57,6 +59,7 @@ public class RegisterResumeUseCase {
         resumeJpaRepository.save(resume.toEntity());
         saveJobExperience(generatedId, resume.getJobExperiences());
         saveSuperirCourse(generatedId, resume.getSuperiorCourses());
+        saveCourse(generatedId, resume.getCourses());
         return resume;
     }
 
@@ -86,6 +89,7 @@ public class RegisterResumeUseCase {
                 .chain(validatePhone)
                 .chain(validatePostalCode)
                 .chain(validateDistrict)
+                .chain(validateCity)
                 .chain(validateJobExperience)
                 .chain(validateSchooling)
                 .chain(errorHandler);

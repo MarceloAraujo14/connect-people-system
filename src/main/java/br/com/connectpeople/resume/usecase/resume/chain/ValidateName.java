@@ -18,22 +18,21 @@ public class ValidateName implements ExecutorChain<ResumePayload> {
 
     public static final String REGEX_NAME = "^[A-Z][a-z]*( [A-Z][a-z]*)?$";
 
-    static void inputValidate(String field, String value) {
-        if (Objects.isNull(value) || value.isBlank()) throw new InvalidInputException(field, ERROR_MSG_FIELD_CANNOT_BE_EMPTY);
-        if (!value.matches(REGEX_NAME)) throw new InvalidInputException(field, ERROR_MSG_NAME_INVALID);
-    }
-
-    @Override
-    public ResumePayload execute(ResumePayload payload) {
+    static void inputValidate(String field, String value, ResumePayload payload) {
         try {
-            inputValidate("firstName", payload.getFirstName());
-            inputValidate("lastName", payload.getLastName());
+            if (Objects.isNull(value) || value.isBlank())
+                throw new InvalidInputException(field, ERROR_MSG_FIELD_CANNOT_BE_EMPTY);
+            if (!value.matches(REGEX_NAME)) throw new InvalidInputException(field, ERROR_MSG_NAME_INVALID);
         } catch (InvalidInputException ex) {
             payload.putError(ex.getError(), ex.getMessage());
             log.info("M execute, payload={}, error={}, state={}", payload, ex.getMessage(), FAILURE);
         }
-        return payload;
     }
 
-
+    @Override
+    public ResumePayload execute(ResumePayload payload) {
+        inputValidate("firstName", payload.getFirstName(), payload);
+        inputValidate("lastName", payload.getLastName(), payload);
+        return payload;
+    }
 }
