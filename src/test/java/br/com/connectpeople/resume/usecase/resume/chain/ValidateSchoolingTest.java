@@ -2,6 +2,9 @@ package br.com.connectpeople.resume.usecase.resume.chain;
 
 import br.com.connectpeople.resume.usecase.resume.executor.ResumePayload;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_FIELD_CANNOT_BE_EMPTY;
 import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_VALID_OPTION;
@@ -10,9 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@ExtendWith(MockitoExtension.class)
 class ValidateSchoolingTest {
 
-    ValidateSchooling validateSchooling = new ValidateSchooling();
+    @InjectMocks
+    ValidateSchooling validateSchooling;
 
     @Test
     void shouldThrowWhenSchoolingIsNull(){

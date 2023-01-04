@@ -3,7 +3,11 @@ package br.com.connectpeople.resume.usecase.resume.chain;
 import br.com.connectpeople.resume.domain.JobExperience;
 import br.com.connectpeople.resume.usecase.resume.executor.ResumePayload;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -19,9 +23,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@ExtendWith(MockitoExtension.class)
 class ValidateJobExperienceTest {
 
-    @Autowired
+    @InjectMocks
     ValidateJobExperience validateJobExperience;
 
     //não fazer nada se lista de jobExperiences for vazia
