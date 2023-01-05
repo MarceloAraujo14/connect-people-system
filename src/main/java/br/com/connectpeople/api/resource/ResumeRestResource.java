@@ -2,18 +2,19 @@ package br.com.connectpeople.api.resource;
 
 import br.com.connectpeople.api.request.ResumeRequest;
 import br.com.connectpeople.resume.domain.Resume;
-import br.com.connectpeople.resume.usecase.RegisterResumeUseCase;
+import br.com.connectpeople.resume.usecase.resume.RegisterResumeUseCase;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static br.com.connectpeople.resume.domain.constants.Constants.StateProcess.NEW;
-import static br.com.connectpeople.resume.domain.constants.Constants.StateProcess.SUCCESS;
+import static br.com.connectpeople.constants.Constants.StateProcess.NEW;
+import static br.com.connectpeople.constants.Constants.StateProcess.SUCCESS;
 
 @Log4j2
 @AllArgsConstructor
@@ -23,6 +24,7 @@ public class ResumeRestResource {
 
     private final RegisterResumeUseCase registerResumeUseCase;
 
+    @CrossOrigin(originPatterns = {"*"})
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Resume register(@Valid @RequestBody ResumeRequest request) {
         log.info("M register, request={}, state={}", request, NEW);

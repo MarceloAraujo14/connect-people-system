@@ -33,27 +33,45 @@ public class ResumeEntity {
     @Id
     @Column(name = "cid", nullable = false)
     private String cid;
-    @Column(name = "name", nullable = false)
-    private String name;
+
+    @Column(name = "firstName", nullable = false)
+    private String firstName;
+
+    @Column(name = "lastName", nullable = false)
+    private String lastName;
+
+    @Column(name = "gender", nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private Gender gender;
+
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
-    @Column(name = "gender", nullable = false)
-    private Gender gender;
+
     @Column(name = "phone")
     private String phone;
+
     @Column(name = "cell_phone", nullable = false)
     private String cellPhone;
+
     @Column(name = "email", nullable = false)
     private String email;
+
     @Column(name = "linkedin", nullable = false)
     private String linkedin;
+
     @Column(name = "postal_code", nullable = false)
     private String postalCode;
+
     @Column(name = "district", nullable = false)
     private String district;
+
+    @Column(name = "city", nullable = false)
+    private String city;
+
     @Column(name = "schooling", nullable = false)
     @Enumerated(value = EnumType.STRING)
     private Schooling schooling;
+
     @Column(name = "job_option_one", nullable = false)
     private String jobOptionOne;
     @Column(name = "job_option_two")
@@ -61,22 +79,25 @@ public class ResumeEntity {
     @Column(name = "job_option_three")
     private String jobOptionThree;
 
+
+
     public Resume toResume() {
         return Resume.builder()
                 .cid(this.cid)
-                .name(this.name)
+                .firstName(this.firstName)
+                .lastName(this.lastName)
                 .birthDate(this.birthDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))
-                .gender(this.gender)
+                .gender(String.valueOf(this.gender))
                 .phone(this.phone)
                 .cellPhone(this.cellPhone)
                 .email(this.email)
                 .linkedin(this.linkedin)
                 .postalCode(this.postalCode)
                 .district(this.district)
+                .schooling(String.valueOf(this.schooling))
                 .jobOptionOne(this.jobOptionOne)
                 .jobOptionTwo(this.jobOptionTwo)
                 .jobOptionThree(this.jobOptionThree)
-                .schooling(this.schooling)
                 .build();
     }
 
