@@ -44,12 +44,9 @@ public class ValidateJobExperience implements ExecutorChain<ResumePayload> {
         starMonthValidate(jobExperience, payload);
         startYearValidate(jobExperience, payload);
 
-        if (!jobExperience.isCurrentJob()){
-            validateNotCurrentJob(jobExperience, payload);
+        if (jobExperience.isCurrentJob()){
+            return;
         }
-    }
-
-    private static void validateNotCurrentJob(JobExperience jobExperience, ResumePayload payload){
         endMonthValidate(jobExperience, payload);
         endYearValidate(jobExperience, payload);
     }

@@ -44,7 +44,7 @@ public class ControllerAdvice {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, String>> genericExceptionHandler(Exception ex) {
-        log.error(ex.getMessage());
+        log.error("{} {}" ,ex.getCause(), ex.getMessage());
         return ResponseEntity.status(BAD_REQUEST).body(Map.of("Generic error:", ex.getMessage()));
     }
 

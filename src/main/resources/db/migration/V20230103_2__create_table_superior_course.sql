@@ -4,6 +4,6 @@ CREATE TABLE if not exists superior_couse (
    institution VARCHAR(80),
    course VARCHAR(80),
    status VARCHAR(50),
-   conclusionYear date,
+   conclusion_year INTEGER,
    CONSTRAINT pk_superior_couse PRIMARY KEY (id)
 );

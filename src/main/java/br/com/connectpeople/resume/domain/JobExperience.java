@@ -14,7 +14,7 @@ public class JobExperience {
     private String company;
     private int startMonth;
     private int startYear;
-    private boolean isCurrentJob;
+    private boolean currentJob;
     private int endMonth;
     private int endYear;
     private String description;

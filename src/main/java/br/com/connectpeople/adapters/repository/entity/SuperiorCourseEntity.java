@@ -38,7 +38,7 @@ public class SuperiorCourseEntity {
     private String course;
     @Enumerated(EnumType.STRING)
     private SuperiorCourseStatus status;
-    private LocalDate conclusionYear;
+    private int conclusionYear;
 
     @Override
     public boolean equals(Object o) {

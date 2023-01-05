@@ -78,11 +78,6 @@ public class ResumeRequest {
     private String jobOptionThree;
 
     public Resume toResume() {
-        List<JobExperience> jobList = new ArrayList<>();
-        jobExperiences.forEach(job -> {
-            if (Objects.nonNull(job)) jobList.add(job);
-        });
-
         return Resume.builder()
                 .firstName(this.firstName)
                 .lastName(this.lastName)
@@ -95,7 +90,7 @@ public class ResumeRequest {
                 .postalCode(this.postalCode)
                 .district(this.district)
                 .city(this.city)
-                .jobExperiences(jobList)
+                .jobExperiences(this.jobExperiences)
                 .schooling(this.schooling)
                 .courses(this.courses)
                 .superiorCourses(this.superiorCourses)
