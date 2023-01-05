@@ -1,16 +1,16 @@
 package br.com.connectpeople.user.usecase;
 
-import br.com.connectpeople.adapters.repository.UserRepository;
-import br.com.connectpeople.exception.RegisterAlreadyExistsException;
-import br.com.connectpeople.exception.WeakPasswordException;
+import br.com.connectpeople.user.repository.UserRepository;
+import br.com.connectpeople.commons.exception.RegisterAlreadyExistsException;
+import br.com.connectpeople.commons.exception.WeakPasswordException;
 import br.com.connectpeople.user.domain.Role;
 import br.com.connectpeople.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_EMAIL_ALREADY_REGISTER;
-import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_WEAK_PASSWORD;
+import static br.com.connectpeople.commons.constants.Constants.ErrorMessage.ERROR_MSG_EMAIL_ALREADY_REGISTER;
+import static br.com.connectpeople.commons.constants.Constants.ErrorMessage.ERROR_MSG_WEAK_PASSWORD;
 
 @Service
 @RequiredArgsConstructor

@@ -1,6 +1,6 @@
 package br.com.connectpeople.resume.domain;
 
-import br.com.connectpeople.adapters.repository.entity.ResumeEntity;
+import br.com.connectpeople.resume.repository.entity.ResumeEntity;
 import br.com.connectpeople.resume.domain.enums.Gender;
 import br.com.connectpeople.resume.domain.enums.Schooling;
 import lombok.Builder;

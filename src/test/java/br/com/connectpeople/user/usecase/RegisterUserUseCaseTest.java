@@ -1,7 +1,7 @@
 package br.com.connectpeople.user.usecase;
 
-import br.com.connectpeople.adapters.repository.UserRepository;
-import br.com.connectpeople.adapters.repository.entity.UserEntity;
+import br.com.connectpeople.user.repository.UserRepository;
+import br.com.connectpeople.user.repository.entity.UserEntity;
 import br.com.connectpeople.user.domain.Role;
 import br.com.connectpeople.user.domain.User;
 import org.junit.jupiter.api.Test;

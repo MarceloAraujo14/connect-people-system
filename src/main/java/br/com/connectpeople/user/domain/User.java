@@ -1,6 +1,6 @@
 package br.com.connectpeople.user.domain;
 
-import br.com.connectpeople.adapters.repository.entity.UserEntity;
+import br.com.connectpeople.user.repository.entity.UserEntity;
 import lombok.Builder;
 import lombok.Data;
 
