@@ -9,13 +9,14 @@ import java.util.List;
 @Component
 public class SuperiorCourseMapper {
 
-    private SuperiorCourseMapper(){};
+    private SuperiorCourseMapper(){}
 
     public static SuperiorCourseEntity toEntity(SuperiorCourse superiorCourse){
         return SuperiorCourseEntity.builder()
                 .institution(superiorCourse.getInstitution())
                 .course(superiorCourse.getCourse())
                 .conclusionYear(superiorCourse.getConclusionYear())
+                .status(superiorCourse.getStatus())
                 .build();
     }
 

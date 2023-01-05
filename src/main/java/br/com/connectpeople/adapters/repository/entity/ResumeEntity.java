@@ -41,6 +41,7 @@ public class ResumeEntity {
     private String lastName;
 
     @Column(name = "gender", nullable = false)
+    @Enumerated(value = EnumType.STRING)
     private Gender gender;
 
     @Column(name = "birth_date", nullable = false)
