@@ -56,13 +56,15 @@
                      aria-labelledby="nav-personal-tab" tabindex="0">
                     <div class="row">
                         <div class="col-md-5">
-                            <label for="name" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="name" placeholder="Nome" name="name">
+                            <label for="firstName" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="Nome" name="firstName">
+                            <error for="firstName"></error>
                         </div>
                         <div class="col-md-5">
-                            <label for="lastname" class="form-label">Sobrenome</label>
-                            <input type="text" class="form-control" id="lastname" placeholder="Sobrenome"
-                                   name="lastname">
+                            <label for="lastName" class="form-label">Sobrenome</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Sobrenome"
+                                   name="lastName">
+                                   <error for="lastName"></error>
                         </div>
                     </div>
 
@@ -74,11 +76,13 @@
                                 <option value="F">F</option>
                                 <option value="N">NI</option>
                             </select>
+                            <error for="gender"></error>
                         </div>
 
                         <div class="col-md-3">
                             <label for="birthDate" class="form-label">Nascimento</label>
                             <input type="date" class="form-control" id="birthDate" name="birthDate" />
+                            <error for="birthDate"></error>
                         </div>
                     </div>
 
@@ -87,12 +91,14 @@
                             <label for="phone" class="form-label">Telefone</label>
                             <input type="text" class="form-control" id="phone" placeholder="(00) 0000-0000"
                                    name="phone">
+                                   <error for="phone"></error>
                         </div>
 
                         <div class="col-md-4">
                             <label for="cellPhone" class="form-label">Celular</label>
                             <input type="text" class="form-control" id="cellPhone" placeholder="(00) 0000-0000"
                                    name="cellPhone">
+                                   <error for="cellPhone"></error>
                         </div>
                     </div>
 
@@ -101,12 +107,14 @@
                             <label for="email" class="form-label">Email</label>
                             <input type="text" class="form-control" id="email" placeholder="jhondoe@gmail.com"
                                    name="email">
+                                   <error for="email"></error>
                         </div>
 
                         <div class="col-md-5">
                             <label for="linkedin" class="form-label">Linkedin</label>
                             <input type="text" class="form-control" id="linkedin"
                                    placeholder="https://linkedin.com/in/jhondoe" name="linkedin">
+                                   <error for="linkedin"></error>
                         </div>
                     </div>
 
@@ -115,14 +123,17 @@
                             <label for="postalCode" class="form-label">CEP</label>
                             <input type="text" class="form-control" id="postalCode" placeholder="00000-000"
                                    name="postalCode">
+                                   <error for="postalCode"></error>
                         </div>
                         <div class="col-md-5">
                             <label for="district" class="form-label">Bairro</label>
                             <input type="text" class="form-control" id="district" name="district">
+                            <error for="district"></error>
                         </div>
                         <div class="col-md-5">
                             <label for="city" class="form-label">Cidade</label>
                             <input type="text" class="form-control" id="city" name="city">
+                            <error for="city"></error>
                         </div>
                     </div>
                 </div>
@@ -140,7 +151,7 @@
                             <label for="schooling" class="form-label">Escolaridade</label>
                             <select id="schooling" onchange="resetCount();addSuperior();" name="schooling"
                                     class="form-select option">
-                                <option value="PRIMARIO_INCOMPLETO">Primário Incompleto</option>
+                                <option value="PRIMARIO_INCOMPLETO" selected>Primário Incompleto</option>
                                 <option value="PRIMARIO_COMPLETO">Primário completo</option>
                                 <option value="FUNDAMENTAL_INCOMPLETO">Fundamental Incompleto</option>
                                 <option value="FUNDAMENTAL_COMPLETO">Fundamental completo</option>
@@ -149,6 +160,7 @@
                                 <option value="SUPERIOR_INCOMPLETO">Superior Incompleto</option>
                                 <option value="SUPERIOR_COMPLETO">Superior completo</option>
                             </select>
+                            <error for="schooling"></error>
                         </div>
                     </div>
                     <br>
@@ -174,10 +186,11 @@
                         <div class="col-md-4">
                             <label for="jobOptionOne" class="form-label">Opção 1</label>
                             <select id="jobOptionOne" class="form-select option" name="jobOptionOne">
-                                <option value="Hoteleiro">Recepcionista</option>
+                                <option value="Hoteleiro" selected>Recepcionista</option>
                                 <option value="Camareira">Camareira</option>
                                 <option value="Almoxarife">Almoxarife</option>
                             </select>
+                            <error for="jobOptionOne"></error>
                         </div>
                         <div class="col-md-4">
                             <label for="jobOptionTwo" class="form-label">Opção 2</label>

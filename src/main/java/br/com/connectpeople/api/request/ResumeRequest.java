@@ -70,7 +70,7 @@ public class ResumeRequest {
 
     private List<Course> courses;
 
-    @NotBlank(message = ERROR_MSG_FIELD_CANNOT_BE_EMPTY)
+    @NotBlank(message = ERROR_MSG_SELECT_OPTION)
     private String jobOptionOne;
 
     private String jobOptionTwo;
