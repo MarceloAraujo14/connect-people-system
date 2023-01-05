@@ -13,7 +13,6 @@ import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_FI
 @Data
 public class SuperiorCourse {
 
-    private Long id;
     @NotBlank(message = ERROR_MSG_FIELD_CANNOT_BE_EMPTY)
     private String institution;
     @NotBlank(message = ERROR_MSG_FIELD_CANNOT_BE_EMPTY)

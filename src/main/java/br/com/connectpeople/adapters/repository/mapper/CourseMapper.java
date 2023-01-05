@@ -12,7 +12,6 @@ public class CourseMapper {
 
     public static CourseEntity toCourseEntity(Course course){
         return CourseEntity.builder()
-                .cid(course.getCid())
                 .name(course.getName())
                 .institution(course.getInstitution())
                 .type(course.getType())

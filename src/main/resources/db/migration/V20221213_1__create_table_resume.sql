@@ -10,9 +10,10 @@ CREATE TABLE if not exists resume (
    linkedin VARCHAR(120),
    postal_code VARCHAR(12) NOT NULL,
    district VARCHAR(80) NOT NULL,
+   city VARCHAR(80) NOT NULL,
+   schooling VARCHAR(40) NOT NULL,
    job_option_one VARCHAR(50) NOT NULL,
    job_option_two VARCHAR(50),
    job_option_three VARCHAR(50),
-   schooling VARCHAR(40) NOT NULL,
    CONSTRAINT pk_resume PRIMARY KEY (cid)
 );

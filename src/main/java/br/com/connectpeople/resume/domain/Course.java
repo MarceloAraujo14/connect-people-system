@@ -19,9 +19,6 @@ import static br.com.connectpeople.constants.Constants.ErrorMessage.ERROR_MSG_FI
 @NoArgsConstructor
 public class Course {
 
-    private Long id;
-
-    private String cid;
     @NotBlank(message = ERROR_MSG_FIELD_CANNOT_BE_EMPTY)
     private String institution;
     @NotBlank(message = ERROR_MSG_FIELD_CANNOT_BE_EMPTY)
