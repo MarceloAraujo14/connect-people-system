@@ -328,6 +328,7 @@ function resetCount(){
 }
 
 let courseCount = 0;
+
 function addCourse(){
   if(courseCount >= 5){
     return;
@@ -350,13 +351,13 @@ function addCourse(){
     <div class="col-md-4">
         <label for="course_type" class="form-label">Tipo</label>
         <select id="course_type" class="form-select option" name="course_type">
-            <option value="Hoteleiro">Curso Livre</option>
-            <option value="Camareira">Certificado</option>
-            <option value="Camareira">Curso Técnico</option>
-            <option value="Almoxarife">Pós Graduação</option>
-            <option value="Almoxarife">Mestrado</option>
-            <option value="Almoxarife">MBA</option>
-            <option value="Almoxarife">Outros</option>
+            <option value="LIVRE">Curso Livre</option>
+            <option value="CERTIFICADO">Certificado</option>
+            <option value="TECNICO">Curso Técnico</option>
+            <option value="POS_GRADUACAO">Pós Graduação</option>
+            <option value="MESTRADO">Mestrado</option>
+            <option value="MBA">MBA</option>
+            <option value="OUTROS">Outros</option>
         </select>
     </div>
   </div>
@@ -382,6 +383,68 @@ function deleteCourse(element){
   courseCount--;
 }
 
+function getJobExperiences(){
+  const jobs = document.querySelectorAll('#jobExperiences');
+
+  let jobExperiences = []
+
+  for(i = 0; i < jobs.length; i++){
+    const title = jobs[i].querySelector('#title').value;
+    const company = jobs[i].querySelector('#company').value;
+    const currentJob = jobs[i].querySelector('#currentJob').checked;
+    const startYear = jobs[i].querySelector('#startYear').value;
+    const endYear = jobs[i].querySelector('#endYear').value;
+    const startMonth = jobs[i].querySelector('#startMonth').value;
+    const endMonth = jobs[i].querySelector('#endMonth').value;
+    const description = jobs[i].querySelector('#description').value;
+
+    jobExperiences[i] = {title, company, currentJob, startYear, startMonth, endMonth, endYear, description}
+  }
+
+  return jobExperiences;
+}
+
+function getSuperiorCourses() { 
+  const superior = document.querySelectorAll('#superior-child')
+
+  let superiorCourses = []
+
+  for(i = 0; i < superior.length; i++){
+
+    const course = superior[i].querySelector('#superior_course').value;
+    const institution = superior[i].querySelector('#superior_institution').value;
+    let status = 'CONCLUIDO'
+    let conclusionYear = 0;
+
+    try{
+      status = superior[i].querySelector('#superior_status').value;
+    }catch(error){}
+    try{
+      conclusionYear = superior[i].querySelector('#conclusionYear').value;
+    }catch(error){}
+   
+
+    superiorCourses[i] = {course, institution, status, conclusionYear}
+  }
+
+  return superiorCourses;
+ }
+
+function getCourses(){
+  const courses = document.querySelectorAll('#course-child')
+
+  let courseList = []
+
+  for(i = 0; i < courses.length; i++){
+    const name = courses[i].querySelector('#course_name').value;
+    const institution = courses[i].querySelector('#course_institution').value;
+    const type = courses[i].querySelector('#course_type').value;
+
+    courseList[i] = {name, institution, type};
+  }
+  return courseList;
+}
+
 function buildResumeFromJson() {
 
   const form = document.querySelector('form');
@@ -396,13 +459,29 @@ function buildResumeFromJson() {
   data.delete("startMonth");
   data.delete("endMonth");
   data.delete("description");
+  data.delete("superior_course");
+  data.delete("superior_institution");
+  data.delete("superior_status");
+  data.delete("conclusionYear");
+  data.delete("course_name");
+  data.delete("course_institution");
+  data.delete("course_type");
 
   const resume = Object.fromEntries(data.entries());
 
-  console.log(Object.fromEntries(data.entries()));
+  resume.jobExperiences = getJobExperiences();
+
+  resume.superiorCourses = getSuperiorCourses();
+
+  resume.courses = getCourses();
+
+  console.log(resume)
 
   return resume;
 }
+
+
+
 
 async function sendResume() {
 
