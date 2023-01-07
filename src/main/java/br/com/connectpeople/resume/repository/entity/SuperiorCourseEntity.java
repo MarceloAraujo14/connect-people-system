@@ -23,7 +23,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @AllArgsConstructor
-@Entity(name = "superior_couse")
+@Entity(name = "superior_course")
 @NoArgsConstructor
 public class SuperiorCourseEntity {
 

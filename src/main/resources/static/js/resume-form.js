@@ -1,6 +1,7 @@
 function loadMonthAndYear() {
 
-  var monthSelect = document.getElementsByName("month");
+  var monthSelect = document.getElementsByClassName("month");
+  monthSelect = Array.from(monthSelect);
   var months = [
     "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
     "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
@@ -15,7 +16,8 @@ function loadMonthAndYear() {
     }
   });
 
-  var yearSelec = document.getElementsByName("year");
+  var yearSelec = document.getElementsByClassName("year");
+  yearSelec = Array.from(yearSelec);
 
   var startYear = new Date().getFullYear() - 100;
   var endYear = new Date().getFullYear();
@@ -42,69 +44,71 @@ function addJobExp() {
   const job_xp = document.createDocumentFragment();
   const job = document.createElement('div');
   job.className = "job-experience";
-  job.innerHTML = `<div id="jobExperiences">
-  <div class="row">
-    <div class="col-md-6">
-      <label for="title" class="form-label">Título</label>
-      <input type="text" name="title" class="form-control" id="title" placeholder="Hoteleiro">
-      <error for="title"></error>
-    </div>
+  job.id = "job-experience";
+  job.innerHTML = `
+  <div id="jobExperiences" name="jobExperiences">
+    <div class="row">
+      <div class="col-md-6">
+        <label for="title" class="form-label">Título</label>
+        <input type="text" name="title" class="form-control" id="title" placeholder="Hoteleiro">
+        <error for="title"></error>
+      </div>
 
-    <div class="col-md-6">
-      <label for="company" class="form-label">Empresa</label>
-      <input type="text" name="company" class="form-control" id="company" placeholder="Company S.A.">
-      <error for="company"></error>
+      <div class="col-md-6">
+        <label for="company" class="form-label">Empresa</label>
+        <input type="text" name="company" class="form-control" id="company" placeholder="Company S.A.">
+        <error for="company"></error>
+      </div>
     </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="col" id="startJob">
-      <p>Entrada</p>
-      <div class="row">
-        <div class="col-md-5">
-          <label for="startMonth" class="form-label">Mês</label>
-          <select class="form-select month" id="startMonth" name="month"></select>
-          <error for="startMonth"></error>
+    <br>
+    <div class="row">
+      <div class="col" id="startJob">
+        <p>Entrada</p>
+        <div class="row">
+          <div class="col-md-5">
+            <label for="startMonth" class="form-label">Mês</label>
+            <select class="form-select month" id="startMonth" name="startMonth"></select>
+            <error for="startMonth"></error>
+          </div>
+          <div class="col-md-4">
+            <label for="startYear" class="form-label">Ano</label>
+            <select class="form-select year" id="startYear" name="startYear"></select>
+            <error for="startYear"></error>
+          </div>
+          <div class="row-cols-1">
+            <label class="form-check-label" for="currentJob">Trabalho atual</label>
+            <input class="form-check-input" onchange="checkCurrentJob(this)" type="checkbox" id="currentJob" name="currentJob" checked>
+          </div>
         </div>
-        <div class="col-md-4">
-          <label for="startYear" class="form-label">Ano</label>
-          <select class="form-select year" id="startYear" name="year"></select>
-          <error for="startYear"></error>
-        </div>
-        <div class="row-cols-1">
-          <label class="form-check-label" for="isCurrentJob">Trabalho atual</label>
-          <input class="form-check-input" onchange="currentJob(this)" type="checkbox" id="isCurrentJob" name="isCurrentJob" checked>
+      </div>
+
+      <div class="col" id="endJob">
+        <p>Saída</p>
+        <div class="row">
+          <div class="col-md-5">
+            <label for="endMonth" class="form-label">Mês</label>
+            <select class="form-select month" id="endMonth" name="endMonth"></select>
+            <error for="endMonth"></error>
+          </div>
+          <div class="col-md-4">
+            <label for="endYear" class="form-label">Ano</label>
+            <select class="form-select year" id="endYear" name="endYear"></select>
+            <error for="endYear"></error>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="col" id="endJob">
-      <p>Saída</p>
-      <div class="row">
-        <div class="col-md-5">
-          <label for="endMonth" class="form-label">Mês</label>
-          <select class="form-select month" id="endMonth" name="month"></select>
-          <error for="endMonth"></error>
-        </div>
-        <div class="col-md-4">
-          <label for="endYear" class="form-label">Ano</label>
-          <select class="form-select year" id="endYear" name="year"></select>
-          <error for="endYear"></error>
-        </div>
-      </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Descrição</label>
+      <textarea class="form-control" id="description" rows="3" name="description"></textarea>
+      <error for="description"></error>
     </div>
-  </div>
-
-  <div class="mb-3">
-    <label for="description" class="form-label">Descrição</label>
-    <textarea class="form-control" id="description" rows="3" name="description"></textarea>
-    <error for="description"></error>
-  </div>
-  <div class="del-xp-container">
-    <button type="button" class="btn-del" onclick="deleteJobExp(this)">- Remover Experiência</button>
-  </div>
-  <div class="divider"></div>
-  <br> </div>
+    <div class="del-xp-container">
+      <button type="button" class="btn-del" onclick="deleteJobExp(this)">- Remover Experiência</button>
+    </div>
+    <div class="divider"></div>
+    <br> </div>
 </div>`;
 
   job_xp.append(job);
@@ -117,9 +121,9 @@ function addJobExp() {
   }
 }
 
-function currentJob(checkbox){
-  if(checkbox.checked){
-      checkbox.parentElement.parentElement.parentElement.parentElement.querySelector("#endJob").innerHTML =
+function checkCurrentJob(checkbox) {
+  if (checkbox.checked) {
+    checkbox.parentElement.parentElement.parentElement.parentElement.querySelector("#endJob").innerHTML =
       `<p>Saída</p>
       <div class="row">
         <div class="col-md-5">
@@ -132,7 +136,7 @@ function currentJob(checkbox){
         </div>
       </div>
     </div>`
-  }else {
+  } else {
     checkbox.parentElement.parentElement.parentElement.parentElement.querySelector("#endJob").innerHTML = '';
   }
 }
@@ -151,22 +155,22 @@ const supIncomp = `
   <label>Curso Superior</label>
   <div class="row" id="superior-child">
     <div class="col-md-4">
-        <label for="college_name" class="form-label">Instituição</label>
-        <input type="text" class="form-control" id="college_name" name="college_name">
-        <error for="college_name"></error>
+        <label for="superior_institution" class="form-label">Instituição</label>
+        <input type="text" class="form-control" id="superior_institution" name="superior_institution">
+        <error for="superior_institution"></error>
     </div>
     <div class="col-md-4">
-        <label for="college_course" class="form-label">Curso</label>
-        <input type="text" class="form-control" id="college_course" name="college_course">
-        <error for="college_course"></error>
+        <label for="superior_course" class="form-label">Curso</label>
+        <input type="text" class="form-control" id="superior_course" name="superior_course">
+        <error for="superior_course"></error>
     </div>
     <div class="col-md-4">
-        <label for="college_step" class="form-label">Situação</label>
-        <select id="college_step" class="form-select option" name="college_step">
+        <label for="superior_status" class="form-label">Situação</label>
+        <select id="superior_status" class="form-select option" name="superior_status">
             <option value="CURSANDO">Cursando</option>
             <option value="TRANCADO">Trancado ou Interrompido</option>
         </select>
-        <error for="college_step"></error>
+        <error for="superior_status"></error>
     </div>
   </div>
   <br>
@@ -176,22 +180,30 @@ const supIncompRem = `
   <div class="col" id="superior-child">
     <div class="row">
       <div class="col-md-4">
-          <label for="college_name" class="form-label">Instituição</label>
-          <input type="text" class="form-control" id="college_name" name="college_name">
-          <error for="college_name"></error>
+          <label for="superior_institution
+" class="form-label">Instituição</label>
+          <input type="text" class="form-control" id="superior_institution
+" name="superior_institution
+">
+          <error for="superior_institution
+"></error>
       </div>
       <div class="col-md-4">
-          <label for="college_course" class="form-label">Curso</label>
-          <input type="text" class="form-control" id="college_course" name="college_course">
-          <error for="college_course"></error>
+          <label for="superior_course
+" class="form-label">Curso</label>
+          <input type="text" class="form-control" id="superior_course
+" name="superior_course
+">
+          <error for="superior_course
+"></error>
       </div>
       <div class="col-md-4">
-          <label for="college_step" class="form-label">Situação</label>
-          <select id="college_step" class="form-select option" name="college_step">
+          <label for="superior_status" class="form-label">Situação</label>
+          <select id="superior_status" class="form-select option" name="superior_status">
               <option value="CURSANDO">Cursando</option>
               <option value="TRANCADO">Trancado ou Interrompido</option>
           </select>
-          <error for="college_step"></error>
+          <error for="superior_status"></error>
       </div>
     </div>
     <div class="row">
@@ -206,18 +218,18 @@ const supComp = `
   <label>Curso Superior</label>
   <div class="row" id="superior-child">
     <div class="col-md-4">
-        <label for="college_name" class="form-label">Instituição</label>
-        <input type="text" class="form-control" id="college_name" name="college_name">
-        <error for="college_name"></error>
+        <label for="superior_institution" class="form-label">Instituição</label>
+        <input type="text" class="form-control" id="superior_institution" name="superior_institution">
+        <error for="superior_institution"></error>
     </div>
     <div class="col-md-4">
-        <label for="college_course" class="form-label">Curso</label>
-        <input type="text" class="form-control" id="college_course" name="college_course">
-        <error for="college_course"></error>
+        <label for="superior_course" class="form-label">Curso</label>
+        <input type="text" class="form-control" id="superior_course" name="superior_course">
+        <error for="superior_course"></error>
     </div>
     <div class="col-md-3">
-        <label for="college_year" class="form-label">Ano de Conclusão</label>
-        <select id="college_year" class="form-select option" name="year"></select>
+        <label for="conclusionYear" class="form-label">Ano de Conclusão</label>
+        <select id="conclusionYear" class="form-select option year" name="conclusionYear"></select>
     </div>
   </div>
   <br>
@@ -227,18 +239,26 @@ const supCompRem = `
   <div class="col" id="superior-child">
     <div class="row">
       <div class="col-md-4">
-          <label for="college_name" class="form-label">Instituição</label>
-          <input type="text" class="form-control" id="college_name" name="college_name">
-          <error for="college_name"></error>
+          <label for="superior_institution
+" class="form-label">Instituição</label>
+          <input type="text" class="form-control" id="superior_institution
+" name="superior_institution
+">
+          <error for="superior_institution
+"></error>
       </div>
       <div class="col-md-4">
-          <label for="college_course" class="form-label">Curso</label>
-          <input type="text" class="form-control" id="college_course" name="college_course">
-          <error for="college_course"></error>
+          <label for="superior_course
+" class="form-label">Curso</label>
+          <input type="text" class="form-control" id="superior_course
+" name="superior_course
+">
+          <error for="superior_course
+"></error>
       </div>
       <div class="col-md-3">
-          <label for="college_year" class="form-label">Ano de Conclusão</label>
-          <select id="college_year" class="form-select option" name="year"></select>
+          <label for="conclusionYear" class="form-label">Ano de Conclusão</label>
+          <select id="conclusionYear" class="form-select option year" name="conclusionYear"></select>
       </div>
     </div>
     <div class="row">
@@ -251,7 +271,7 @@ const supCompRem = `
 
 function addSuperior(element) {
 
-  if(superiorCount >=3){
+  if (superiorCount >= 3) {
     return;
   }
 
@@ -259,7 +279,7 @@ function addSuperior(element) {
   var schooling = document.getElementById("schooling");
 
   if (schooling.value == 'SUPERIOR_INCOMPLETO') {
-    if (superiorCount == 0){
+    if (superiorCount == 0) {
       superior.innerHTML = supIncomp;
     } else {
       element.outerHTML = supIncompRem;
@@ -267,9 +287,9 @@ function addSuperior(element) {
 
 
   } else if (schooling.value == 'SUPERIOR_COMPLETO') {
-    if(superiorCount == 0){
+    if (superiorCount == 0) {
       superior.innerHTML = supComp;
-    }else{
+    } else {
       element.outerHTML = supCompRem;
     }
 
@@ -281,7 +301,7 @@ function addSuperior(element) {
   loadMonthAndYear();
   superiorCount++;
 
-  if(superiorCount >= 3){
+  if (superiorCount >= 3) {
     return;
   }
   const btn_sup_container = document.createElement("div");
@@ -292,7 +312,7 @@ function addSuperior(element) {
 
 function deleteSuperior(element) {
   superiorCount--;
-  if(superiorCount == 2 ){
+  if (superiorCount == 2) {
     const superior = document.getElementById("superior-container");
     const btn_sup_container = document.createElement("div");
     btn_sup_container.className = "btn-sup-container";
@@ -302,48 +322,14 @@ function deleteSuperior(element) {
   element.parentElement.parentElement.parentElement.outerHTML = ``;
 }
 
-function resetCount(){
+function resetCount() {
   superiorCount = 0;
-  console.log(superiorCount);
 }
 
-const course = `<div id="course-child" class="row">
-<div class="row">
-    <div class="col-md-4">
-        <label for="course_institution" class="form-label">Instituição</label>
-        <input type="text" class="form-control" id="course_institution"
-            name="course_institution">
-            <error for="course_institution"></error>
-    </div>
-    <div class="col-md-4">
-        <label for="course_name" class="form-label">Certificado ou Curso</label>
-        <input type="text" class="form-control" id="course_name" name="course_name">
-        <error for="course_name"></error>
-    </div>
-    <div class="col-md-4">
-        <label for="course_type" class="form-label">Tipo</label>
-        <select id="course_type" class="form-select option" name="course_type">
-            <option value="LIVRE">Curso Livre</option>
-            <option value="CERTIFICADO">Certificado</option>
-            <option value="TECNICO">Curso Técnico</option>
-            <option value="GRADUACAO">Pós Graduação</option>
-            <option value="MESTRADO">Mestrado</option>
-            <option value="MBA">MBA</option>
-            <option value="OUTROS">Outros</option>
-        </select>
-        <error for="course_type"></error>
-    </div>
-</div>
-<div class="row">
-    <div class="w-25">
-        <button class="btn-add" id="btn-add-course">+ curso</button>
-    </div>
-</div>
-</div>`
-
 let courseCount = 0;
-function addCourse(){
-  if(courseCount >= 5){
+
+function addCourse() {
+  if (courseCount >= 5) {
     return;
   }
   const course_container = document.querySelector("#course-container");
@@ -364,13 +350,13 @@ function addCourse(){
     <div class="col-md-4">
         <label for="course_type" class="form-label">Tipo</label>
         <select id="course_type" class="form-select option" name="course_type">
-            <option value="Hoteleiro">Curso Livre</option>
-            <option value="Camareira">Certificado</option>
-            <option value="Camareira">Curso Técnico</option>
-            <option value="Almoxarife">Pós Graduação</option>
-            <option value="Almoxarife">Mestrado</option>
-            <option value="Almoxarife">MBA</option>
-            <option value="Almoxarife">Outros</option>
+            <option value="LIVRE">Curso Livre</option>
+            <option value="CERTIFICADO">Certificado</option>
+            <option value="TECNICO">Curso Técnico</option>
+            <option value="POS_GRADUACAO">Pós Graduação</option>
+            <option value="MESTRADO">Mestrado</option>
+            <option value="MBA">MBA</option>
+            <option value="OUTROS">Outros</option>
         </select>
     </div>
   </div>
@@ -382,61 +368,125 @@ function addCourse(){
 
   course_container.appendChild(course);
   courseCount++;
-  if(courseCount >= 5){
+  if (courseCount >= 5) {
     document.querySelector("#btn-add-course-container").innerHTML = '';
   }
 }
 
-function deleteCourse(element){
+function deleteCourse(element) {
   element.parentElement.parentElement.parentElement.outerHTML = ``;
-  if(courseCount == 5){
+  if (courseCount == 5) {
     document.querySelector("#btn-add-course-container").innerHTML = `<button type="button" class="btn-add" id="btn-add-course" onclick="addCourse()">+
     curso</button>`;
   }
   courseCount--;
 }
 
-async function buildResumeFromJson() {
+function getJobExperiences() {
+  const jobs = document.querySelectorAll('#jobExperiences');
 
-  var resume = {};
+  let jobExperiences = []
 
-  var form = document.querySelector('form')
-  resume.firstName = form.querySelector('#firstName').value;
-  resume.lastName = form.querySelector('#lastName').value;
-  resume.birthDate = form.querySelector('#birthDate').value;
-  resume.gender = form.querySelector('#gender').value;
-  resume.phone = form.querySelector('#phone').value;
-  resume.cellPhone = form.querySelector('#cellPhone').value;
-  resume.email = form.querySelector('#email').value;
-  resume.linkedin = form.querySelector('#linkedin').value;
-  resume.postalCode = form.querySelector('#postalCode').value;
-  resume.district = form.querySelector('#district').value;
-  resume.city = form.querySelector('#city').value;
-  resume.jobOptionOne = form.querySelector('#jobOptionOne').value;
-  resume.jobOptionTwo = form.querySelector('#jobOptionTwo').value;
-  resume.jobOptionThree = form.querySelector('#jobOptionThree').value;
-  resume.schooling = form.querySelector('#schooling').value;
+  for (i = 0; i < jobs.length; i++) {
+    const title = jobs[i].querySelector('#title').value;
+    const company = jobs[i].querySelector('#company').value;
+    const currentJob = jobs[i].querySelector('#currentJob').checked;
+    const startYear = jobs[i].querySelector('#startYear').value;
+    const endYear = jobs[i].querySelector('#endYear').value;
+    const startMonth = jobs[i].querySelector('#startMonth').value;
+    const endMonth = jobs[i].querySelector('#endMonth').value;
+    const description = jobs[i].querySelector('#description').value;
 
-  const jobExperiences = form.querySelectorAll('#jobExperiences');
-
-  var count = jobExperiences.length;
-
-  for (let i = 0; i < count; i++) {
-    resume['jobExperiences'][i] = {};
-    resume.jobExperiences[i]['title'] = jobExperiences[i].querySelector('#title').value;
-    resume.jobExperiences[i]['company'] = jobExperiences[i].querySelector('#company').value;
-    resume.jobExperiences[i]['startMonth'] = jobExperiences[i].querySelector('#startMonth').value;
-    resume.jobExperiences[i]['startYear'] = jobExperiences[i].querySelector('#startYear').value;
-    resume.jobExperiences[i]['isCurrentJob'] = jobExperiences[i].querySelector('#isCurrentJob').checked;
-    resume.jobExperiences[i]['endMonth'] = jobExperiences[i].querySelector('#endMonth').value;
-    resume.jobExperiences[i]['endYear'] = jobExperiences[i].querySelector('#endYear').value;
-    resume.jobExperiences[i]['description'] = jobExperiences[i].querySelector('#description').value;
+    jobExperiences[i] = { title, company, currentJob, startYear, startMonth, endMonth, endYear, description }
   }
 
-  console.log(resume)
+  return jobExperiences;
+}
+
+function getSuperiorCourses() {
+  const superior = document.querySelectorAll('#superior-child')
+
+  let superiorCourses = []
+
+  for (i = 0; i < superior.length; i++) {
+
+    const course = superior[i].querySelector('#superior_course').value;
+    const institution = superior[i].querySelector('#superior_institution').value;
+    let status = 'CONCLUIDO'
+    let conclusionYear = 0;
+
+    try {
+      status = superior[i].querySelector('#superior_status').value;
+    } catch (error) { }
+    try {
+      conclusionYear = superior[i].querySelector('#conclusionYear').value;
+    } catch (error) { }
+
+
+    superiorCourses[i] = { course, institution, status, conclusionYear }
+  }
+
+  return superiorCourses;
+}
+
+function getCourses() {
+  const courses = document.querySelectorAll('#course-child')
+
+  let courseList = []
+
+  for (i = 0; i < courses.length; i++) {
+    const name = courses[i].querySelector('#course_name').value;
+    const institution = courses[i].querySelector('#course_institution').value;
+    const type = courses[i].querySelector('#course_type').value;
+
+    courseList[i] = { name, institution, type };
+  }
+  return courseList;
+}
+
+function buildResumeFromJson() {
+
+  const form = document.querySelector('form');
+
+  const data = new FormData(form);
+
+  data.delete("title");
+  data.delete("company");
+  data.delete("currentJob");
+  data.delete("startYear");
+  data.delete("endYear");
+  data.delete("startMonth");
+  data.delete("endMonth");
+  data.delete("description");
+  data.delete("superior_course");
+  data.delete("superior_institution");
+  data.delete("superior_status");
+  data.delete("conclusionYear");
+  data.delete("course_name");
+  data.delete("course_institution");
+  data.delete("course_type");
+
+  const resume = Object.fromEntries(data.entries());
+
+  resume.jobExperiences = getJobExperiences();
+
+  resume.superiorCourses = getSuperiorCourses();
+
+  resume.courses = getCourses();
 
   return resume;
 }
+
+function cleanInput(){
+  const inputs = document.querySelectorAll('input');
+  inputs.forEach(function(inp){
+    inp.addEventListener('change', function(){
+      document.querySelector(`error[for=${inp.name}]`).innerHTML = '';
+    })
+  })
+}
+
+cleanInput();
 
 async function sendResume() {
 
@@ -445,24 +495,23 @@ async function sendResume() {
   const response = await post('http://localhost:80/api/resume', resume);
 
   if (response.status >= 200 && response.status <= 299) {
-    document.querySelector('.success-message').innerHTML = "<p>Currículo Cadastrado com sucesso!</p>";
+    document.querySelector('.response-message').innerHTML = "<p>Currículo Cadastrado com sucesso!</p>";
+    document.querySelectorAll('input').forEach(input => input.value = '');
+    document.querySelector('error').innerHTML = '';
   }
 
   if (response.status >= 400 && response.status <= 499) {
-    buildError(response);    
-    document.querySelector('.success-message').innerHTML = "<p>Erro ao Cadastrar curriculo</p>";
+    buildError(response);
+    document.querySelector('.response-message').innerHTML = "<p>Erro ao Cadastrar curriculo</p>";
   }
 
 }
 
-async function buildError(response){
-  
+async function buildError(response) {
   const data = await response.json();
-    for(const key in data){
-      document.querySelector(`error[for="${key}"]`).innerHTML = data[key];
-      console.log(key + ":" + data[key])
-    }
-
+  for (const key in data) {
+    document.querySelector(`error[for="${key}"]`).innerHTML = data[key];
+  }
 }
 
 

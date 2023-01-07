@@ -1,7 +1,7 @@
 FROM gradle:jdk17-alpine as build
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
-RUN gradle build -DskipTests --no-daemon
+RUN gradle build --no-daemon
 
 FROM eclipse-temurin:17.0.5_8-jre-alpine
 

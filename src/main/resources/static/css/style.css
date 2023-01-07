@@ -10,6 +10,10 @@ label {
     padding-top: 15px;
 }
 
+error {
+    font-size: smaller;
+}
+
 .semi-bold-txt {
     font-weight: bolder;
 }

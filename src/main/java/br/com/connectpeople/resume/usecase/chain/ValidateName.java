@@ -16,7 +16,7 @@ import static br.com.connectpeople.commons.constants.Constants.StateProcess.FAIL
 @Component
 public class ValidateName implements ExecutorChain<ResumePayload> {
 
-    public static final String REGEX_NAME = "^[A-Z][a-z]*( [A-Z][a-z]*)?$";
+    public static final String REGEX_NAME = "^[A-Za-z]*( [A-Za-z]*)?$";
 
     static void inputValidate(String field, String value, ResumePayload payload) {
         try {

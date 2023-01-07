@@ -41,8 +41,7 @@ public class ValidateBirthDate implements ExecutorChain<ResumePayload> {
     private static boolean isValid(LocalDate birthDate) {
         LocalDate today = LocalDate.now();
         if (birthDate.isAfter(today)) return false;
-        Period age = Period.between(birthDate, today);
-        return age.getYears() > MIN_AGE && age.getYears() <= MAX_AGE;
+        return birthDate.isAfter(today.minusYears(MAX_AGE)) && birthDate.isBefore(today.minusYears(MIN_AGE));
     }
 
     @Override

@@ -13,6 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Locale;
 
 import static br.com.connectpeople.commons.constants.Constants.ErrorMessage.ERROR_MSG_EMAIL_INVALID;
 import static br.com.connectpeople.commons.constants.Constants.ErrorMessage.ERROR_MSG_FIELD_CANNOT_BE_EMPTY;
@@ -77,8 +78,8 @@ public class ResumeRequest {
 
     public Resume toResume() {
         return Resume.builder()
-                .firstName(this.firstName)
-                .lastName(this.lastName)
+                .firstName(this.firstName.toUpperCase(Locale.ROOT))
+                .lastName(this.lastName.toUpperCase(Locale.ROOT))
                 .birthDate(this.birthDate)
                 .gender(this.gender)
                 .phone(this.phone)
@@ -86,8 +87,8 @@ public class ResumeRequest {
                 .email(this.email)
                 .linkedin(this.linkedin)
                 .postalCode(this.postalCode)
-                .district(this.district)
-                .city(this.city)
+                .district(this.district.toUpperCase(Locale.ROOT))
+                .city(this.city.toUpperCase(Locale.ROOT))
                 .jobExperiences(this.jobExperiences)
                 .schooling(this.schooling)
                 .courses(this.courses)
