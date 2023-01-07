@@ -9,7 +9,8 @@
     <meta name="author" content="">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link href="./css/login-style.css" rel="stylesheet">
+    <link href="./css/login.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
     <title>Connect People</title>
 </head>
 
@@ -25,11 +26,11 @@
                 <span class="semi-bold-txt">&nbsp;&nbsp;&nbsp;Login</span> com Google
             </button>
         </a>
-<!--        <a href="/oauth2/authorization/linkedin">-->
-<!--            <button class="btn-social"><i class="fab fa-linkedin-in"></i>-->
-<!--                <span class="semi-bold-txt">&nbsp;&nbsp;&nbsp;Login</span> com Linkedin-->
-<!--            </button>-->
-<!--        </a>-->
+       <a href="/oauth2/authorization/linkedin">
+           <button class="btn-social"><i class="fab fa-linkedin-in"></i>
+               <span class="semi-bold-txt">&nbsp;&nbsp;&nbsp;Login</span> com Linkedin
+           </button>
+       </a>
     </div>
 
     <div class="divider"></div>
@@ -37,9 +38,9 @@
 
     <form class="form-signin" method="post" th:action="@{/login}">
         <div>
-            <input type="text" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
+            <input type="text" id="email" name="email" class="form-control" placeholder="Email" autocomplete="username" required autofocus>
             <br>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" autocomplete="current-password" required>
         </div>
         <button class="form-btn" type="submit"><span class="semi-bold-txt">Entrar</span></button>
     </form>

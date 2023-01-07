@@ -11,17 +11,14 @@ spring:
           google:
             clientId: ${GOOGLE_CID}
             clientSecret: ${GOOGLE_CS}
-#          linkedin:
-#            clientId: ${LINKEDIN_CID}
-#            clientSecret: ${LINKEDIN_CS}
-#            clientAuthenticationMethod: post
-#            authorizationGrantType: authorization_code
-#            redirectUri: '{baseUrl}/login/oauth2/code/{registrationId}'
-#            scope: r_liteprofile, r_emailaddress
-
-
-#            clientName: Linkedin
-
+          linkedin:
+            clientId: ${LINKEDIN_CID}
+            clientSecret: ${LINKEDIN_CS}
+            clientAuthenticationMethod: client_secret_post
+            authorizationGrantType: authorization_code
+            redirectUri: '{baseUrl}/login/oauth2/code/{registrationId}'
+            scope: r_liteprofile, r_emailaddress
+            clientName: Linkedin
         provider:
           linkedin:
             tokenUri: https://www.linkedin.com/oauth/v2/accessToken
@@ -49,6 +46,6 @@ springdoc:
   swagger-ui:
     path: "/resume/swagger-ui.html"
 
-#logging:
-#  level:
-#    org.springframework.security: TRACE
+logging:
+  level:
+    org.springframework.security: TRACE
