@@ -180,7 +180,7 @@ class ValidateJobExperienceTest {
                 .description("Hoteleiro")
                 .startMonth(2)
                 .startYear(LocalDate.now().getYear() - 1)
-                .isCurrentJob(true)
+                .currentJob(true)
                 .endMonth(4)
                 .endYear(LocalDate.now().getYear())
                 .build();
