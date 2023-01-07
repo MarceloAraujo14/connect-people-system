@@ -121,9 +121,9 @@ function addJobExp() {
   }
 }
 
-function checkCurrentJob(checkbox){
-  if(checkbox.checked){
-      checkbox.parentElement.parentElement.parentElement.parentElement.querySelector("#endJob").innerHTML =
+function checkCurrentJob(checkbox) {
+  if (checkbox.checked) {
+    checkbox.parentElement.parentElement.parentElement.parentElement.querySelector("#endJob").innerHTML =
       `<p>Saída</p>
       <div class="row">
         <div class="col-md-5">
@@ -136,7 +136,7 @@ function checkCurrentJob(checkbox){
         </div>
       </div>
     </div>`
-  }else {
+  } else {
     checkbox.parentElement.parentElement.parentElement.parentElement.querySelector("#endJob").innerHTML = '';
   }
 }
@@ -271,7 +271,7 @@ const supCompRem = `
 
 function addSuperior(element) {
 
-  if(superiorCount >=3){
+  if (superiorCount >= 3) {
     return;
   }
 
@@ -279,7 +279,7 @@ function addSuperior(element) {
   var schooling = document.getElementById("schooling");
 
   if (schooling.value == 'SUPERIOR_INCOMPLETO') {
-    if (superiorCount == 0){
+    if (superiorCount == 0) {
       superior.innerHTML = supIncomp;
     } else {
       element.outerHTML = supIncompRem;
@@ -287,9 +287,9 @@ function addSuperior(element) {
 
 
   } else if (schooling.value == 'SUPERIOR_COMPLETO') {
-    if(superiorCount == 0){
+    if (superiorCount == 0) {
       superior.innerHTML = supComp;
-    }else{
+    } else {
       element.outerHTML = supCompRem;
     }
 
@@ -301,7 +301,7 @@ function addSuperior(element) {
   loadMonthAndYear();
   superiorCount++;
 
-  if(superiorCount >= 3){
+  if (superiorCount >= 3) {
     return;
   }
   const btn_sup_container = document.createElement("div");
@@ -312,7 +312,7 @@ function addSuperior(element) {
 
 function deleteSuperior(element) {
   superiorCount--;
-  if(superiorCount == 2 ){
+  if (superiorCount == 2) {
     const superior = document.getElementById("superior-container");
     const btn_sup_container = document.createElement("div");
     btn_sup_container.className = "btn-sup-container";
@@ -322,15 +322,14 @@ function deleteSuperior(element) {
   element.parentElement.parentElement.parentElement.outerHTML = ``;
 }
 
-function resetCount(){
+function resetCount() {
   superiorCount = 0;
-  console.log(superiorCount);
 }
 
 let courseCount = 0;
 
-function addCourse(){
-  if(courseCount >= 5){
+function addCourse() {
+  if (courseCount >= 5) {
     return;
   }
   const course_container = document.querySelector("#course-container");
@@ -369,26 +368,26 @@ function addCourse(){
 
   course_container.appendChild(course);
   courseCount++;
-  if(courseCount >= 5){
+  if (courseCount >= 5) {
     document.querySelector("#btn-add-course-container").innerHTML = '';
   }
 }
 
-function deleteCourse(element){
+function deleteCourse(element) {
   element.parentElement.parentElement.parentElement.outerHTML = ``;
-  if(courseCount == 5){
+  if (courseCount == 5) {
     document.querySelector("#btn-add-course-container").innerHTML = `<button type="button" class="btn-add" id="btn-add-course" onclick="addCourse()">+
     curso</button>`;
   }
   courseCount--;
 }
 
-function getJobExperiences(){
+function getJobExperiences() {
   const jobs = document.querySelectorAll('#jobExperiences');
 
   let jobExperiences = []
 
-  for(i = 0; i < jobs.length; i++){
+  for (i = 0; i < jobs.length; i++) {
     const title = jobs[i].querySelector('#title').value;
     const company = jobs[i].querySelector('#company').value;
     const currentJob = jobs[i].querySelector('#currentJob').checked;
@@ -398,49 +397,49 @@ function getJobExperiences(){
     const endMonth = jobs[i].querySelector('#endMonth').value;
     const description = jobs[i].querySelector('#description').value;
 
-    jobExperiences[i] = {title, company, currentJob, startYear, startMonth, endMonth, endYear, description}
+    jobExperiences[i] = { title, company, currentJob, startYear, startMonth, endMonth, endYear, description }
   }
 
   return jobExperiences;
 }
 
-function getSuperiorCourses() { 
+function getSuperiorCourses() {
   const superior = document.querySelectorAll('#superior-child')
 
   let superiorCourses = []
 
-  for(i = 0; i < superior.length; i++){
+  for (i = 0; i < superior.length; i++) {
 
     const course = superior[i].querySelector('#superior_course').value;
     const institution = superior[i].querySelector('#superior_institution').value;
     let status = 'CONCLUIDO'
     let conclusionYear = 0;
 
-    try{
+    try {
       status = superior[i].querySelector('#superior_status').value;
-    }catch(error){}
-    try{
+    } catch (error) { }
+    try {
       conclusionYear = superior[i].querySelector('#conclusionYear').value;
-    }catch(error){}
-   
+    } catch (error) { }
 
-    superiorCourses[i] = {course, institution, status, conclusionYear}
+
+    superiorCourses[i] = { course, institution, status, conclusionYear }
   }
 
   return superiorCourses;
- }
+}
 
-function getCourses(){
+function getCourses() {
   const courses = document.querySelectorAll('#course-child')
 
   let courseList = []
 
-  for(i = 0; i < courses.length; i++){
+  for (i = 0; i < courses.length; i++) {
     const name = courses[i].querySelector('#course_name').value;
     const institution = courses[i].querySelector('#course_institution').value;
     const type = courses[i].querySelector('#course_type').value;
 
-    courseList[i] = {name, institution, type};
+    courseList[i] = { name, institution, type };
   }
   return courseList;
 }
@@ -475,13 +474,19 @@ function buildResumeFromJson() {
 
   resume.courses = getCourses();
 
-  console.log(resume)
-
   return resume;
 }
 
+function cleanInput(){
+  const inputs = document.querySelectorAll('input');
+  inputs.forEach(function(inp){
+    inp.addEventListener('change', function(){
+      document.querySelector(`error[for=${inp.name}]`).innerHTML = '';
+    })
+  })
+}
 
-
+cleanInput();
 
 async function sendResume() {
 
@@ -490,22 +495,22 @@ async function sendResume() {
   const response = await post('http://localhost:80/api/resume', resume);
 
   if (response.status >= 200 && response.status <= 299) {
-    document.querySelector('.success-message').innerHTML = "<p>Currículo Cadastrado com sucesso!</p>";
+    document.querySelector('.response-message').innerHTML = "<p>Currículo Cadastrado com sucesso!</p>";
+    document.querySelectorAll('input').forEach(input => input.value = '');
   }
 
   if (response.status >= 400 && response.status <= 499) {
-    buildError(response);    
-    document.querySelector('.success-message').innerHTML = "<p>Erro ao Cadastrar curriculo</p>";
+    buildError(response);
+    document.querySelector('.response-message').innerHTML = "<p>Erro ao Cadastrar curriculo</p>";
   }
 
 }
 
-async function buildError(response){
+async function buildError(response) {
   const data = await response.json();
-    for(const key in data){
-      document.querySelector(`error[for="${key}"]`).innerHTML = data[key];
-      console.log(key + ":" + data[key])
-    }
+  for (const key in data) {
+    document.querySelector(`error[for="${key}"]`).innerHTML = data[key];
+  }
 }
 
 
