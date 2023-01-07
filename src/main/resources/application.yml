@@ -46,6 +46,6 @@ springdoc:
   swagger-ui:
     path: "/resume/swagger-ui.html"
 
-#logging:
-#  level:
-#    org.springframework.security: TRACE
+logging:
+  level:
+    org.springframework.security: TRACE
