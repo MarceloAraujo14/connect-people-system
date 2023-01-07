@@ -492,7 +492,7 @@ async function sendResume() {
 
   const resume = buildResumeFromJson();
 
-  const response = await post('http://localhost:80/api/resume', resume);
+  const response = await post('/api/resume', resume);
 
   if (response.status >= 200 && response.status <= 299) {
     document.querySelector('.response-message').innerHTML = "<p>Currículo Cadastrado com sucesso!</p>";
