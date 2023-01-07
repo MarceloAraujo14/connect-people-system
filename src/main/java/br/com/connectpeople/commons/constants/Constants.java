@@ -12,7 +12,7 @@ public class Constants {
         public static final String ERROR_MSG_SELECT_OPTION = "Selecione uma opção.";
         public static final String ERROR_MSG_VALID_OPTION = "Opção inválida.";
         public static final String ERROR_MSG_NAME_INVALID = "Nome inválido.";
-        public static final String ERROR_MSG_BIRTH_DATE_BEFORE_AFTER = "Data inválida 15 e 100 anos";
+        public static final String ERROR_MSG_BIRTH_DATE_BEFORE_AFTER = "Data inválida.";
         public static final String ERROR_MSG_BIRTH_DATE_FORMAT = "Formato válido yyyy/MM/dd";
         public static final String ERROR_MSG_POSTALCODE_INVALID = "CEP inválido";
         public static final String ERROR_MSG_PHONENUMBER_INVALID = "Telefone inválido";

@@ -497,6 +497,7 @@ async function sendResume() {
   if (response.status >= 200 && response.status <= 299) {
     document.querySelector('.response-message').innerHTML = "<p>Currículo Cadastrado com sucesso!</p>";
     document.querySelectorAll('input').forEach(input => input.value = '');
+    document.querySelector('error').innerHTML = '';
   }
 
   if (response.status >= 400 && response.status <= 499) {
