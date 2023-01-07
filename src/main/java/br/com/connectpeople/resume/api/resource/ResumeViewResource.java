@@ -24,14 +24,17 @@ public class ResumeViewResource {
     }
 
     private String getUsername(Authentication authentication){
-        DefaultOAuth2User user = (DefaultOAuth2User) authentication.getPrincipal();
-        if(user.getAttributes().containsKey("localizedFirstName")){
-            return user.getAttribute("localizedFirstName") + " " + user.getAttribute("localizedLastName");
+        try{
+            DefaultOAuth2User user = (DefaultOAuth2User) authentication.getPrincipal();
+            if(user.getAttributes().containsKey("localizedFirstName")){
+                return user.getAttribute("localizedFirstName") + " " + user.getAttribute("localizedLastName");
+            }
+            if(user.getAttributes().containsKey("given_name")){
+                return user.getAttribute("given_name");
+            }
+        }catch (Exception ignored){
         }
-        if(user.getAttributes().containsKey("given_name")){
-            return user.getAttribute("given_name");
-        }
-        return user.getName();
+        return authentication.getName();
     }
 
 }
