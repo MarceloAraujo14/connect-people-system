@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <form class="col-lg-8">
+        <form class="col-lg-8" method="post" th:action="@{/api/resume}">
             <nav>
                 <div class="nav nav-tabs " id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-personal-tab" data-bs-toggle="tab"
