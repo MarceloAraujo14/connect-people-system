@@ -17,3 +17,7 @@ async function post(url, obj) {
 
   return response;
 }
+
+function errorHandler(response){
+  
+}

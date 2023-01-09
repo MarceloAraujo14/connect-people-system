@@ -11,13 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class ResumeViewResource {
 
-    @GetMapping
-    public String home(Authentication authentication, Model model){
-        model.addAttribute("username", getUsername(authentication));
-        return "resume-form";
-    }
-
-    @GetMapping("/resume")
+    @GetMapping(path = {"/resume", "/"})
     public String resume(Authentication authentication, Model model){
         model.addAttribute("username", getUsername(authentication));
         return "resume-form";

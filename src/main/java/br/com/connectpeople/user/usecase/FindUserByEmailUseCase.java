@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class FindUserByEmailUseCase {
 
-
     private final UserRepository userRepository;
 
     public User execute(String email){

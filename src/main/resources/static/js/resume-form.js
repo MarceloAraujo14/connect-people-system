@@ -504,7 +504,6 @@ async function sendResume() {
     buildError(response);
     document.querySelector('.response-message').innerHTML = "<p>Erro ao Cadastrar curriculo</p>";
   }
-
 }
 
 async function buildError(response) {
