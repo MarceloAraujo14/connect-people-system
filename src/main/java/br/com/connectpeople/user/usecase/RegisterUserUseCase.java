@@ -1,5 +1,7 @@
 package br.com.connectpeople.user.usecase;
 
+import br.com.connectpeople.security.JwtService;
+import br.com.connectpeople.user.api.AuthenticationResponse;
 import br.com.connectpeople.user.repository.UserRepository;
 import br.com.connectpeople.commons.exception.RegisterAlreadyExistsException;
 import br.com.connectpeople.commons.exception.WeakPasswordException;
@@ -17,17 +19,19 @@ import static br.com.connectpeople.commons.constants.Constants.ErrorMessage.ERRO
 public class RegisterUserUseCase {
 
     private final UserRepository userRepository;
-
+    private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
 
-    public User execute(User user){
+    public AuthenticationResponse execute(User user){
 
         duplicatedEmailValidate(user.getEmail());
         weakPasswordValidate(user.getPassword());
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(Role.USER);
-        return userRepository.save(user.toEntity()).toUser();
+        user.setRole(Role.USER);
+        userRepository.save(user.toEntity());
+        var jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse.builder().token(jwtToken).build();
     }
 
     private void duplicatedEmailValidate(String email){

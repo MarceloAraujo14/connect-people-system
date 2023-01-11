@@ -1,5 +1,6 @@
 package br.com.connectpeople.user.usecase;
 
+import br.com.connectpeople.security.JwtService;
 import br.com.connectpeople.user.repository.UserRepository;
 import br.com.connectpeople.user.repository.entity.UserEntity;
 import br.com.connectpeople.user.domain.Role;
@@ -26,13 +27,12 @@ class RegisterUserUseCaseTest {
 
     @Mock
     UserRepository userRepository;
-
     @Mock
     PasswordEncoder passwordEncoder;
-
+    @Mock
+    JwtService jwtService;
     @InjectMocks
     RegisterUserUseCase registerUserUseCase;
-
     @Captor
     ArgumentCaptor<UserEntity> userEntityCaptor;
 
@@ -48,7 +48,7 @@ class RegisterUserUseCaseTest {
         verify(passwordEncoder, times(1)).encode(user.getPassword());
         verify(userRepository, times(1)).findById(user.getEmail());
         verify(userRepository, times(1)).save(userEntityCaptor.capture());
-        assertEquals(Role.USER, userEntityCaptor.getValue().getRoles());
+        assertEquals(Role.USER, userEntityCaptor.getValue().getRole());
 
     }
 

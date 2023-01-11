@@ -31,13 +31,13 @@ public class UserEntity {
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
-    private Role roles;
+    private Role role;
 
     public User toUser(){
         return User.builder()
                 .email(this.email)
                 .password(this.password)
-                .roles(roles)
+                .role(this.role)
                 .build();
     }
 

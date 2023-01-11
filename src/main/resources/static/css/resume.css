@@ -50,14 +50,7 @@
     color: rgb(252, 213, 162);
 }
 
-.btn-header {
-    background-color: black;
-    color: rgb(252, 213, 162);
-    border-style: solid;
-    border: 2px solid rgb(255, 255, 255);
-    border-radius: 0;
-    
-}
+
 
 .btn-form:hover,
 .submit-btn:hover,
