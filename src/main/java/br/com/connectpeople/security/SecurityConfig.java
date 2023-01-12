@@ -44,40 +44,11 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
-@EnableConfigurationProperties(OAuth2ClientProperties.class)
 public class SecurityConfig {
 
     public static final String LOGIN = "/login";
-    private final AuthenticationProvider authenticationProvider;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final UserRepository repository;
-
-    @Value("${security.admin}")
-    private String pass;
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return username -> repository.findById(username).map(UserEntity::toUser)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-    }
-
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
-
-    @Bean
-    public static PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(10);
-    }
+    private final AuthenticationProvider authenticationProvider;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
@@ -133,14 +104,5 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public UserDetailsService users(){
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(passwordEncoder().encode(pass))
-                .roles(Role.ADMIN.toString())
-                .build();
 
-        return new InMemoryUserDetailsManager(admin);
-    }
 }
