@@ -1,8 +1,8 @@
-package br.com.connectpeople.user.usecase;
+package br.com.connectpeople.security.usecase;
 
-import br.com.connectpeople.user.repository.UserRepository;
+import br.com.connectpeople.security.domain.User;
+import br.com.connectpeople.security.repository.UserRepository;
 import br.com.connectpeople.commons.exception.UserNotFoundException;
-import br.com.connectpeople.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

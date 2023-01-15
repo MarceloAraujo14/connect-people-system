@@ -1,6 +1,6 @@
-package br.com.connectpeople.user.repository;
+package br.com.connectpeople.security.repository;
 
-import br.com.connectpeople.user.repository.entity.UserEntity;
+import br.com.connectpeople.security.repository.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
-package br.com.connectpeople.user.repository.entity;
+package br.com.connectpeople.security.repository.entity;
 
-import br.com.connectpeople.user.domain.Role;
-import br.com.connectpeople.user.domain.User;
+import br.com.connectpeople.security.domain.Role;
+import br.com.connectpeople.security.domain.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

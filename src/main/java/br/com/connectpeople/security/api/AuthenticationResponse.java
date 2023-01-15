@@ -1,4 +1,4 @@
-package br.com.connectpeople.user.api;
+package br.com.connectpeople.security.api;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

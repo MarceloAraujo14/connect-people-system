@@ -1,17 +1,18 @@
-package br.com.connectpeople.user.domain;
+package br.com.connectpeople.security.domain;
 
-import br.com.connectpeople.user.repository.entity.UserEntity;
+import br.com.connectpeople.security.repository.entity.UserEntity;
 import lombok.Builder;
 import lombok.Data;
+import lombok.With;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Builder
+@With
 @Data
 public class User implements UserDetails {
 

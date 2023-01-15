@@ -1,10 +1,11 @@
 package br.com.connectpeople.user.usecase;
 
-import br.com.connectpeople.security.JwtService;
-import br.com.connectpeople.user.repository.UserRepository;
-import br.com.connectpeople.user.repository.entity.UserEntity;
-import br.com.connectpeople.user.domain.Role;
-import br.com.connectpeople.user.domain.User;
+import br.com.connectpeople.security.usecase.JwtService;
+import br.com.connectpeople.security.repository.UserRepository;
+import br.com.connectpeople.security.repository.entity.UserEntity;
+import br.com.connectpeople.security.domain.Role;
+import br.com.connectpeople.security.domain.User;
+import br.com.connectpeople.security.usecase.RegisterUserUseCase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;

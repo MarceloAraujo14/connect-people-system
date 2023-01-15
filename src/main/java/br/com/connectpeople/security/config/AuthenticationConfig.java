@@ -1,8 +1,7 @@
-package br.com.connectpeople.security;
+package br.com.connectpeople.security.config;
 
-import br.com.connectpeople.user.domain.Role;
-import br.com.connectpeople.user.repository.UserRepository;
-import br.com.connectpeople.user.repository.entity.UserEntity;
+import br.com.connectpeople.security.repository.UserRepository;
+import br.com.connectpeople.security.repository.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties;
@@ -13,18 +12,15 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @RequiredArgsConstructor
 @EnableConfigurationProperties(OAuth2ClientProperties.class)
-public class AuthConfig {
+public class AuthenticationConfig {
 
     private final UserRepository repository;
 
@@ -56,14 +52,14 @@ public class AuthConfig {
         return new BCryptPasswordEncoder(10);
     }
 
-    @Bean
-    public UserDetailsService users(){
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(passwordEncoder().encode(pass))
-                .roles(Role.ADMIN.toString())
-                .build();
-
-        return new InMemoryUserDetailsManager(admin);
-    }
+//    @Bean
+//    public UserDetailsService users(){
+//        UserDetails admin = User.builder()
+//                .username("admin")
+//                .password(passwordEncoder().encode(pass))
+//                .roles(Role.ADMIN.toString())
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(admin);
+//    }
 }

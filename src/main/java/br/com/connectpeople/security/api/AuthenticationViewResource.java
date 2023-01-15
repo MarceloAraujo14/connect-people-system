@@ -1,10 +1,10 @@
-package br.com.connectpeople.security;
+package br.com.connectpeople.security.api;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class AuthViewResource {
+public class AuthenticationViewResource {
 
     @GetMapping("/login")
     public String getLoginPage(){

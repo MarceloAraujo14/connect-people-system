@@ -1,39 +1,25 @@
-package br.com.connectpeople.security;
+package br.com.connectpeople.security.config;
 
-import br.com.connectpeople.user.domain.Role;
-import br.com.connectpeople.user.repository.UserRepository;
-import br.com.connectpeople.user.repository.entity.UserEntity;
+import br.com.connectpeople.security.usecase.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.http.converter.FormHttpMessageConverter;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.endpoint.DefaultAuthorizationCodeTokenResponseClient;
 import org.springframework.security.oauth2.client.http.OAuth2ErrorResponseErrorHandler;
+import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.core.endpoint.DefaultMapOAuth2AccessTokenResponseConverter;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AccessTokenResponse;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.security.oauth2.core.http.converter.OAuth2AccessTokenResponseHttpMessageConverter;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.client.RestTemplate;
 
@@ -53,16 +39,16 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(LOGIN, "/static/**", "/css/**", "/js/**", "/img/**", "/actuator/health").permitAll()
+                        .requestMatchers(LOGIN, "/static/**", "/css/**", "/js/**", "/img/**",
+                                "/actuator/health", "/api/auth/**")
+                        .permitAll()
                         .anyRequest().authenticated()
                 )
                 .headers(headers -> headers.frameOptions().sameOrigin())
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .oauth2Login(oauth -> oauth
                         .loginPage(LOGIN)
                         .defaultSuccessUrl("/")
@@ -87,18 +73,21 @@ public class SecurityConfig {
                                     token.accessTokenResponseClient(client);
                                 }
                         ))
-                .formLogin(login -> login
-                        .loginPage(LOGIN)
-                        .usernameParameter("email")
-                        .passwordParameter("password")
-                        .defaultSuccessUrl("/", true)
-                        .loginProcessingUrl(LOGIN)
-                        .failureForwardUrl("/login?error=true")
-                        .permitAll())
+                .addFilterAfter(jwtAuthenticationFilter, OAuth2LoginAuthenticationFilter.class)
+
+//                .formLogin(login -> login
+//                        .loginPage(LOGIN)
+//                        .usernameParameter("email")
+//                        .passwordParameter("password")
+//                        .defaultSuccessUrl("/", true)
+//                        .loginProcessingUrl(LOGIN)
+//                        .failureForwardUrl("/login?error=true")
+//                        .permitAll())
+
                 .logout(
-                        logout -> logout
-                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
-                                .logoutSuccessUrl(LOGIN).permitAll()
+        logout -> logout
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
+                .logoutSuccessUrl(LOGIN).permitAll()
                 );
 
         return http.build();

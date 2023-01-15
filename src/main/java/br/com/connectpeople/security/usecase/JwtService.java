@@ -1,4 +1,4 @@
-package br.com.connectpeople.security;
+package br.com.connectpeople.security.usecase;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
